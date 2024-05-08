@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\NCKH_HRM.props" />
+</Project>
