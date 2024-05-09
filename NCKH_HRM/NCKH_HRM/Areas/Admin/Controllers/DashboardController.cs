@@ -2,8 +2,8 @@
 
 namespace NCKH_HRM.Areas.Admin.Controllers
 {
-    [Area("Admin")]
-    public class DashboardController : Controller
+    //[Area("Admin")]
+    public class DashboardController : BaseController
     {
         public IActionResult Index()
         {
