@@ -29,13 +29,13 @@ public partial class DateLearn
 
     public bool? IsActive { get; set; }
 
+    public virtual ICollection<DetailAttendance> DetailAttendances { get; set; } = new List<DetailAttendance>();
+
     public virtual DetailTerm? DetailTermNavigation { get; set; }
 
     public virtual RegistStudent? RegistStudentNavigation { get; set; }
 
     public virtual Student? StudentNavigation { get; set; }
-
-    public virtual ICollection<Test> Tests { get; set; } = new List<Test>();
 
     public virtual Timeline? TimelineNavigation { get; set; }
 }

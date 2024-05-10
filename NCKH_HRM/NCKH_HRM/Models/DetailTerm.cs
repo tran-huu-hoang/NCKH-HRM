@@ -37,7 +37,7 @@ public partial class DetailTerm
 
     public virtual ICollection<DateLearn> DateLearns { get; set; } = new List<DateLearn>();
 
-    public virtual ICollection<DetailAtteandance> DetailAtteandances { get; set; } = new List<DetailAtteandance>();
+    public virtual ICollection<DetailAttendance> DetailAttendances { get; set; } = new List<DetailAttendance>();
 
     public virtual ICollection<PointProcess> PointProcesses { get; set; } = new List<PointProcess>();
 

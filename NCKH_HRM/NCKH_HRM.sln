@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.9.34728.123
+VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NCKH_HRM", "NCKH_HRM\NCKH_HRM.csproj", "{9455A3AC-202B-40F6-B96B-D3E56B4FDCF7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NCKH_HRM", "NCKH_HRM\NCKH_HRM.csproj", "{388AA0C5-5616-4B4A-BC08-5C2252743F25}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9455A3AC-202B-40F6-B96B-D3E56B4FDCF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9455A3AC-202B-40F6-B96B-D3E56B4FDCF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9455A3AC-202B-40F6-B96B-D3E56B4FDCF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9455A3AC-202B-40F6-B96B-D3E56B4FDCF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{388AA0C5-5616-4B4A-BC08-5C2252743F25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{388AA0C5-5616-4B4A-BC08-5C2252743F25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{388AA0C5-5616-4B4A-BC08-5C2252743F25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{388AA0C5-5616-4B4A-BC08-5C2252743F25}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {B3DB5283-E431-4B91-BDA4-6F6DDBD1621C}
+		SolutionGuid = {C3411F50-F0A4-4D19-B8FE-3C6A0C84C4C8}
 	EndGlobalSection
 EndGlobal

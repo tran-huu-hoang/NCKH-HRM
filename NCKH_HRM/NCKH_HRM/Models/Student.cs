@@ -73,8 +73,6 @@ public partial class Student
 
     public virtual ICollection<DateLearn> DateLearns { get; set; } = new List<DateLearn>();
 
-    public virtual ICollection<DetailAtteandance> DetailAtteandances { get; set; } = new List<DetailAtteandance>();
-
     public virtual Major? MajorNavigation { get; set; }
 
     public virtual ICollection<PointProcess> PointProcesses { get; set; } = new List<PointProcess>();
@@ -82,6 +80,8 @@ public partial class Student
     public virtual ICollection<RegistStudent> RegistStudents { get; set; } = new List<RegistStudent>();
 
     public virtual Session? SessionNavigation { get; set; }
+
+    public virtual ICollection<Test> Tests { get; set; } = new List<Test>();
 
     public virtual ICollection<UserStudent> UserStudents { get; set; } = new List<UserStudent>();
 }

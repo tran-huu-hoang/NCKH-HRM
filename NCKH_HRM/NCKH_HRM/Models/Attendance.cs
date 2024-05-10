@@ -27,6 +27,8 @@ public partial class Attendance
 
     public bool? IsActive { get; set; }
 
+    public virtual ICollection<DetailAttendance> DetailAttendances { get; set; } = new List<DetailAttendance>();
+
     public virtual DetailTerm? DetailTermNavigation { get; set; }
 
     public virtual ICollection<PointProcess> PointProcesses { get; set; } = new List<PointProcess>();
@@ -34,6 +36,4 @@ public partial class Attendance
     public virtual RegistStudent? RegistStudentNavigation { get; set; }
 
     public virtual Student? StudentNavigation { get; set; }
-
-    public virtual ICollection<Test> Tests { get; set; } = new List<Test>();
 }

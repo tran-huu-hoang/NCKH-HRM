@@ -33,11 +33,11 @@ public partial class RegistStudent
 
     public virtual ICollection<DateLearn> DateLearns { get; set; } = new List<DateLearn>();
 
-    public virtual ICollection<DetailAtteandance> DetailAtteandances { get; set; } = new List<DetailAtteandance>();
-
     public virtual DetailTerm? DetailTermNavigation { get; set; }
 
     public virtual ICollection<PointProcess> PointProcesses { get; set; } = new List<PointProcess>();
 
     public virtual Student? StudentNavigation { get; set; }
+
+    public virtual ICollection<Test> Tests { get; set; } = new List<Test>();
 }
