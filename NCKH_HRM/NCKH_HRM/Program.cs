@@ -1,5 +1,5 @@
-using NCKH_HRM.Models;
 using Microsoft.EntityFrameworkCore;
+using NCKH_HRM.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
