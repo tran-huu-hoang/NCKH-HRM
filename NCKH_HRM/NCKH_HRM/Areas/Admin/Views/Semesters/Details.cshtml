@@ -14,38 +14,38 @@
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
                 <label class="control-label">Tên học phần</label>
-                <input asp-for="Name" class="form-control" />
+                <input asp-for="Name" class="form-control" readonly />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label class="control-label">Ngày bắt đầu</label>
-                <input asp-for="StartDate" class="form-control" />
+                <input asp-for="StartDate" class="form-control" readonly />
                 <span asp-validation-for="StartDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label class="control-label">Ngày kết thúc</label>
-                <input asp-for="EndDate" class="form-control" />
+                <input asp-for="EndDate" class="form-control" readonly />
                 <span asp-validation-for="EndDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label class="control-label">Người tạo</label>
-                <input asp-for="CreateBy" class="form-control" />
+                <input asp-for="CreateBy" class="form-control" readonly />
                 <span asp-validation-for="CreateBy" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label class="control-label">Người cập nhật</label>
-                <input asp-for="UpdateBy" class="form-control" />
+                <input asp-for="UpdateBy" class="form-control" readonly />
                 <span asp-validation-for="UpdateBy" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label class="control-label">Ngày tạo</label>
-                <input asp-for="CreateDate" class="form-control" />
+                <input asp-for="CreateDate" class="form-control" readonly />
                 <span asp-validation-for="CreateDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label class="control-label">Ngày cập nhật</label>
-                <input asp-for="CreateDate" class="form-control" />
-                <span asp-validation-for="CreateDate" class="text-danger"></span>
+                <input asp-for="UpdateDate" class="form-control" readonly />
+                <span asp-validation-for="UpdateDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label class="control-label">Xác nhận xóa</label>
