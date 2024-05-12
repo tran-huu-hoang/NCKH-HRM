@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NCKH_HRM")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9ecc3f373ce084b7384fddab30dca849f45706bc")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+60ac817da8ef7f4ff41608020072cafb66778944")]
 [assembly: System.Reflection.AssemblyProductAttribute("NCKH_HRM")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NCKH_HRM")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
