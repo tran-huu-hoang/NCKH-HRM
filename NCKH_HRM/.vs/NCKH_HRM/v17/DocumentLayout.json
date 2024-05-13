@@ -3,36 +3,12 @@
   "WorkspaceRootPath": "D:\\NCKH\\NCKH_HRM\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|d:\\nckh\\nckh_hrm\\nckh_hrm\\areas\\admin\\controllers\\userstaffscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|solutionrelative:nckh_hrm\\areas\\admin\\controllers\\userstaffscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|d:\\nckh\\nckh_hrm\\nckh_hrm\\areas\\admin\\controllers\\staffscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|solutionrelative:nckh_hrm\\areas\\admin\\controllers\\staffscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|d:\\nckh\\nckh_hrm\\nckh_hrm\\areas\\admin\\views\\shared\\_banner.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|solutionrelative:nckh_hrm\\areas\\admin\\views\\shared\\_banner.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|d:\\nckh\\nckh_hrm\\nckh_hrm\\areas\\admin\\views\\detailterms\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|solutionrelative:nckh_hrm\\areas\\admin\\views\\detailterms\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|d:\\nckh\\nckh_hrm\\nckh_hrm\\areas\\admin\\views\\detailterms\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|solutionrelative:nckh_hrm\\areas\\admin\\views\\detailterms\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|d:\\nckh\\nckh_hrm\\nckh_hrm\\areas\\admin\\views\\detailterms\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|solutionrelative:nckh_hrm\\areas\\admin\\views\\detailterms\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|d:\\nckh\\nckh_hrm\\nckh_hrm\\areas\\admin\\views\\detailterms\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|solutionrelative:nckh_hrm\\areas\\admin\\views\\detailterms\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|d:\\nckh\\nckh_hrm\\nckh_hrm\\areas\\admin\\controllers\\detailtermscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|solutionrelative:nckh_hrm\\areas\\admin\\controllers\\detailtermscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|d:\\nckh\\nckh_hrm\\nckh_hrm\\areas\\admin\\controllers\\userstudentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|solutionrelative:nckh_hrm\\areas\\admin\\controllers\\userstudentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -51,105 +27,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "UserStaffsController.cs",
-              "DocumentMoniker": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Areas\\Admin\\Controllers\\UserStaffsController.cs",
-              "RelativeDocumentMoniker": "NCKH_HRM\\Areas\\Admin\\Controllers\\UserStaffsController.cs",
-              "ToolTip": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Areas\\Admin\\Controllers\\UserStaffsController.cs",
-              "RelativeToolTip": "NCKH_HRM\\Areas\\Admin\\Controllers\\UserStaffsController.cs",
-              "ViewState": "AQIAAGcAAAAAAAAAAAAkwHUAAAA4AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-12T12:38:14.387Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "StaffsController.cs",
-              "DocumentMoniker": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Areas\\Admin\\Controllers\\StaffsController.cs",
-              "RelativeDocumentMoniker": "NCKH_HRM\\Areas\\Admin\\Controllers\\StaffsController.cs",
-              "ToolTip": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Areas\\Admin\\Controllers\\StaffsController.cs",
-              "RelativeToolTip": "NCKH_HRM\\Areas\\Admin\\Controllers\\StaffsController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAFkAAABdAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-12T12:33:31.595Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
               "Title": "_Banner.cshtml",
               "DocumentMoniker": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Areas\\Admin\\Views\\Shared\\_Banner.cshtml",
               "RelativeDocumentMoniker": "NCKH_HRM\\Areas\\Admin\\Views\\Shared\\_Banner.cshtml",
               "ToolTip": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Areas\\Admin\\Views\\Shared\\_Banner.cshtml",
               "RelativeToolTip": "NCKH_HRM\\Areas\\Admin\\Views\\Shared\\_Banner.cshtml",
-              "ViewState": "AQIAADwAAAAAAAAAAAAAAFAAAAA2AAAA",
+              "ViewState": "AQIAAE8AAAAAAAAAAAAAAGIAAAA/AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-05-12T12:29:36.353Z",
+              "WhenOpened": "2024-05-13T13:50:58.47Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Details.cshtml",
-              "DocumentMoniker": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Areas\\Admin\\Views\\DetailTerms\\Details.cshtml",
-              "RelativeDocumentMoniker": "NCKH_HRM\\Areas\\Admin\\Views\\DetailTerms\\Details.cshtml",
-              "ToolTip": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Areas\\Admin\\Views\\DetailTerms\\Details.cshtml",
-              "RelativeToolTip": "NCKH_HRM\\Areas\\Admin\\Views\\DetailTerms\\Details.cshtml",
-              "ViewState": "AQIAAEQAAAAAAAAAAAAiwD0AAABJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-05-12T12:23:46.098Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Edit.cshtml",
-              "DocumentMoniker": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Areas\\Admin\\Views\\DetailTerms\\Edit.cshtml",
-              "RelativeDocumentMoniker": "NCKH_HRM\\Areas\\Admin\\Views\\DetailTerms\\Edit.cshtml",
-              "ToolTip": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Areas\\Admin\\Views\\DetailTerms\\Edit.cshtml",
-              "RelativeToolTip": "NCKH_HRM\\Areas\\Admin\\Views\\DetailTerms\\Edit.cshtml",
-              "ViewState": "AQIAAAUAAAAAAAAAAAAiwAkAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-05-12T12:19:43.022Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Create.cshtml",
-              "DocumentMoniker": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Areas\\Admin\\Views\\DetailTerms\\Create.cshtml",
-              "RelativeDocumentMoniker": "NCKH_HRM\\Areas\\Admin\\Views\\DetailTerms\\Create.cshtml",
-              "ToolTip": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Areas\\Admin\\Views\\DetailTerms\\Create.cshtml",
-              "RelativeToolTip": "NCKH_HRM\\Areas\\Admin\\Views\\DetailTerms\\Create.cshtml",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAAAA0AAAAMAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-05-12T12:16:39.069Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Areas\\Admin\\Views\\DetailTerms\\Index.cshtml",
-              "RelativeDocumentMoniker": "NCKH_HRM\\Areas\\Admin\\Views\\DetailTerms\\Index.cshtml",
-              "ToolTip": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Areas\\Admin\\Views\\DetailTerms\\Index.cshtml",
-              "RelativeToolTip": "NCKH_HRM\\Areas\\Admin\\Views\\DetailTerms\\Index.cshtml",
-              "ViewState": "AQIAABUAAAAAAAAAAAAAAB8AAAAVAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-05-12T12:08:22.397Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "DetailTermsController.cs",
-              "DocumentMoniker": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Areas\\Admin\\Controllers\\DetailTermsController.cs",
-              "RelativeDocumentMoniker": "NCKH_HRM\\Areas\\Admin\\Controllers\\DetailTermsController.cs",
-              "ToolTip": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Areas\\Admin\\Controllers\\DetailTermsController.cs",
-              "RelativeToolTip": "NCKH_HRM\\Areas\\Admin\\Controllers\\DetailTermsController.cs",
-              "ViewState": "AQIAAGcAAAAAAAAAAAAUwMEAAAALAAAA",
+              "DocumentIndex": 1,
+              "Title": "UserStudentsController.cs",
+              "DocumentMoniker": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Areas\\Admin\\Controllers\\UserStudentsController.cs",
+              "RelativeDocumentMoniker": "NCKH_HRM\\Areas\\Admin\\Controllers\\UserStudentsController.cs",
+              "ToolTip": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Areas\\Admin\\Controllers\\UserStudentsController.cs",
+              "RelativeToolTip": "NCKH_HRM\\Areas\\Admin\\Controllers\\UserStudentsController.cs",
+              "ViewState": "AQIAAGYAAAAAAAAAAAAuwHIAAAA2AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-12T12:03:29.38Z",
+              "WhenOpened": "2024-05-13T02:37:55.454Z",
               "EditorCaption": ""
             }
           ]

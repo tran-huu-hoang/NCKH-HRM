@@ -5,6 +5,18 @@
       "PackagePath": "staticwebassets\\NCKH_HRM.bundle.scp.css"
     },
     {
+      "Id": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\wwwroot\\Uploads\\student\\admin3.jfif",
+      "PackagePath": "staticwebassets\\Uploads\\student\\admin3.jfif"
+    },
+    {
+      "Id": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\wwwroot\\Uploads\\student\\admin5.jfif",
+      "PackagePath": "staticwebassets\\Uploads\\student\\admin5.jfif"
+    },
+    {
+      "Id": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\wwwroot\\Uploads\\student\\go3.jfif",
+      "PackagePath": "staticwebassets\\Uploads\\student\\go3.jfif"
+    },
+    {
       "Id": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
