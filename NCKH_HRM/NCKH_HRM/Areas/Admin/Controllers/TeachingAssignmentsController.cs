@@ -28,6 +28,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
             int limit = 5;
 
             var teachingAssignment = await _context.TeachingAssignments.Include(t => t.DetailTermNavigation).Include(t => t.StaffNavigation).OrderBy(c => c.Id).ToPagedListAsync(page, limit);
+            ViewBag.Term = await _context.Terms.ToListAsync();
             return View(teachingAssignment);
         }
 
@@ -47,7 +48,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["DetailTerm"] = new SelectList(_context.DetailTerms, "Id", "Room", teachingAssignment.DetailTerm);
+            ViewData["DetailTerm"] = new SelectList(_context.Terms, "Id", "Name", teachingAssignment.DetailTerm);
             ViewData["Staff"] = new SelectList(_context.Staff, "Id", "Name", teachingAssignment.Staff);
 
             return View(teachingAssignment);
@@ -56,7 +57,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
         // GET: Admin/TeachingAssignments/Create
         public IActionResult Create()
         {
-            ViewData["DetailTerm"] = new SelectList(_context.DetailTerms, "Id", "Room");
+            ViewData["DetailTerm"] = new SelectList(_context.Terms, "Id", "Name");
             ViewData["Staff"] = new SelectList(_context.Staff, "Id", "Name");
             return View();
         }
@@ -79,7 +80,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DetailTerm"] = new SelectList(_context.DetailTerms, "Id", "Room", teachingAssignment.DetailTerm);
+            ViewData["DetailTerm"] = new SelectList(_context.Terms, "Id", "Name", teachingAssignment.DetailTerm);
             ViewData["Staff"] = new SelectList(_context.Staff, "Id", "Name", teachingAssignment.Staff);
             return View(teachingAssignment);
         }
@@ -97,7 +98,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["DetailTerm"] = new SelectList(_context.DetailTerms, "Id", "Room", teachingAssignment.DetailTerm);
+            ViewData["DetailTerm"] = new SelectList(_context.Terms, "Id", "Name", teachingAssignment.DetailTerm);
             ViewData["Staff"] = new SelectList(_context.Staff, "Id", "Name", teachingAssignment.Staff);
             return View(teachingAssignment);
         }
@@ -138,11 +139,10 @@ namespace NCKH_HRM.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DetailTerm"] = new SelectList(_context.DetailTerms, "Id", "Room", teachingAssignment.DetailTerm);
+            ViewData["DetailTerm"] = new SelectList(_context.Terms, "Id", "Name", teachingAssignment.DetailTerm);
             ViewData["Staff"] = new SelectList(_context.Staff, "Id", "Name", teachingAssignment.Staff);
             return View(teachingAssignment);
         }
-
         // GET: Admin/TeachingAssignments/Delete/5
         public async Task<IActionResult> Delete(long? id)
         {
@@ -197,7 +197,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
 
         private bool TeachingAssignmentExists(long id)
         {
-          return (_context.TeachingAssignments?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.TeachingAssignments?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

@@ -13,17 +13,17 @@ public partial class UserStudent
 
     public string? Password { get; set; }
 
-    public long? CreateBy { get; set; }
+    public DateTime? CreateBy { get; set; }
 
-    public long? UpdateBy { get; set; }
+    public DateTime? UpdateBy { get; set; }
 
     public string? CreateDate { get; set; }
 
     public string? UpdateDate { get; set; }
 
-    public DateTime? IsDelete { get; set; }
+    public bool? IsDelete { get; set; }
 
-    public DateTime? IsActive { get; set; }
+    public bool? IsActive { get; set; }
 
     public virtual Student? StudentNavigation { get; set; }
 }

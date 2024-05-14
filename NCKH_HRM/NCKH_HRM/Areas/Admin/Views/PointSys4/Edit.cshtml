@@ -15,17 +15,17 @@
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
                 <label asp-for="Range1" class="control-label">Khoảng 1</label>
-                <input asp-for="Range1" class="form-control" />
+                <input name="Range1" value="@ViewBag.Range1" class="form-control" />
                 <span asp-validation-for="Range1" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Range2" class="control-label">Khoảng 2</label>
-                <input asp-for="Range2" class="form-control" />
+                <input name="Range2" value="@ViewBag.Range2" class="form-control" />
                 <span asp-validation-for="Range2" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Point" class="control-label">Điểm hệ 4</label>
-                <input asp-for="Point" class="form-control" />
+                <input name="Point" value="@ViewBag.Point" class="form-control" />
                 <span asp-validation-for="Point" class="text-danger"></span>
             </div>
             <div class="form-group d-none">

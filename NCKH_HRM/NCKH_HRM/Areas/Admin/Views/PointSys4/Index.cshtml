@@ -77,7 +77,6 @@
 }
     </tbody>
 </table>
-<hr />
 @Html.PagedListPager(Model, page=>Url.Action("Index", new {page=page}), new X.PagedList.Web.Common.PagedListRenderOptions{
         LiElementClasses = new string[] {"page-item"},
         PageClasses = new string[] {"page-link"}

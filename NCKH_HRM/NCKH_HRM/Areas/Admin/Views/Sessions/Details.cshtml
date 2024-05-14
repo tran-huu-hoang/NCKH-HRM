@@ -46,12 +46,28 @@
         </div>
         <div class="form-group">
             <label class="control-label">Xác nhận xóa</label>
-            <input asp-for="IsDelete" asp-for="IsDelete" class="form-control" readonly />
+            <input class="form-control" readonly @if (Model.IsDelete == true)
+            {
+                <text>value="Yes"</text>
+            }
+            else
+            {
+                <text>value="No"</text>
+            }
+            />
             <span asp-validation-for="IsDelete" class="text-danger"></span>
         </div>
         <div class="form-group">
             <label class="control-label">Hiển thị</label>
-            <input asp-for="IsActive" asp-for="IsActive" class="form-control" readonly />
+            <input class="form-control" readonly @if (Model.IsActive == true)
+            {
+                <text>value="Active"</text>
+            }
+            else
+            {
+                <text>value="Inactive"</text>
+            }
+            />
             <span asp-validation-for="IsActive" class="text-danger"></span>
         </div>
     </div>

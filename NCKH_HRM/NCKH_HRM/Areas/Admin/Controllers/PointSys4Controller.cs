@@ -91,6 +91,9 @@ namespace NCKH_HRM.Areas.Admin.Controllers
             {
                 return NotFound();
             }
+            ViewBag.Range1 = pointSys4.Range1;
+            ViewBag.Range2 = pointSys4.Range2;
+            ViewBag.Point = pointSys4.Point;
             return View(pointSys4);
         }
 
