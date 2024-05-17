@@ -386,6 +386,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdTdGFydHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Views/Attendance/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXR0ZW5kYW5jZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/NCKH/NCKH_HRM/NCKH_HRM/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
