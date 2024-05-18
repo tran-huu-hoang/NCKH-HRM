@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "q4/8MV7FZ9LB3fdkCurwH26mlba1ZJN5BED6+d0ihNM=",
+  "Hash": "aMn1oH1ExDH+QOiIOiy4wtNwJxLYspbPtz/WTZXCCps=",
   "Source": "NCKH_HRM",
   "BasePath": "_content/NCKH_HRM",
   "Mode": "Default",
@@ -40221,6 +40221,25 @@
       "OriginalItemSpec": "wwwroot\\plugins\\uplot\\uPlot.min.css"
     },
     {
+      "Identity": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\wwwroot\\Uploads\\student\\admin2.jfif",
+      "SourceId": "NCKH_HRM",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\wwwroot\\",
+      "BasePath": "_content/NCKH_HRM",
+      "RelativePath": "Uploads/student/admin2.jfif",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Uploads\\student\\admin2.jfif"
+    },
+    {
       "Identity": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\wwwroot\\Uploads\\student\\admin3.jfif",
       "SourceId": "NCKH_HRM",
       "SourceType": "Discovered",
@@ -40238,6 +40257,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Uploads\\student\\admin3.jfif"
+    },
+    {
+      "Identity": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\wwwroot\\Uploads\\student\\admin4.jfif",
+      "SourceId": "NCKH_HRM",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\wwwroot\\",
+      "BasePath": "_content/NCKH_HRM",
+      "RelativePath": "Uploads/student/admin4.jfif",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Uploads\\student\\admin4.jfif"
     },
     {
       "Identity": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\wwwroot\\Uploads\\student\\admin5.jfif",
