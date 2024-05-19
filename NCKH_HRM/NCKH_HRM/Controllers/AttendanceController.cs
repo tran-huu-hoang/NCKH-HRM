@@ -28,15 +28,16 @@ namespace NCKH_HRM.Controllers
             var data = await(from t1 in _context.Terms
                              join t2 in _context.DetailTerms on t1.Id equals t2.Term
                              join t3 in _context.RegistStudents on t2.Id equals t3.DetailTerm
-                             join t4 in _context.Students on t3.Id equals t4.RegistStudents
+                             join t4 in _context.Students on t3.Student equals t4.Id
+                             where t1.Id == id
                              select new StudentInTerm
                              {
-                                 studentId = t1.Id,
+                                 studentId = t4.Id,
                                  Name = t4.Name,
                                  Gender = t4.Gender,
                              }).ToListAsync();
 
-            return View(list);
+            return View(data);
         }
     }
 }
