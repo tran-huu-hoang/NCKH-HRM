@@ -1,7 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NCKH_HRM.Models;
 using NCKH_HRM.ViewModels;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace NCKH_HRM.Controllers
@@ -22,22 +26,53 @@ namespace NCKH_HRM.Controllers
                         View(await _context.Terms.ToListAsync()) :
                         Problem("Entity set 'NckhDbContext.Terms'  is null.");
         }
-
+        
         public async Task<IActionResult> StudentInTerm(long? id)
         {
-            var data = await(from t1 in _context.Terms
-                             join t2 in _context.DetailTerms on t1.Id equals t2.Term
-                             join t3 in _context.RegistStudents on t2.Id equals t3.DetailTerm
-                             join t4 in _context.Students on t3.Student equals t4.Id
-                             where t1.Id == id
+            var data = await(from term in _context.Terms
+                             join detailterm in _context.DetailTerms on term.Id equals detailterm.Term
+                             join registstudent in _context.RegistStudents on detailterm.Id equals registstudent.DetailTerm
+                             join student in _context.Students on registstudent.Student equals student.Id
+                             join datelearn in _context.DateLearns on detailterm.Id equals datelearn.DetailTerm
+                             join timeline in _context.Timelines on datelearn.Timeline equals timeline.Id
+                             join attendance in _context.Attendances on detailterm.Id equals attendance.Id
+                             where term.Id == id && timeline.DateLearn.Value.Date == DateTime.Now.Date
+                             group new { student, timeline, registstudent, datelearn, detailterm, attendance } by new 
+                             { student.Code, student.Name, timeline.DateLearn, student.Id, attendanceId = attendance.Id, detailtermId = detailterm.Id, datelearnId = datelearn.Id} into g
                              select new StudentInTerm
                              {
-                                 studentId = t4.Id,
-                                 Name = t4.Name,
-                                 Gender = t4.Gender,
+                                 StudentCode = g.Key.Code,
+                                 StudentName = g.Key.Name,
+                                 DateLearn = g.Key.DateLearn,
+                                 StudentId = g.Key.Id,
+                                 AttendanceId = g.Key.attendanceId,
+                                 DetailTermId = g.Key.detailtermId,
+                                 DateLearnId = g.Key.datelearnId,
                              }).ToListAsync();
-
+            var termName = await _context.Terms.FindAsync(id);
+            ViewBag.TermName = termName.Name;
             return View(data);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> StudentInTerm(IFormCollection form)
+        {
+            int itemCount = form["AttendanceId"].Count;
+            for (int i =0; i< itemCount; i ++)
+            {
+                DetailAttendance attendancedetail = new DetailAttendance();
+                attendancedetail.IdAttendance = long.Parse(form["AttendanceId"][i]);
+                attendancedetail.DetailTerm = long.Parse(form["DetailTermId"][i]);
+                attendancedetail.DateLearn = long.Parse(form["DateLearnId"][i]);
+                attendancedetail.Status = int.Parse(form[(i+1).ToString()]);
+                    
+                _context.Add(attendancedetail);
+                
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
     }
 }

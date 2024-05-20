@@ -13,7 +13,7 @@ public partial class DetailAttendance
 
     public long? DateLearn { get; set; }
 
-    public bool? Status { get; set; }
+    public int? Status { get; set; }
 
     public virtual DateLearn? DateLearnNavigation { get; set; }
 

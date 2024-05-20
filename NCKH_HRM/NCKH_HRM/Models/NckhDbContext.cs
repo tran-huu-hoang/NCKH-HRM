@@ -69,7 +69,7 @@ public partial class NckhDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=.\\SQLEXPRESS; Database=NCKH_db; uid=sa; pwd=hoang1407; MultipleActiveResultSets=True; TrustServercertificate=true;Connection Timeout=3600");
+        => optionsBuilder.UseSqlServer("Data Source=.\\SQLEXPRESS; Database=NCKH_db; uid=sa; pwd=hoang1407; MultipleActiveResultSets=True;TrustServercertificate=true;Connection Timeout=3600;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -747,6 +747,8 @@ public partial class NckhDbContext : DbContext
 
             entity.ToTable("STUDENT");
 
+            entity.HasIndex(e => e.Code, "UQ__STUDENT__AA1D4379588A9CA9").IsUnique();
+
             entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.AccountNumber)
                 .HasMaxLength(50)
@@ -763,6 +765,10 @@ public partial class NckhDbContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("CITY");
             entity.Property(e => e.Classes).HasColumnName("CLASSES");
+            entity.Property(e => e.Code)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("CODE");
             entity.Property(e => e.CreateBy)
                 .HasMaxLength(450)
                 .HasColumnName("CREATE_BY");

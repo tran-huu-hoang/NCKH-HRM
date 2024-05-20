@@ -1,13 +1,84 @@
 ﻿@model IEnumerable<NCKH_HRM.ViewModels.StudentInTerm>
 @{
     ViewData["Title"] = "Home Page";
+    var stt = 0;
 }
 
-<div class="list-group">
- 
-    @foreach (var item in Model)
-    {
-        <a class="list-group-item list-group-item-action">@item.Name</a>
-    }
+<h1 class="py-3">Danh sách điểm danh sinh viên học phần @ViewBag.TermName</h1>
+<form method="post" asp-action="StudentInTerm">
+  
+    <div class="d-flex justify-content-between mb-3">
+        <input type="submit" onclick="return confirm('Bạn đã điểm danh xong?');" class="btn btn-success" value="Điểm danh" />
+    </div>
 
-</div>
+    <table class="table table-bordered table-hover bg-white">
+        <thead>
+            <tr>
+                <th>
+                    STT
+                </th>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Tên sinh viên
+                </th>
+                <th>
+                    Ngày học
+                </th>
+                <th>
+                    Có mặt
+                </th>
+                <th>
+                    Có phép
+                </th>
+                <th>
+                    Muộn
+                </th>
+                <th>
+                    Vắng
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                stt++;
+                <tr>
+                    <td>
+                        @stt
+                    </td>
+                    <td>
+                        @item.StudentCode
+                    </td>
+                    <td>
+                        @item.StudentName
+                    </td>
+                    <td>
+                        @if (item.DateLearn.HasValue)
+                        {
+                            @item.DateLearn.Value.ToShortDateString()
+                        }
+                    </td>
+                    <td>
+                        <input type="radio" name="@stt" value="1" required/>
+                    </td>
+                    <td>
+                        <input type="radio" name="@stt" value="2"  />
+                    </td>
+                    <td>
+                        <input type="radio" name="@stt" value="3"  />
+                    </td>
+                    <td>
+                        <input type="radio" name="@stt" value="4"  />
+                    </td>
+                </tr>
+                <input name="AttendanceId" value="@item.AttendanceId"  hidden/>
+                <input name="DetailTermId" value="@item.DetailTermId" hidden/>
+                <input name="DateLearnId" value="@item.DateLearnId" hidden/>
+            }
+        </tbody>
+    </table>
+
+    
+</form>

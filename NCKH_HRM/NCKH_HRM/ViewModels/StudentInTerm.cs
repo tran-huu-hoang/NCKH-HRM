@@ -1,11 +1,14 @@
-﻿using NCKH_HRM.Models;
-
-namespace NCKH_HRM.ViewModels
+﻿namespace NCKH_HRM.ViewModels
 {
     public class StudentInTerm
     {
-        public long studentId { get; set; }
-        public string? Name { get; set; }
-        public bool? Gender { get; set; }
+        public String? StudentCode { get; set; }
+        public string? StudentName { get; set; }
+        public int? Status { get; set; }
+        public DateTime? DateLearn { get; set; }
+        public long StudentId { get; set; }
+        public long? DetailTermId { get; set; }
+        public long? DateLearnId { get; set; }
+        public long? AttendanceId { get; set; }
     }
 }
