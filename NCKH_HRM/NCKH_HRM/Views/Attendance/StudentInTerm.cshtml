@@ -11,74 +11,64 @@
         <input type="submit" onclick="return confirm('Bạn đã điểm danh xong?');" class="btn btn-success" value="Điểm danh" />
     </div>
 
-    <table class="table table-bordered table-hover bg-white">
-        <thead>
-            <tr>
-                <th>
-                    STT
-                </th>
-                <th>
-                    ID
-                </th>
-                <th>
-                    Tên sinh viên
-                </th>
-                <th>
-                    Ngày học
-                </th>
-                <th>
+    <div class="row">
+        <div class="col-2 border bg-secondary text-white">
+            STT
+        </div>
+        <div class="col-2 border bg-secondary text-white">
+            ID
+        </div>
+        <div class="col-2 border bg-secondary text-white">
+            Tên sinh viên
+        </div>
+        <div class="col-6">
+            <div class="row">
+                <div class="col-3 border bg-secondary text-white">
                     Có mặt
-                </th>
-                <th>
+                </div>
+                <div class="col-3 border bg-secondary text-white">
                     Có phép
-                </th>
-                <th>
+                </div>
+                <div class="col-3 border bg-secondary text-white">
                     Muộn
-                </th>
-                <th>
+                </div>
+                <div class="col-3 border bg-secondary text-white">
                     Vắng
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                stt++;
-                <tr>
-                    <td>
-                        @stt
-                    </td>
-                    <td>
-                        @item.StudentCode
-                    </td>
-                    <td>
-                        @item.StudentName
-                    </td>
-                    <td>
-                        @if (item.DateLearn.HasValue)
-                        {
-                            @item.DateLearn.Value.ToShortDateString()
-                        }
-                    </td>
-                    <td>
-                        <input type="radio" name="@stt" value="1" required/>
-                    </td>
-                    <td>
-                        <input type="radio" name="@stt" value="2"  />
-                    </td>
-                    <td>
-                        <input type="radio" name="@stt" value="3"  />
-                    </td>
-                    <td>
-                        <input type="radio" name="@stt" value="4"  />
-                    </td>
-                </tr>
-                <input name="AttendanceId" value="@item.AttendanceId"  hidden/>
-                <input name="DetailTermId" value="@item.DetailTermId" hidden/>
-                <input name="DateLearnId" value="@item.DateLearnId" hidden/>
-            }
-        </tbody>
-    </table>
+                </div>
+            </div>
+        </div>
 
-    
+        @foreach(var item in Model)
+        {
+            stt++;
+            <div class="col-2 border">
+                @stt
+            </div>
+            <div class="col-2 border">
+                @item.StudentCode
+            </div>
+            <div class="col-2 border">
+                @item.StudentName
+            </div>
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-3 border border-white">
+                        <input type="radio" name="@stt" value="1" required />
+                    </div>
+                    <div class="col-3 border border-white">
+                        <input type="radio" name="@stt" value="2" />
+                    </div>
+                    <div class="col-3 border border-white">
+                        <input type="radio" name="@stt" value="3" />
+                    </div>
+                    <div class="col-3 border border-white">
+                        <input type="radio" name="@stt" value="4" />
+                    </div>
+                </div>
+            </div>
+            <input name="AttendanceId" value="@item.AttendanceId" hidden />
+            <input name="DetailTermId" value="@item.DetailTermId" hidden />
+            <input name="DateLearnId" value="@item.DateLearnId" hidden />
+        }
+    </div>
 </form>

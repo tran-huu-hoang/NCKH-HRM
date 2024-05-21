@@ -75,7 +75,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,BirthDate,Gender,NumberPhone,Email,Address,Image,Session,Classes,Major,AccountNumber,NameBank,IdentityCard,CreateDateIdentityCard,PlaceIdentityCard,City,District,Ward,Nationality,Nationals,Nation,PhoneFamily,Status,CreateBy,UpdateBy,CreateDate,UpdateDate,IsDelete,IsActive")] Student student)
+        public async Task<IActionResult> Create([Bind("Id,Code,Name,BirthDate,Gender,NumberPhone,Email,Address,Image,Session,Classes,Major,AccountNumber,NameBank,IdentityCard,CreateDateIdentityCard,PlaceIdentityCard,City,District,Ward,Nationality,Nationals,Nation,PhoneFamily,Status,CreateBy,UpdateBy,CreateDate,UpdateDate,IsDelete,IsActive")] Student student)
         {
             if (ModelState.IsValid)
             {
@@ -101,18 +101,17 @@ namespace NCKH_HRM.Areas.Admin.Controllers
                 _context.Add(student);
                 await _context.SaveChangesAsync();
 
-                /*var dataStudent = _context.Students.Where(c => c.Id == student.Id).FirstOrDefault();
-                var dataSession = _context.Sessions.Where(c => c.Id == student.Id).FirstOrDefault();
+                var dataStudent = _context.Students.Where(c => c.Id == student.Id).FirstOrDefault();
                 UserStudent us = new UserStudent();
                 us.Student = dataStudent.Id;
-                us.Username = null;
-                us.Password = null;
+                us.Username = dataStudent.Code;
+                us.Password = dataStudent.Code;
                 us.CreateBy = admin.Username;
                 us.UpdateBy = admin.Username;
                 us.IsDelete = false;
 
                 _context.Add(us);
-                await _context.SaveChangesAsync();*/
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             ViewData["Classes"] = new SelectList(_context.Classes, "Id", "Id", student.Classes);
@@ -145,7 +144,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, [Bind("Id,Name,BirthDate,Gender,NumberPhone,Email,Address,Image,Session,Classes,Major,AccountNumber,NameBank,IdentityCard,CreateDateIdentityCard,PlaceIdentityCard,City,District,Ward,Nationality,Nationals,Nation,PhoneFamily,Status,CreateBy,UpdateBy,CreateDate,UpdateDate,IsDelete,IsActive")] Student student)
+        public async Task<IActionResult> Edit(long id, [Bind("Id,Code,Name,BirthDate,Gender,NumberPhone,Email,Address,Image,Session,Classes,Major,AccountNumber,NameBank,IdentityCard,CreateDateIdentityCard,PlaceIdentityCard,City,District,Ward,Nationality,Nationals,Nation,PhoneFamily,Status,CreateBy,UpdateBy,CreateDate,UpdateDate,IsDelete,IsActive")] Student student)
         {
             if (id != student.Id)
             {
@@ -250,7 +249,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
 
         private bool StudentExists(long id)
         {
-          return (_context.Students?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Students?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

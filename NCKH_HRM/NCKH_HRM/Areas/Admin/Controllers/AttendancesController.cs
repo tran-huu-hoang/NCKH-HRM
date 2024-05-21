@@ -50,7 +50,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
                 return NotFound();
             }
             ViewData["DetailTerm"] = new SelectList(_context.DetailTerms, "Id", "Name", attendance.DetailTerm);
-            ViewData["RegistStudent"] = new SelectList(_context.RegistStudents, "Id", "Name", attendance.RegistStudent);
+            ViewData["RegistStudent"] = new SelectList(_context.RegistStudents, "Id", "Id", attendance.RegistStudent);
             ViewData["Student"] = new SelectList(_context.Students, "Id", "Name", attendance.Student);
             return View(attendance);
         }
@@ -58,9 +58,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
         // GET: Admin/Attendances/Create
         public IActionResult Create()
         {
-            ViewData["DetailTerm"] = new SelectList(_context.DetailTerms, "Id", "Name");
-            ViewData["RegistStudent"] = new SelectList(_context.RegistStudents, "Id", "Name");
-            ViewData["Student"] = new SelectList(_context.Students, "Id", "Name");
+            ViewData["RegistStudent"] = new SelectList(_context.RegistStudents, "Id", "Id");
             return View();
         }
 
@@ -79,13 +77,15 @@ namespace NCKH_HRM.Areas.Admin.Controllers
                 attendance.IsDelete = false;
                 attendance.Status = false;
 
+                RegistStudent rs = await _context.RegistStudents.FindAsync(attendance.RegistStudent);
+                attendance.Student = rs.Student;
+                attendance.DetailTerm = rs.DetailTerm;
+
                 _context.Add(attendance);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DetailTerm"] = new SelectList(_context.DetailTerms, "Id", "Id", attendance.DetailTerm);
             ViewData["RegistStudent"] = new SelectList(_context.RegistStudents, "Id", "Id", attendance.RegistStudent);
-            ViewData["Student"] = new SelectList(_context.Students, "Id", "Id", attendance.Student);
             return View(attendance);
         }
 
@@ -102,9 +102,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["DetailTerm"] = new SelectList(_context.DetailTerms, "Id", "Name", attendance.DetailTerm);
-            ViewData["RegistStudent"] = new SelectList(_context.RegistStudents, "Id", "Name", attendance.RegistStudent);
-            ViewData["Student"] = new SelectList(_context.Students, "Id", "Name", attendance.Student);
+            ViewData["RegistStudent"] = new SelectList(_context.RegistStudents, "Id", "Id", attendance.RegistStudent);
             return View(attendance);
         }
 
@@ -127,7 +125,9 @@ namespace NCKH_HRM.Areas.Admin.Controllers
                     attendance.UpdateDate = DateTime.Now;
                     var admin = JsonConvert.DeserializeObject<UserStaff>(HttpContext.Session.GetString("AdminLogin"));
                     attendance.UpdateBy = admin.Username;
-
+                    RegistStudent rs = await _context.RegistStudents.FindAsync(attendance.RegistStudent);
+                    attendance.Student = rs.Student;
+                    attendance.DetailTerm = rs.DetailTerm;
                     _context.Update(attendance);
                     await _context.SaveChangesAsync();
                 }
@@ -144,9 +144,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DetailTerm"] = new SelectList(_context.DetailTerms, "Id", "Id", attendance.DetailTerm);
             ViewData["RegistStudent"] = new SelectList(_context.RegistStudents, "Id", "Id", attendance.RegistStudent);
-            ViewData["Student"] = new SelectList(_context.Students, "Id", "Id", attendance.Student);
             return View(attendance);
         }
 
@@ -205,7 +203,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
 
         private bool AttendanceExists(long id)
         {
-          return (_context.Attendances?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Attendances?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

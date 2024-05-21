@@ -59,9 +59,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
         // GET: Admin/DateLearns/Create
         public IActionResult Create()
         {
-            ViewData["DetailTerm"] = new SelectList(_context.Terms, "Id", "Name");
             ViewData["RegistStudent"] = new SelectList(_context.RegistStudents, "Id", "Id");
-            ViewData["Student"] = new SelectList(_context.Students, "Id", "Name");
             ViewData["Timeline"] = new SelectList(_context.Timelines, "Id", "DateLearn");
             return View();
         }
@@ -79,13 +77,14 @@ namespace NCKH_HRM.Areas.Admin.Controllers
                 dateLearn.CreateBy = admin.Username;
                 dateLearn.UpdateBy = admin.Username;
                 dateLearn.IsDelete = false;
+                RegistStudent rs = await _context.RegistStudents.FindAsync(dateLearn.RegistStudent);
+                dateLearn.Student = rs.Student;
+                dateLearn.DetailTerm = rs.DetailTerm;
                 _context.Add(dateLearn);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DetailTerm"] = new SelectList(_context.Terms, "Id", "Name", dateLearn.DetailTerm);
             ViewData["RegistStudent"] = new SelectList(_context.RegistStudents, "Id", "Id", dateLearn.RegistStudent);
-            ViewData["Student"] = new SelectList(_context.Students, "Id", "Name", dateLearn.Student);
             ViewData["Timeline"] = new SelectList(_context.Timelines, "Id", "DateLearn", dateLearn.Timeline);
             return View(dateLearn);
         }
@@ -103,9 +102,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["DetailTerm"] = new SelectList(_context.Terms, "Id", "Name", dateLearn.DetailTerm);
             ViewData["RegistStudent"] = new SelectList(_context.RegistStudents, "Id", "Id", dateLearn.RegistStudent);
-            ViewData["Student"] = new SelectList(_context.Students, "Id", "Name", dateLearn.Student);
             ViewData["Timeline"] = new SelectList(_context.Timelines, "Id", "DateLearn", dateLearn.Timeline);
             return View(dateLearn);
         }
@@ -129,7 +126,9 @@ namespace NCKH_HRM.Areas.Admin.Controllers
                     var user = JsonConvert.DeserializeObject<UserStaff>(HttpContext.Session.GetString("AdminLogin"));
                     dateLearn.UpdateBy = user.Username;
                     dateLearn.UpdateDate = DateTime.Now;
-
+                    RegistStudent rs = await _context.RegistStudents.FindAsync(dateLearn.RegistStudent);
+                    dateLearn.Student = rs.Student;
+                    dateLearn.DetailTerm = rs.DetailTerm;
                     _context.Update(dateLearn);
                     await _context.SaveChangesAsync();
                 }
@@ -146,9 +145,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DetailTerm"] = new SelectList(_context.Terms, "Id", "Name", dateLearn.DetailTerm);
             ViewData["RegistStudent"] = new SelectList(_context.RegistStudents, "Id", "Id", dateLearn.RegistStudent);
-            ViewData["Student"] = new SelectList(_context.Students, "Id", "Name", dateLearn.Student);
             ViewData["Timeline"] = new SelectList(_context.Timelines, "Id", "DateLearn", dateLearn.Timeline);
             return View(dateLearn);
         }
@@ -208,7 +205,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
 
         private bool DateLearnExists(long id)
         {
-          return (_context.DateLearns?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.DateLearns?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

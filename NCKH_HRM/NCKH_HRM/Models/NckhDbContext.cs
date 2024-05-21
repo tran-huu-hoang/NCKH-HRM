@@ -69,7 +69,7 @@ public partial class NckhDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=.\\SQLEXPRESS; Database=NCKH_db; uid=sa; pwd=hoang1407; MultipleActiveResultSets=True;TrustServercertificate=true;Connection Timeout=3600;");
+        => optionsBuilder.UseSqlServer("Data Source=.\\SQLEXPRESS; Database=NCKH_db; uid=sa; pwd=hoang1407; MultipleActiveResultSets=True;TrustServercertificate=true;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -1103,11 +1103,11 @@ public partial class NckhDbContext : DbContext
 
             entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.CreateBy)
-                .HasColumnType("datetime")
+                .HasMaxLength(450)
                 .HasColumnName("CREATE_BY");
             entity.Property(e => e.CreateDate)
-                .HasMaxLength(450)
                 .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime")
                 .HasColumnName("CREATE_DATE");
             entity.Property(e => e.IsActive)
                 .HasDefaultValueSql("((1))")
@@ -1119,11 +1119,11 @@ public partial class NckhDbContext : DbContext
                 .HasColumnName("PASSWORD");
             entity.Property(e => e.Student).HasColumnName("STUDENT");
             entity.Property(e => e.UpdateBy)
-                .HasColumnType("datetime")
+                .HasMaxLength(450)
                 .HasColumnName("UPDATE_BY");
             entity.Property(e => e.UpdateDate)
-                .HasMaxLength(450)
                 .HasDefaultValueSql("(getdate())")
+                .HasColumnType("datetime")
                 .HasColumnName("UPDATE_DATE");
             entity.Property(e => e.Username)
                 .HasMaxLength(50)

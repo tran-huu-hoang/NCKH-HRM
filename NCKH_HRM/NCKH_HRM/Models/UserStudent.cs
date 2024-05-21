@@ -13,13 +13,13 @@ public partial class UserStudent
 
     public string? Password { get; set; }
 
-    public DateTime? CreateBy { get; set; }
+    public string? CreateBy { get; set; }
 
-    public DateTime? UpdateBy { get; set; }
+    public string? UpdateBy { get; set; }
 
-    public string? CreateDate { get; set; }
+    public DateTime? CreateDate { get; set; }
 
-    public string? UpdateDate { get; set; }
+    public DateTime? UpdateDate { get; set; }
 
     public bool? IsDelete { get; set; }
 

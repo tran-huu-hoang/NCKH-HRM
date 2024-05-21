@@ -26,8 +26,12 @@
                 STT
             </th>
             <th>
+                Mã SV
+            </th>
+            <th>
                 Tên SV
             </th>
+
             <th>
                 Giới tính
             </th>
@@ -58,6 +62,9 @@
             <td>
                 @stt
             </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Code)
+                </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
