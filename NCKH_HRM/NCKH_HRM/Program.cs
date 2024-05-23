@@ -39,6 +39,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 //S? d?ng session ?ã khai báo ? trên

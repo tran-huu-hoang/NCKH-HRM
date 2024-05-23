@@ -21,10 +21,6 @@ namespace NCKH_HRM.Controllers
 
         public async Task<IActionResult> Index()
         {
-            /*return _context.Terms != null ?
-                        View(await _context.Terms.ToListAsync()) :
-                        Problem("Entity set 'NckhDbContext.Terms'  is null.");*/
-
             var user_staff = JsonConvert.DeserializeObject<UserStaff>(HttpContext.Session.GetString("StaffLogin"));
 
             var data = await (from userstaff in _context.UserStaffs
@@ -32,7 +28,10 @@ namespace NCKH_HRM.Controllers
                               join teachingassignment in _context.TeachingAssignments on staff.Id equals teachingassignment.Staff
                               join detailterm in _context.DetailTerms on teachingassignment.DetailTerm equals detailterm.Id
                               join term in _context.Terms on detailterm.Term equals term.Id
-                              where staff.Id == user_staff.Id
+                              join datelearn in _context.DateLearns on detailterm.Id equals datelearn.DetailTerm
+                              join timeline in _context.Timelines on datelearn.Timeline equals timeline.Id
+                              join year in _context.Years on timeline.Year equals year.Id
+                              where staff.Id == user_staff.Id && year.Name == DateTime.Now.Year
                               select new Term
                               {
                                   Id = term.Id,

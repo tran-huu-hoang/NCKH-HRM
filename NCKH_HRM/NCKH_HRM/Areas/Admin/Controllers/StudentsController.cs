@@ -114,9 +114,9 @@ namespace NCKH_HRM.Areas.Admin.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Classes"] = new SelectList(_context.Classes, "Id", "Id", student.Classes);
-            ViewData["Major"] = new SelectList(_context.Majors, "Id", "Id", student.Major);
-            ViewData["Session"] = new SelectList(_context.Sessions, "Id", "Id", student.Session);
+            ViewData["Classes"] = new SelectList(_context.Classes, "Id", "Name", student.Classes);
+            ViewData["Major"] = new SelectList(_context.Majors, "Id", "Name", student.Major);
+            ViewData["Session"] = new SelectList(_context.Sessions, "Id", "Name", student.Session);
             return View(student);
         }
 

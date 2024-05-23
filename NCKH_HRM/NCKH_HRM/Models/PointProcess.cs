@@ -13,15 +13,21 @@ public partial class PointProcess
 
     public long? RegistStudent { get; set; }
 
-    public int? ScoreBoard { get; set; }
-
     public long? Attendance { get; set; }
 
-    public long? Test { get; set; }
+    public double? ComponentPoint { get; set; }
 
-    public double? PointProcess1 { get; set; }
+    public double? MidtermPoint { get; set; }
+
+    public double? TestScore { get; set; }
+
+    public double? OverallScore { get; set; }
+
+    public int? NumberTest { get; set; }
 
     public bool? Status { get; set; }
+
+    public long? IdStaff { get; set; }
 
     public string? CreateBy { get; set; }
 
@@ -39,11 +45,9 @@ public partial class PointProcess
 
     public virtual DetailTerm? DetailTermNavigation { get; set; }
 
+    public virtual Staff? IdStaffNavigation { get; set; }
+
     public virtual RegistStudent? RegistStudentNavigation { get; set; }
 
-    public virtual ScoreBoard? ScoreBoardNavigation { get; set; }
-
     public virtual Student? StudentNavigation { get; set; }
-
-    public virtual Test? TestNavigation { get; set; }
 }

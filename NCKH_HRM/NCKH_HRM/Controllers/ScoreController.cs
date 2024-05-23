@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace NCKH_HRM.Controllers
 {
-    public class ScoreController : Controller
+    public class ScoreController : BaseController
     {
         private readonly NckhDbContext _context;
 

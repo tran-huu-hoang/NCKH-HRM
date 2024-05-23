@@ -33,8 +33,6 @@ public partial class DetailTerm
 
     public virtual ICollection<Attendance> Attendances { get; set; } = new List<Attendance>();
 
-    public virtual ICollection<CoursePoint> CoursePoints { get; set; } = new List<CoursePoint>();
-
     public virtual ICollection<DateLearn> DateLearns { get; set; } = new List<DateLearn>();
 
     public virtual ICollection<DetailAttendance> DetailAttendances { get; set; } = new List<DetailAttendance>();
@@ -48,6 +46,4 @@ public partial class DetailTerm
     public virtual ICollection<TeachingAssignment> TeachingAssignments { get; set; } = new List<TeachingAssignment>();
 
     public virtual Term? TermNavigation { get; set; }
-
-    public virtual ICollection<Test> Tests { get; set; } = new List<Test>();
 }

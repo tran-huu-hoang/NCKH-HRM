@@ -64,7 +64,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,CreateBy,UpdateBy,CreateDate,UpdateDate,IsDelete,IsActive")] Major major)
+        public async Task<IActionResult> Create([Bind("Id,Code,Name,CreateBy,UpdateBy,CreateDate,UpdateDate,IsDelete,IsActive")] Major major)
         {
             if (ModelState.IsValid)
             {
@@ -101,7 +101,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,CreateBy,UpdateBy,CreateDate,UpdateDate,IsDelete,IsActive")] Major major)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Code,Name,CreateBy,UpdateBy,CreateDate,UpdateDate,IsDelete,IsActive")] Major major)
         {
             if (id != major.Id)
             {

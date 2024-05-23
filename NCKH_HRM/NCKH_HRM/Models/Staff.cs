@@ -7,6 +7,8 @@ public partial class Staff
 {
     public long Id { get; set; }
 
+    public string? Code { get; set; }
+
     public string? Name { get; set; }
 
     public DateTime? BirthDate { get; set; }
@@ -37,9 +39,9 @@ public partial class Staff
 
     public bool? IsActive { get; set; }
 
-    public virtual ICollection<CoursePoint> CoursePoints { get; set; } = new List<CoursePoint>();
-
     public virtual Major? MajorNavigation { get; set; }
+
+    public virtual ICollection<PointProcess> PointProcesses { get; set; } = new List<PointProcess>();
 
     public virtual Position? PositionNavigation { get; set; }
 
