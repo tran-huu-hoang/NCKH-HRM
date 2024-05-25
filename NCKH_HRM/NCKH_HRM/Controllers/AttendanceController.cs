@@ -31,11 +31,20 @@ namespace NCKH_HRM.Controllers
                               join datelearn in _context.DateLearns on detailterm.Id equals datelearn.DetailTerm
                               join timeline in _context.Timelines on datelearn.Timeline equals timeline.Id
                               join year in _context.Years on timeline.Year equals year.Id
+                              join staffsubject in _context.StaffSubjects on staff.Id equals staffsubject.Staff
+                              join subject in _context.Subjects on staffsubject.Staff equals subject.Id
                               where staff.Id == user_staff.Id && year.Name == DateTime.Now.Year
-                              select new Term
+                              select new StaffIndex
                               {
-                                  Id = term.Id,
-                                  Name = term.Name,
+                                  TermId = term.Id,
+                                  StaffCode = staff.Code,
+                                  StaffName = staff.Name,
+                                  SubjectName = subject.Name,
+                                  TermName = term.Name,
+                                  StartDate = detailterm.StartDate,
+                                  EndDate = detailterm.EndDate,
+                                  Room = detailterm.Room,
+                                  CollegeCredit = term.CollegeCredit,
                               }).ToListAsync();
 
             return View(data);

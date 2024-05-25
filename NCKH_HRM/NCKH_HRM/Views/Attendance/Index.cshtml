@@ -1,13 +1,79 @@
-﻿@model IEnumerable<NCKH_HRM.Models.Term>
+﻿@model IEnumerable<NCKH_HRM.ViewModels.StaffIndex>
 @{
     ViewData["Title"] = "Home Page";
+    var stt = 0;
 }
-<h1>Danh sách các học phần</h1>
-<div class="list-group">
- 
-    @foreach (var item in Model)
-    {
-        <a asp-action="StudentInTerm" asp-route-id="@item.Id" class="list-group-item list-group-item-action">@item.Name</a>
-    }
 
+<form action="" method="get" class="form-inline d-flex justify-content-between mb-3">
+    <div class="form-group">
+        <label class="sr-only">Tìm tên theo loại</label>
+        <input class="form-control" name="name" id="keyword" placeholder="Tìm kiếm..." />
+        <button type="submit" class="btn btn-default mr-1"><i class="fas fa-search"></i></button>
+    </div>
+</form>
+
+<div class="list-group d-flex justify-content-between mb-3">
+    <div>
+        <div>
+            Mã giảng viên: 
+        </div>
+        <div>
+            Tên giảng viên:
+        </div>
+        <div>
+            Bộ môn
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-1 border bg-secondary text-white">
+            STT
+        </div>
+        <div class="col-2 border bg-secondary text-white">
+            Tên HP
+        </div>
+        <div class="col-4 border bg-secondary text-white">
+            Thời gian
+        </div>
+        <div class="col-2 border bg-secondary text-white">
+            Địa điểm
+        </div>
+        <div class="col-2 border bg-secondary text-white">
+            Số TC
+        </div>
+        <div class="col-1 border bg-secondary text-white">
+            
+        </div>
+
+        @foreach (var item in Model)
+        {
+            stt++;
+            <div class="col-1 border">
+                @stt
+            </div>
+            <div class="col-2 border">
+                @item.TermName
+            </div>
+            <div class="col-4 border">
+                @if (item.StartDate.HasValue)
+                {
+                    @item.StartDate.Value.ToShortDateString()
+                }
+                đến
+                @if (item.EndDate.HasValue)
+                {
+                    @item.EndDate.Value.ToShortDateString()
+                }
+            </div>
+            <div class="col-2 border">
+                @item.Room
+            </div>
+            <div class="col-2 border">
+                @item.CollegeCredit
+            </div>
+            <div class="col-1 border">
+                <a asp-action="StudentInTerm" asp-route-id="@item.TermId"><i class="fa-solid fa-angles-right"></i></a>
+            </div>
+        }
+    </div>
 </div>

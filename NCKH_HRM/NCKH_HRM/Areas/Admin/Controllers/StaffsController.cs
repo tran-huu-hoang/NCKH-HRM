@@ -75,7 +75,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,BirthDate,NumberPhone,Gender,Email,Degree,Major,Yearofwork,Position,CreateBy,UpdateBy,CreateDate,UpdateDate,IsDelete,IsActive")] Staff staff)
+        public async Task<IActionResult> Create([Bind("Id,Code,Name,BirthDate,NumberPhone,Gender,Email,Degree,Major,Yearofwork,Position,CreateBy,UpdateBy,CreateDate,UpdateDate,IsDelete,IsActive")] Staff staff)
         {
             if (ModelState.IsValid)
             {
@@ -127,7 +127,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, [Bind("Id,Name,BirthDate,NumberPhone,Gender,Email,Degree,Major,Yearofwork,Position,CreateBy,UpdateBy,CreateDate,UpdateDate,IsDelete,IsActive")] Staff staff)
+        public async Task<IActionResult> Edit(long id, [Bind("Id,Code,Name,BirthDate,NumberPhone,Gender,Email,Degree,Major,Yearofwork,Position,CreateBy,UpdateBy,CreateDate,UpdateDate,IsDelete,IsActive")] Staff staff)
         {
             if (id != staff.Id)
             {
