@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using NCKH_HRM.Models;
 using NCKH_HRM.ViewModels;
 using Newtonsoft.Json;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 
@@ -32,8 +33,8 @@ namespace NCKH_HRM.Controllers
                               join timeline in _context.Timelines on datelearn.Timeline equals timeline.Id
                               join year in _context.Years on timeline.Year equals year.Id
                               join staffsubject in _context.StaffSubjects on staff.Id equals staffsubject.Staff
-                              join subject in _context.Subjects on staffsubject.Staff equals subject.Id
-                              where staff.Id == user_staff.Id && year.Name == DateTime.Now.Year
+                              join subject in _context.Subjects on staffsubject.Subject equals subject.Id
+                              where userstaff.Id == user_staff.Id && year.Name == DateTime.Now.Year
                               select new StaffIndex
                               {
                                   TermId = term.Id,
@@ -46,7 +47,7 @@ namespace NCKH_HRM.Controllers
                                   Room = detailterm.Room,
                                   CollegeCredit = term.CollegeCredit,
                               }).ToListAsync();
-
+            
             return View(data);
         }
         
