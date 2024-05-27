@@ -1,0 +1,58 @@
+﻿@model IEnumerable<NCKH_HRM.ViewModels.StudentInTerm>
+@{
+    ViewData["Title"] = "Home Page";
+    var stt = 0;
+}
+
+<h1 class="py-3">Nhập điểm lớp ... học phần @ViewBag.TermName</h1>
+<form method="post" asp-action="EnterScore">
+
+    <div class="d-flex justify-content-between mb-3">
+        <input type="submit" onclick="return confirm('Bạn đã nhập điểm xong?');" class="btn btn-success" value="Nhập điểm" />
+    </div>
+
+    <div class="row">
+        <div class="col-2 border bg-secondary text-white">
+            STT
+        </div>
+        <div class="col-2 border bg-secondary text-white">
+            ID
+        </div>
+        <div class="col-2 border bg-secondary text-white">
+            Tên sinh viên
+        </div>
+        <div class="col-2 border bg-secondary text-white">
+            Điểm thành phần
+        </div>
+        <div class="col-2 border bg-secondary text-white">
+            Điểm giữa kỳ
+        </div>
+        <div class="col-2 border bg-secondary text-white">
+            Điểm thi
+        </div>
+
+        @foreach (var item in Model)
+        {
+            stt++;
+            <div class="col-2 border">
+                @stt
+            </div>
+            <div class="col-2 border">
+                @item.StudentCode
+            </div>
+            <div class="col-2 border">
+                @item.StudentName
+            </div>
+            <div class="col-2 border">
+                <input name="ComponentPoint" required />
+            </div>
+            <div class="col-2 border">
+                <input name="MidtermPoint" required />
+            </div>
+            <div class="col-2 border">
+                <input name="TestScore" required />
+            </div>
+            <input name="AttendanceId" value="@item.AttendanceId" hidden />
+        }
+    </div>
+</form>
