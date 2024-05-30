@@ -31,12 +31,13 @@
                 Mật khẩu
             </th>
             <th>
-                Hiển thị
-            </th>
-            <th>
                 Tên giảng viên
             </th>
-            <th></th>
+            <th>
+                Hiển thị
+            </th>
+            
+            <th>Tác vụ</th>
         </tr>
     </thead>
     <tbody>
@@ -52,12 +53,10 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Password)
             </td>
-            <td>
-                @if (item.CreateDate.HasValue)
-                {
-                    @item.CreateDate.Value.ToShortDateString()
-                }
-            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StaffNavigation.Name)
+                </td>
+
             <td>
                 @if (item.IsActive == true)
                 {
@@ -68,9 +67,7 @@
                     <span class="text-danger">Inactive</span>
                 }
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StaffNavigation.Name)
-            </td>
+            
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-event"><i class="fa-regular fa-pen-to-square"></i></a>
                 <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-success btn-event"><i class="fa-solid fa-circle-info"></i></a>

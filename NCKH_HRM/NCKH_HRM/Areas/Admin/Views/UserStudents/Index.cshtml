@@ -1,51 +1,51 @@
-﻿@model IEnumerable<NCKH_HRM.Models.UserStudent>
+﻿@model X.PagedList.IPagedList<NCKH_HRM.Models.UserStudent>
+@using X.PagedList.Mvc.Core
 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/Admin.cshtml";
+    var stt = 0;
 }
 
-<h1>Index</h1>
+<h1 class="py-3">Danh sách tài khoản học sinh</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+<form action="" method="get" class="form-inline d-flex justify-content-start mb-3">
+    <div class="form-group">
+        <label class="sr-only">Tìm tên theo loại</label>
+        <input class="form-control" name="name" id="keyword" placeholder="Nhập tài khoản học sinh cần tìm" />
+        <button type="submit" class="btn btn-default mr-1"><i class="fas fa-search"></i></button>
+    </div>
+
+
+</form>
+<table class="table table-bordered table-hover bg-white">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Username)
+                STT
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Password)
+                Tài khoản
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CreateBy)
+                Mật khẩu
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.UpdateBy)
+                Tên học sinh
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CreateDate)
+                Hiển thị
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UpdateDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsDelete)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsActive)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StudentNavigation)
-            </th>
-            <th></th>
+
+            <th>Tác vụ</th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+                @stt
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Username)
             </td>
@@ -53,32 +53,30 @@
                 @Html.DisplayFor(modelItem => item.Password)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CreateBy)
+                @Html.DisplayFor(modelItem => item.StudentNavigation.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.UpdateBy)
+                @if (item.IsActive == true)
+                {
+                    <span class="text-success">Active</span>
+                }
+                else
+                {
+                    <span class="text-danger">Inactive</span>
+                }
             </td>
+            
             <td>
-                @Html.DisplayFor(modelItem => item.CreateDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UpdateDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsDelete)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsActive)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StudentNavigation.Id)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-event"><i class="fa-regular fa-pen-to-square"></i></a>
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-success btn-event"><i class="fa-solid fa-circle-info"></i></a>
+                <a asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Bạn có chắc muốn xóa mục này không?');" class="btn btn-danger btn-event"><i class="fa-solid fa-trash-can"></i></a>
             </td>
         </tr>
-}
+        }
     </tbody>
 </table>
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }), new X.PagedList.Web.Common.PagedListRenderOptions
+{
+    LiElementClasses = new string[] { "page-item" },
+    PageClasses = new string[] { "page-link" }
+})

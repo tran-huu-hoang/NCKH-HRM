@@ -127,14 +127,14 @@ namespace NCKH_HRM.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Student"] = new SelectList(_context.Students, "Id", "Id", userStudent.Student);
+            ViewData["Student"] = new SelectList(_context.Students, "Id", "Name", userStudent.Student);
             return View(userStudent);
         }
 
         // GET: Admin/UserStudents/Delete/5
         public async Task<IActionResult> Delete(long? id)
         {
-            if (id == null || _context.UserStudents == null)
+            /*if (id == null || _context.UserStudents == null)
             {
                 return NotFound();
             }
@@ -147,11 +147,23 @@ namespace NCKH_HRM.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            return View(userStudent);
+            return View(userStudent);*/
+            if (_context.UserStudents == null)
+            {
+                return Problem("Entity set 'NckhDbContext.UserStudents'  is null.");
+            }
+            var userStudent = await _context.UserStudents.FindAsync(id);
+            if (userStudent != null)
+            {
+                _context.UserStudents.Remove(userStudent);
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
 
         // POST: Admin/UserStudents/Delete/5
-        [HttpPost, ActionName("Delete")]
+        /*[HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(long id)
         {
@@ -167,7 +179,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
-        }
+        }*/
 
         private bool UserStudentExists(long id)
         {
