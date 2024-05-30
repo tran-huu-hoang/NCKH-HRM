@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -77,6 +78,39 @@ namespace NCKH_HRM.Areas.Admin.Controllers
                 registStudent.IsDelete = false;
                 _context.Add(registStudent);
                 await _context.SaveChangesAsync();
+
+                var dataAttendance = _context.Attendances.Where(c => c.Id == registStudent.Id).FirstOrDefault();
+                Attendance at = new Attendance();
+                at.Student = registStudent.Student;
+                at.DetailTerm = registStudent.DetailTerm;
+                at.RegistStudent = registStudent.Id;
+                at.Status = true;
+                at.CreateBy = admin.Username;
+                at.UpdateBy = admin.Username;
+                at.IsDelete = false;
+                _context.Add(at);
+                await _context.SaveChangesAsync();
+                dataAttendance = at;
+
+                var dataPoint = _context.PointProcesses.Where(c => c.Id == registStudent.Id).FirstOrDefault();
+                PointProcess pt = new PointProcess();
+                pt.Student = registStudent.Student;
+                pt.DetailTerm = registStudent.DetailTerm;
+                pt.RegistStudent = registStudent.Id;
+                pt.Attendance = dataAttendance.Id;
+                pt.ComponentPoint = null;
+                pt.MidtermPoint = null;
+                pt.TestScore = null;
+                pt.OverallScore = null;
+                pt.NumberTest = null;
+                pt.Status = null;
+                pt.IdStaff = null;
+                pt.CreateBy = admin.Username;
+                pt.UpdateBy = admin.Username;
+                pt.IsDelete = false;
+                _context.Add(pt);
+                await _context.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Index));
             }
             ViewData["DetailTerm"] = new SelectList(_context.Terms, "Id", "Name", registStudent.DetailTerm);
@@ -121,6 +155,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
                     var user = JsonConvert.DeserializeObject<UserStaff>(HttpContext.Session.GetString("AdminLogin"));
                     registStudent.UpdateBy = user.Username;
                     registStudent.UpdateDate = DateTime.Now;
+
                     _context.Update(registStudent);
                     await _context.SaveChangesAsync();
                 }

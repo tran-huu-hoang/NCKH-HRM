@@ -1,4 +1,4 @@
-﻿@model IEnumerable<NCKH_HRM.ViewModels.StudentInTerm>
+﻿@model IEnumerable<NCKH_HRM.ViewModels.EnterScore>
 @{
     ViewData["Title"] = "Home Page";
     var stt = 0;
@@ -8,7 +8,7 @@
 <form method="post" asp-action="EnterScore">
 
     <div class="d-flex justify-content-between mb-3">
-        <input type="submit" onclick="return confirm('Bạn đã nhập điểm xong?');" class="btn btn-success" value="Nhập điểm" />
+        <input type="submit" onclick="return confirm('Bạn đã nhập điểm xong?');" class="btn btn-success" value="Lưu thay đổi" />
     </div>
 
     <div class="row">
@@ -28,7 +28,7 @@
             Điểm giữa kỳ
         </div>
         <div class="col-2 border bg-secondary text-white">
-            Điểm thi
+            Điểm hết môn
         </div>
 
         @foreach (var item in Model)
@@ -44,15 +44,25 @@
                 @item.StudentName
             </div>
             <div class="col-2 border">
-                <input name="ComponentPoint" required />
+                <input asp-for="@item.ComponentPoint" name="ComponentPoint" />
             </div>
             <div class="col-2 border">
-                <input name="MidtermPoint" required />
+                <input asp-for="@item.MidtermPoint" name="MidtermPoint" />
             </div>
             <div class="col-2 border">
-                <input name="TestScore" required />
+                <input asp-for="@item.TestScore" name="TestScore" />
             </div>
-            <input name="AttendanceId" value="@item.AttendanceId" hidden />
+            <input asp-for="@item.PointId" name="PointId" hidden />
+            <input asp-for="@item.Student" name="Student" hidden />
+            <input asp-for="@item.DetailTerm" name="DetailTerm" hidden />
+            <input asp-for="@item.RegistStudent" name="RegistStudent" hidden />
+            <input asp-for="@item.Attendance" name="Attendance" hidden />
+            <input asp-for="@item.NumberTest" name="NumberTest" hidden />
+            <input asp-for="@item.CreateBy" name="CreateBy" hidden />
+            <input asp-for="@item.UpdateBy" name="UpdateBy" hidden />
+            <input asp-for="@item.CreateDate" name="CreateDate" hidden />
+            <input asp-for="@item.IsActive" name="IsActive" hidden />
+            <input asp-for="@item.IsDelete" name="IsDelete" hidden />
         }
     </div>
 </form>

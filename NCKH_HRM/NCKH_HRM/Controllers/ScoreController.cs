@@ -48,15 +48,35 @@ namespace NCKH_HRM.Controllers
                               join timeline in _context.Timelines on datelearn.Timeline equals timeline.Id
                               join attendance in _context.Attendances on detailterm.Id equals attendance.Id
                               join year in _context.Years on timeline.Year equals year.Id
+                              join pointprocess in _context.PointProcesses on registstudent.Id equals pointprocess.RegistStudent
                               where term.Id == id && year.Name == DateTime.Now.Year
-                              group new { student, timeline, attendance } by new
-                              { student.Code, student.Name, timeline.DateLearn, attendanceId = attendance.Id} into g
-                              select new StudentInTerm
+                              group new { student, timeline, attendance, pointprocess } by new
+                              { student.Code, student.Name, timeline.DateLearn, attendanceId = attendance.Id,
+                                  pointprocessId = pointprocess.Id, pointprocess.ComponentPoint, pointprocess.MidtermPoint,
+                                  pointprocess.TestScore, pointprocess.Student, pointprocess.DetailTerm, pointprocess.RegistStudent,
+                                  pointprocess.Attendance, pointprocess.NumberTest, pointprocess.IdStaff,
+                                  pointprocess.CreateBy, pointprocess.UpdateBy, pointprocess.CreateDate,
+                                  pointprocess.UpdateDate, pointprocess.IsDelete, pointprocess.IsActive} into g
+                              select new EnterScore
                               {
                                   StudentCode = g.Key.Code,
                                   StudentName = g.Key.Name,
-                                  DateLearn = g.Key.DateLearn,
-                                  AttendanceId = g.Key.attendanceId,
+                                  PointId = g.Key.pointprocessId,
+                                  ComponentPoint = g.Key.ComponentPoint,
+                                  MidtermPoint = g.Key.MidtermPoint,
+                                  TestScore = g.Key.TestScore,
+                                  Student = g.Key.Student,
+                                  DetailTerm = g.Key.DetailTerm,
+                                  RegistStudent = g.Key.RegistStudent,
+                                  Attendance = g.Key.Attendance,
+                                  NumberTest = g.Key.NumberTest,
+                                  IdStaff = g.Key.IdStaff,
+                                  CreateBy = g.Key.CreateBy,
+                                  UpdateBy = g.Key.UpdateBy,
+                                  CreateDate = g.Key.CreateDate,
+                                  UpdateDate = g.Key.UpdateDate,
+                                  IsDelete = g.Key.IsDelete,
+                                  IsActive = g.Key.IsActive,
                               }).ToListAsync();
             var termName = await _context.Terms.FindAsync(id);
             ViewBag.TermName = termName.Name;
@@ -67,15 +87,15 @@ namespace NCKH_HRM.Controllers
         public async Task<IActionResult> EnterScore(IFormCollection form)
         {
             var user_staff = JsonConvert.DeserializeObject<UserStaff>(HttpContext.Session.GetString("StaffLogin"));
-            int itemCount = form["AttendanceId"].Count;
+            int itemCount = form["Attendance"].Count;
             for (int i = 0; i < itemCount; i++)
             {
                 PointProcess pointProcess = new PointProcess();
-                pointProcess.Attendance = long.Parse(form["AttendanceId"][i]);
-                var attendance = await _context.Attendances.FindAsync(pointProcess.Attendance);
-                pointProcess.DetailTerm = attendance.DetailTerm;
-                pointProcess.Student = attendance.Student;
-                pointProcess.RegistStudent = attendance.RegistStudent;
+                pointProcess.Id = long.Parse(form["PointId"][i]);
+                pointProcess.Attendance = long.Parse(form["Attendance"][i]);
+                pointProcess.DetailTerm = long.Parse(form["DetailTerm"][i]);
+                pointProcess.Student = long.Parse(form["Student"][i]);
+                pointProcess.RegistStudent = long.Parse(form["RegistStudent"][i]);
                 pointProcess.ComponentPoint = Double.Parse(form["ComponentPoint"][i]);
                 pointProcess.MidtermPoint = Double.Parse(form["MidtermPoint"][i]);
                 pointProcess.TestScore = Double.Parse(form["TestScore"][i]);
@@ -88,11 +108,16 @@ namespace NCKH_HRM.Controllers
                 {
                     pointProcess.Status=false;
                 }
+                pointProcess.NumberTest = 1;
                 pointProcess.IdStaff = user_staff.Staff;
-                pointProcess.CreateBy = user_staff.Username;
+                pointProcess.CreateBy = form["CreateBy"][i].ToString();
                 pointProcess.UpdateBy = user_staff.Username;
-                pointProcess.IsDelete = false;
-                _context.Add(pointProcess);
+                pointProcess.CreateDate = DateTime.Parse(form["CreateDate"][i]);
+                pointProcess.UpdateDate = DateTime.Now;
+                pointProcess.IsActive = bool.Parse(form["IsActive"][i]);
+                pointProcess.IsDelete = bool.Parse(form["IsDelete"][i]);
+
+                _context.Update(pointProcess);
 
             }
 

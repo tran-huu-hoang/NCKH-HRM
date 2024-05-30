@@ -2,7 +2,7 @@
 {
     public class StudentInTerm
     {
-        public String? StudentCode { get; set; }
+        public string? StudentCode { get; set; }
         public string? StudentName { get; set; }
         public int? Status { get; set; }
         public DateTime? DateLearn { get; set; }
