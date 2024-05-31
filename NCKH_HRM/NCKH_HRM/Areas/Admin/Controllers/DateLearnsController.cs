@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -81,6 +82,16 @@ namespace NCKH_HRM.Areas.Admin.Controllers
                 dateLearn.Student = rs.Student;
                 dateLearn.DetailTerm = rs.DetailTerm;
                 _context.Add(dateLearn);
+                await _context.SaveChangesAsync();
+
+                var dataAttendance = _context.Attendances.Where(c => c.RegistStudent == dateLearn.RegistStudent).FirstOrDefault();
+                DetailAttendance da = new DetailAttendance();
+                da.IdAttendance = dataAttendance.Id;
+                da.DateLearn = dateLearn.Id;
+                da.DetailTerm = dateLearn.DetailTerm;
+                da.Status = null;
+                _context.Add(da);
+
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
