@@ -5,7 +5,7 @@
 }
 
 <h1 class="py-3">Nhập điểm lớp ... học phần @ViewBag.TermName</h1>
-<form method="post" asp-action="EnterScore">
+@* <form method="post" asp-action="EnterScore">
 
     <div class="d-flex justify-content-between mb-3">
         <input type="submit" onclick="return confirm('Bạn đã nhập điểm xong?');" class="btn btn-success" value="Lưu thay đổi" />
@@ -65,4 +65,52 @@
             <input asp-for="@item.IsDelete" name="IsDelete" hidden />
         }
     </div>
-</form>
+</form> *@
+<div class="container mt-5">
+    <form method="post" asp-action="EnterScore">
+        <div class="text-end mb-3">
+            <input type="submit" onclick="return confirm('Bạn đã nhập điểm xong?');" class="btn btn-success" value="Lưu thay đổi" />
+        </div>
+        <div class="card">
+            <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-1"><strong>STT</strong></div>
+                        <div class="col-2"><strong>Mã sinh viên</strong></div>
+                        <div class="col-3"><strong>Tên sinh viên</strong></div>
+                        <div class="col-2"><strong>Điểm thành phần</strong></div>
+                        <div class="col-2"><strong>Điểm giữa kỳ</strong></div>
+                        <div class="col-2"><strong>Điểm cuối môn</strong></div>
+                    </div>
+                    @foreach (var item in Model)
+                    {
+                        stt++;
+                        <div class="row mb-3">
+                            <div class="col-1">@stt</div>
+                            <div class="col-2">@item.StudentCode</div>
+                            <div class="col-3">@item.StudentName</div>
+                            <div class="col-2">
+                                <input asp-for="@item.ComponentPoint" class="form-control" name="ComponentPoint">
+                            </div>
+                            <div class="col-2">
+                                <input asp-for="@item.MidtermPoint" class="form-control" name="MidtermPoint">
+                            </div>
+                            <div class="col-2">
+                                <input asp-for="@item.TestScore" class="form-control" name="TestScore">
+                            </div>
+                        </div>
+                        <input asp-for="@item.PointId" name="PointId" hidden />
+                        <input asp-for="@item.Student" name="Student" hidden />
+                        <input asp-for="@item.DetailTerm" name="DetailTerm" hidden />
+                        <input asp-for="@item.RegistStudent" name="RegistStudent" hidden />
+                        <input asp-for="@item.Attendance" name="Attendance" hidden />
+                        <input asp-for="@item.NumberTest" name="NumberTest" hidden />
+                        <input asp-for="@item.CreateBy" name="CreateBy" hidden />
+                        <input asp-for="@item.UpdateBy" name="UpdateBy" hidden />
+                        <input asp-for="@item.CreateDate" name="CreateDate" hidden />
+                        <input asp-for="@item.IsActive" name="IsActive" hidden />
+                        <input asp-for="@item.IsDelete" name="IsDelete" hidden />
+                    }
+            </div>
+        </div>
+    </form>
+</div>
