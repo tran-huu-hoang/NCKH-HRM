@@ -70,6 +70,13 @@ namespace NCKH_HRM.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                var userStaffSession = HttpContext.Session.GetString("AdminLogin");
+                if (string.IsNullOrEmpty(userStaffSession))
+                {
+                    // Handle the case where the session is missing
+                    return RedirectToAction(actionName: "Index", controllerName: "Login");
+                }
+
                 var user = JsonConvert.DeserializeObject<UserStaff>(HttpContext.Session.GetString("AdminLogin"));
                 @class.CreateBy = user.Username;
                 @class.UpdateBy = user.Username;
@@ -81,7 +88,6 @@ namespace NCKH_HRM.Areas.Admin.Controllers
             }
             return View(@class);
         }
-
         // GET: Admin/Classes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -114,6 +120,13 @@ namespace NCKH_HRM.Areas.Admin.Controllers
             {
                 try
                 {
+                    var userStaffSession = HttpContext.Session.GetString("AdminLogin");
+                    if (string.IsNullOrEmpty(userStaffSession))
+                    {
+                        // Handle the case where the session is missing
+                        return RedirectToAction(actionName: "Index", controllerName: "Login");
+                    }
+
                     var user = JsonConvert.DeserializeObject<UserStaff>(HttpContext.Session.GetString("AdminLogin"));
                     @class.UpdateBy = user.Username;
                     @class.UpdateDate = DateTime.Now;
@@ -162,7 +175,6 @@ namespace NCKH_HRM.Areas.Admin.Controllers
             {
                 _context.Classes.Remove(@class);
             }
-
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
@@ -188,7 +200,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
 
         private bool ClassExists(int id)
         {
-          return (_context.Classes?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Classes?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

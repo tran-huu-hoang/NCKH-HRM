@@ -70,6 +70,14 @@ namespace NCKH_HRM.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                var userStaffSession = HttpContext.Session.GetString("AdminLogin");
+                if (string.IsNullOrEmpty(userStaffSession))
+                {
+                    // Handle the case where the session is missing
+                    return RedirectToAction(actionName: "Index", controllerName: "Login");
+                }
+
+
                 var admin = JsonConvert.DeserializeObject<UserStaff>(HttpContext.Session.GetString("AdminLogin"));
                 term.CreateBy = admin.Username;
                 term.UpdateBy = admin.Username;
@@ -81,7 +89,6 @@ namespace NCKH_HRM.Areas.Admin.Controllers
             }
             return View(term);
         }
-
         // GET: Admin/Terms/Edit/5
         public async Task<IActionResult> Edit(long? id)
         {
@@ -114,6 +121,13 @@ namespace NCKH_HRM.Areas.Admin.Controllers
             {
                 try
                 {
+                    var userStaffSession = HttpContext.Session.GetString("AdminLogin");
+                    if (string.IsNullOrEmpty(userStaffSession))
+                    {
+                        // Handle the case where the session is missing
+                        return RedirectToAction("Login", "Index");
+                    }
+
                     term.UpdateDate = DateTime.Now;
                     var admin = JsonConvert.DeserializeObject<UserStaff>(HttpContext.Session.GetString("AdminLogin"));
                     term.UpdateBy = admin.Username;
@@ -182,14 +196,14 @@ namespace NCKH_HRM.Areas.Admin.Controllers
         //    {
         //        _context.Terms.Remove(term);
         //    }
-            
+
         //    await _context.SaveChangesAsync();
         //    return RedirectToAction(nameof(Index));
         //}
 
         private bool TermExists(long id)
         {
-          return (_context.Terms?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Terms?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

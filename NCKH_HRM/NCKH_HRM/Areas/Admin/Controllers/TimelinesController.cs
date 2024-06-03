@@ -69,6 +69,13 @@ namespace NCKH_HRM.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                var userStaffSession = HttpContext.Session.GetString("AdminLogin");
+                if (string.IsNullOrEmpty(userStaffSession))
+                {
+                    // Handle the case where the session is missing
+                    return RedirectToAction(actionName: "Index", controllerName: "Login");
+                }
+
                 var admin = JsonConvert.DeserializeObject<UserStaff>(HttpContext.Session.GetString("AdminLogin"));
                 timeline.CreateBy = admin.Username;
                 timeline.UpdateBy = admin.Username;
@@ -78,7 +85,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Year"] = new SelectList(_context.Years, "Id", "Id", timeline.Year);
+            ViewData["Year"] = new SelectList(_context.Years, "Id", "Name", timeline.Year);
             return View(timeline);
         }
 
@@ -115,6 +122,13 @@ namespace NCKH_HRM.Areas.Admin.Controllers
             {
                 try
                 {
+                    var userStaffSession = HttpContext.Session.GetString("AdminLogin");
+                    if (string.IsNullOrEmpty(userStaffSession))
+                    {
+                        // Handle the case where the session is missing
+                        return RedirectToAction(actionName: "Index", controllerName: "Login");
+                    }
+
                     timeline.UpdateDate = DateTime.Now;
                     var admin = JsonConvert.DeserializeObject<UserStaff>(HttpContext.Session.GetString("AdminLogin"));
                     timeline.UpdateBy = admin.Username;
@@ -135,7 +149,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Year"] = new SelectList(_context.Years, "Id", "Id", timeline.Year);
+            ViewData["Year"] = new SelectList(_context.Years, "Id", "Name", timeline.Year);
             return View(timeline);
         }
 
@@ -152,7 +166,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (timeline == null)
             {
-                return NotFound();
+return NotFound();
             }
 
             return View(timeline);*/
@@ -192,7 +206,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
 
         private bool TimelineExists(long id)
         {
-          return (_context.Timelines?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Timelines?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

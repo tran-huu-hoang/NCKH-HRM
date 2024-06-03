@@ -79,6 +79,14 @@ namespace NCKH_HRM.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                var userStaffSession = HttpContext.Session.GetString("AdminLogin");
+                if (string.IsNullOrEmpty(userStaffSession))
+                {
+                    // Handle the case where the session is missing
+                    return RedirectToAction(actionName: "Index", controllerName: "Login");
+                }
+
                 var admin = JsonConvert.DeserializeObject<UserStaff>(HttpContext.Session.GetString("AdminLogin"));
                 staff.CreateBy = admin.Username;
                 staff.UpdateBy = admin.Username;
@@ -138,6 +146,13 @@ namespace NCKH_HRM.Areas.Admin.Controllers
             {
                 try
                 {
+                    var userStaffSession = HttpContext.Session.GetString("AdminLogin");
+                    if (string.IsNullOrEmpty(userStaffSession))
+                    {
+                        // Handle the case where the session is missing
+                        return RedirectToAction(actionName: "Index", controllerName: "Login");
+                    }
+
                     var user = JsonConvert.DeserializeObject<UserStaff>(HttpContext.Session.GetString("AdminLogin"));
                     staff.UpdateBy = user.Username;
                     staff.UpdateDate = DateTime.Now;
@@ -196,27 +211,27 @@ namespace NCKH_HRM.Areas.Admin.Controllers
         }
 
         // POST: Admin/Staffs/Delete/5
-       /* [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(long id)
-        {
-            if (_context.Staff == null)
-            {
-                return Problem("Entity set 'NckhDbContext.Staff'  is null.");
-            }
-            var staff = await _context.Staff.FindAsync(id);
-            if (staff != null)
-            {
-                _context.Staff.Remove(staff);
-            }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }*/
+        /* [HttpPost, ActionName("Delete")]
+         [ValidateAntiForgeryToken]
+         public async Task<IActionResult> DeleteConfirmed(long id)
+         {
+             if (_context.Staff == null)
+             {
+                 return Problem("Entity set 'NckhDbContext.Staff'  is null.");
+             }
+             var staff = await _context.Staff.FindAsync(id);
+             if (staff != null)
+             {
+                 _context.Staff.Remove(staff);
+             }
+
+             await _context.SaveChangesAsync();
+             return RedirectToAction(nameof(Index));
+         }*/
 
         private bool StaffExists(long id)
         {
-          return (_context.Staff?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Staff?.Any(e => e.Id == id)).GetValueOrDefault();
         }
 
     }

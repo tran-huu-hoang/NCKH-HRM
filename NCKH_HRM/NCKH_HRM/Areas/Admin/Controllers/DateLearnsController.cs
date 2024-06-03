@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NCKH_HRM.Models;
+using NCKH_HRM.ViewModels;
 using Newtonsoft.Json;
 using X.PagedList;
 
@@ -50,7 +51,15 @@ namespace NCKH_HRM.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["DetailTerm"] = new SelectList(_context.Terms, "Id", "Name", dateLearn.DetailTerm);
+            var data = await (from detailterm in _context.DetailTerms
+                              join term in _context.Terms on detailterm.Term equals term.Id
+                              select new NameTermWithIdDT
+                              {
+                                  Id = detailterm.Id,
+                                  Name = term.Name
+                              }).ToListAsync();
+
+            ViewData["DetailTerm"] = new SelectList(data, "Id", "Name");
             ViewData["RegistStudent"] = new SelectList(_context.RegistStudents, "Id", "Id", dateLearn.RegistStudent);
             ViewData["Student"] = new SelectList(_context.Students, "Id", "Name", dateLearn.Student);
             ViewData["Timeline"] = new SelectList(_context.Timelines, "Id", "DateLearn", dateLearn.Timeline);
@@ -64,7 +73,6 @@ namespace NCKH_HRM.Areas.Admin.Controllers
             ViewData["Timeline"] = new SelectList(_context.Timelines, "Id", "DateLearn");
             return View();
         }
-
         // POST: Admin/DateLearns/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -74,6 +82,13 @@ namespace NCKH_HRM.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                var userStaffSession = HttpContext.Session.GetString("AdminLogin");
+                if (string.IsNullOrEmpty(userStaffSession))
+                {
+                    // Handle the case where the session is missing
+                    return RedirectToAction(actionName: "Index", controllerName: "Login");
+                }
+
                 var admin = JsonConvert.DeserializeObject<UserStaff>(HttpContext.Session.GetString("AdminLogin"));
                 dateLearn.CreateBy = admin.Username;
                 dateLearn.UpdateBy = admin.Username;
@@ -134,6 +149,13 @@ namespace NCKH_HRM.Areas.Admin.Controllers
             {
                 try
                 {
+                    var userStaffSession = HttpContext.Session.GetString("AdminLogin");
+                    if (string.IsNullOrEmpty(userStaffSession))
+                    {
+                        // Handle the case where the session is missing
+                        return RedirectToAction(actionName: "Index", controllerName: "Login");
+                    }
+
                     var user = JsonConvert.DeserializeObject<UserStaff>(HttpContext.Session.GetString("AdminLogin"));
                     dateLearn.UpdateBy = user.Username;
                     dateLearn.UpdateDate = DateTime.Now;

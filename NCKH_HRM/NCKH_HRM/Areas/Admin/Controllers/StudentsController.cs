@@ -79,6 +79,14 @@ namespace NCKH_HRM.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                var userStaffSession = HttpContext.Session.GetString("AdminLogin");
+                if (string.IsNullOrEmpty(userStaffSession))
+                {
+                    // Handle the case where the session is missing
+                    return RedirectToAction(actionName: "Index", controllerName: "Login");
+                }
+
+
                 var files = HttpContext.Request.Form.Files;
                 if (files.Count() > 0 && files[0].Length > 0)
                 {
@@ -155,6 +163,13 @@ namespace NCKH_HRM.Areas.Admin.Controllers
             {
                 try
                 {
+                    var userStaffSession = HttpContext.Session.GetString("AdminLogin");
+                    if (string.IsNullOrEmpty(userStaffSession))
+                    {
+                        // Handle the case where the session is missing
+                        return RedirectToAction(actionName: "Index", controllerName: "Login");
+                    }
+
                     var files = HttpContext.Request.Form.Files;
                     if (files.Count() > 0 && files[0].Length > 0)
                     {

@@ -50,7 +50,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-
+            ViewData["Student"] = new SelectList(_context.Students, "Id", "Name");
             return View(userStudent);
         }
 
@@ -167,7 +167,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(long id)
         {
-            if (_context.UserStudents == null)
+if (_context.UserStudents == null)
             {
                 return Problem("Entity set 'NckhDbContext.UserStudents'  is null.");
             }
@@ -183,7 +183,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
 
         private bool UserStudentExists(long id)
         {
-          return (_context.UserStudents?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.UserStudents?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

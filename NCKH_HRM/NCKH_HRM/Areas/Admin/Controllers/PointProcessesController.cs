@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NCKH_HRM.Models;
+using NCKH_HRM.ViewModels;
 using X.PagedList;
 
 namespace NCKH_HRM.Areas.Admin.Controllers
@@ -27,6 +28,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
             int limit = 5;
 
             var account = await _context.PointProcesses.Include(p => p.AttendanceNavigation).Include(p => p.DetailTermNavigation).Include(p => p.IdStaffNavigation).Include(p => p.RegistStudentNavigation).Include(p => p.StudentNavigation).OrderBy(c => c.Id).ToPagedListAsync(page, limit);
+            ViewBag.Term = await _context.Terms.ToListAsync();
             return View(account);
         }
         /*public async Task<IActionResult> Index()
@@ -54,8 +56,16 @@ namespace NCKH_HRM.Areas.Admin.Controllers
             {
                 return NotFound();
             }
+            var data = await (from detailterm in _context.DetailTerms
+                              join term in _context.Terms on detailterm.Term equals term.Id
+                              select new NameTermWithIdDT
+                              {
+                                  Id = detailterm.Id,
+                                  Name = term.Name
+                              }).ToListAsync();
+
+            ViewData["DetailTerm"] = new SelectList(data, "Id", "Name");
             ViewData["Attendance"] = new SelectList(_context.Attendances, "Id", "Id");
-            ViewData["DetailTerm"] = new SelectList(_context.Terms, "Id", "Name");
             ViewData["IdStaff"] = new SelectList(_context.Staff, "Id", "Name");
             ViewData["RegistStudent"] = new SelectList(_context.RegistStudents, "Id", "Id");
             ViewData["Student"] = new SelectList(_context.Students, "Id", "Name");
@@ -111,7 +121,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
             ViewData["DetailTerm"] = new SelectList(_context.DetailTerms, "Id", "Id", pointProcess.DetailTerm);
             ViewData["IdStaff"] = new SelectList(_context.Staff, "Id", "Id", pointProcess.IdStaff);
             ViewData["RegistStudent"] = new SelectList(_context.RegistStudents, "Id", "Id", pointProcess.RegistStudent);
-            ViewData["Student"] = new SelectList(_context.Students, "Id", "Id", pointProcess.Student);
+ViewData["Student"] = new SelectList(_context.Students, "Id", "Id", pointProcess.Student);
             return View(pointProcess);
         }
 
@@ -183,7 +193,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(long id)
         {
-            if (_context.PointProcesses == null)
+if (_context.PointProcesses == null)
             {
                 return Problem("Entity set 'NckhDbContext.PointProcesses'  is null.");
             }
@@ -199,7 +209,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
 
         private bool PointProcessExists(long id)
         {
-          return (_context.PointProcesses?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.PointProcesses?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

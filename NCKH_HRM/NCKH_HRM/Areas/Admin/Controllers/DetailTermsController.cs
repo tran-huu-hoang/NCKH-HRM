@@ -54,6 +54,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
         // GET: Admin/DetailTerms/Create
         public IActionResult Create()
         {
+
             ViewData["Semester"] = new SelectList(_context.Semesters, "Id", "Name");
             ViewData["Term"] = new SelectList(_context.Terms, "Id", "Name");
             return View();
@@ -68,11 +69,18 @@ namespace NCKH_HRM.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                var userStaffSession = HttpContext.Session.GetString("AdminLogin");
+                if (string.IsNullOrEmpty(userStaffSession))
+                {
+                    // Handle the case where the session is missing
+                    return RedirectToAction(actionName: "Index", controllerName: "Login");
+                }
+
+
                 var admin = JsonConvert.DeserializeObject<UserStaff>(HttpContext.Session.GetString("AdminLogin"));
                 detailTerm.CreateBy = admin.Username;
                 detailTerm.UpdateBy = admin.Username;
                 detailTerm.IsDelete = false;
-
                 _context.Add(detailTerm);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -116,6 +124,13 @@ namespace NCKH_HRM.Areas.Admin.Controllers
             {
                 try
                 {
+                    var userStaffSession = HttpContext.Session.GetString("AdminLogin");
+                    if (string.IsNullOrEmpty(userStaffSession))
+                    {
+                        // Handle the case where the session is missing
+                        return RedirectToAction(actionName: "Index", controllerName: "Login");
+                    }
+
                     detailTerm.UpdateDate = DateTime.Now;
                     var admin = JsonConvert.DeserializeObject<UserStaff>(HttpContext.Session.GetString("AdminLogin"));
                     detailTerm.UpdateBy = admin.Username;
@@ -195,7 +210,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
 
         private bool DetailTermExists(long id)
         {
-          return (_context.DetailTerms?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.DetailTerms?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

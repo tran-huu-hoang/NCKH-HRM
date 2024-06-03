@@ -71,11 +71,17 @@ namespace NCKH_HRM.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                var userStaffSession = HttpContext.Session.GetString("AdminLogin");
+                if (string.IsNullOrEmpty(userStaffSession))
+                {
+                    // Handle the case where the session is missing
+                    return RedirectToAction(actionName: "Index", controllerName: "Login");
+                }
                 var admin = JsonConvert.DeserializeObject<UserStaff>(HttpContext.Session.GetString("AdminLogin"));
                 staffSubject.CreateBy = admin.Username;
                 staffSubject.UpdateBy = admin.Username;
                 staffSubject.IsDelete = false;
-                staffSubject.Status = false;
+                staffSubject.Status = true;
 
                 _context.Add(staffSubject);
                 await _context.SaveChangesAsync();
@@ -120,6 +126,13 @@ namespace NCKH_HRM.Areas.Admin.Controllers
             {
                 try
                 {
+                    var userStaffSession = HttpContext.Session.GetString("AdminLogin");
+                    if (string.IsNullOrEmpty(userStaffSession))
+                    {
+                        // Handle the case where the session is missing
+                        return RedirectToAction(actionName: "Index", controllerName: "Login");
+                    }
+
                     staffSubject.UpdateDate = DateTime.Now;
                     var admin = JsonConvert.DeserializeObject<UserStaff>(HttpContext.Session.GetString("AdminLogin"));
                     staffSubject.UpdateBy = admin.Username;
@@ -199,7 +212,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
 
         private bool StaffSubjectExists(long id)
         {
-          return (_context.StaffSubjects?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.StaffSubjects?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

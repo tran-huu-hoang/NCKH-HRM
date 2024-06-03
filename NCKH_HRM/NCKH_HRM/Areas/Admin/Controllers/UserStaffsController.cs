@@ -56,30 +56,30 @@ namespace NCKH_HRM.Areas.Admin.Controllers
             return View(userStaff);
         }
 
-       /* // GET: Admin/UserStaffs/Create
-        public IActionResult Create()
-        {
-            ViewData["Staff"] = new SelectList(_context.Staff, "Id", "Name");
-            return View();
-        }
+        /* // GET: Admin/UserStaffs/Create
+         public IActionResult Create()
+         {
+             ViewData["Staff"] = new SelectList(_context.Staff, "Id", "Name");
+             return View();
+         }
 
-        // POST: Admin/UserStaffs/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Staff,Username,Password,CreateBy,UpdateBy,CreateDate,UpdateDate,IsDelete,IsActive")] UserStaff userStaff)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(userStaff);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["Staff"] = new SelectList(_context.Staff, "Id", "Name", userStaff.Staff);
-            return View(userStaff);
-        }
-*/
+         // POST: Admin/UserStaffs/Create
+         // To protect from overposting attacks, enable the specific properties you want to bind to.
+         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+         [HttpPost]
+         [ValidateAntiForgeryToken]
+         public async Task<IActionResult> Create([Bind("Id,Staff,Username,Password,CreateBy,UpdateBy,CreateDate,UpdateDate,IsDelete,IsActive")] UserStaff userStaff)
+         {
+             if (ModelState.IsValid)
+             {
+                 _context.Add(userStaff);
+                 await _context.SaveChangesAsync();
+                 return RedirectToAction(nameof(Index));
+             }
+             ViewData["Staff"] = new SelectList(_context.Staff, "Id", "Name", userStaff.Staff);
+             return View(userStaff);
+         }
+ */
         // GET: Admin/UserStaffs/Edit/5
         public async Task<IActionResult> Edit(long? id)
         {
@@ -113,6 +113,13 @@ namespace NCKH_HRM.Areas.Admin.Controllers
             {
                 try
                 {
+                    var userStaffSession = HttpContext.Session.GetString("AdminLogin");
+                    if (string.IsNullOrEmpty(userStaffSession))
+                    {
+                        // Handle the case where the session is missing
+                        return RedirectToAction(actionName: "Index", controllerName: "Login");
+                    }
+
                     var user = JsonConvert.DeserializeObject<UserStaff>(HttpContext.Session.GetString("AdminLogin"));
                     userStaff.UpdateBy = user.Username;
                     userStaff.UpdateDate = DateTime.Now;
@@ -155,15 +162,15 @@ namespace NCKH_HRM.Areas.Admin.Controllers
             return View(userStaff);*/
 
             if (_context.UserStaffs == null)
-                {
-                    return Problem("Entity set 'NckhDbContext.UserStaffs'  is null.");
-                }
+            {
+                return Problem("Entity set 'NckhDbContext.UserStaffs'  is null.");
+            }
             var userStaff = await _context.UserStaffs.FindAsync(id);
             if (userStaff != null)
             {
                 _context.UserStaffs.Remove(userStaff);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
@@ -189,7 +196,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
 
         private bool UserStaffExists(long id)
         {
-          return (_context.UserStaffs?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.UserStaffs?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

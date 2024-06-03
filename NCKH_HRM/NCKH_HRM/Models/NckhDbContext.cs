@@ -61,13 +61,13 @@ public partial class NckhDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=.\\SQLEXPRESS; Database=NCKH_db; uid=sa; pwd=hoang1407; MultipleActiveResultSets=True;TrustServercertificate=true;");
+        => optionsBuilder.UseSqlServer("Data Source=.\\SQLEXPRESS; Database=NCKH_db; uid=sa; pwd=hoang1407; MultipleActiveResultSets=True;TrustServercertificate=true;Connection Timeout=3600");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Attendance>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__ATTENDAN__3214EC276B6A52C4");
+            entity.HasKey(e => e.Id).HasName("PK__ATTENDAN__3214EC27DE31029E");
 
             entity.ToTable("ATTENDANCE");
 
@@ -97,24 +97,24 @@ public partial class NckhDbContext : DbContext
 
             entity.HasOne(d => d.DetailTermNavigation).WithMany(p => p.Attendances)
                 .HasForeignKey(d => d.DetailTerm)
-                .HasConstraintName("FK__ATTENDANC__DETAI__58D1301D");
+                .HasConstraintName("FK__ATTENDANC__DETAI__0F624AF8");
 
             entity.HasOne(d => d.RegistStudentNavigation).WithMany(p => p.Attendances)
                 .HasForeignKey(d => d.RegistStudent)
-                .HasConstraintName("FK__ATTENDANC__REGIS__59C55456");
+                .HasConstraintName("FK__ATTENDANC__REGIS__10566F31");
 
             entity.HasOne(d => d.StudentNavigation).WithMany(p => p.Attendances)
                 .HasForeignKey(d => d.Student)
-                .HasConstraintName("FK__ATTENDANC__STUDE__57DD0BE4");
+                .HasConstraintName("FK__ATTENDANC__STUDE__114A936A");
         });
 
         modelBuilder.Entity<Class>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__CLASSES__3214EC27BE81BBB6");
+            entity.HasKey(e => e.Id).HasName("PK__CLASSES__3214EC27AF822C19");
 
             entity.ToTable("CLASSES");
 
-            entity.HasIndex(e => e.Code, "UQ__CLASSES__AA1D4379F303897F").IsUnique();
+            entity.HasIndex(e => e.Code, "UQ__CLASSES__AA1D4379277646C2").IsUnique();
 
             entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.Code)
@@ -145,7 +145,7 @@ public partial class NckhDbContext : DbContext
 
         modelBuilder.Entity<DateLearn>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__DATE_LEA__3214EC27FBC13D07");
+            entity.HasKey(e => e.Id).HasName("PK__DATE_LEA__3214EC27D50CA5D0");
 
             entity.ToTable("DATE_LEARN");
 
@@ -176,24 +176,24 @@ public partial class NckhDbContext : DbContext
 
             entity.HasOne(d => d.DetailTermNavigation).WithMany(p => p.DateLearns)
                 .HasForeignKey(d => d.DetailTerm)
-                .HasConstraintName("FK__DATE_LEAR__DETAI__681373AD");
+                .HasConstraintName("FK__DATE_LEAR__DETAI__123EB7A3");
 
             entity.HasOne(d => d.RegistStudentNavigation).WithMany(p => p.DateLearns)
                 .HasForeignKey(d => d.RegistStudent)
-                .HasConstraintName("FK__DATE_LEAR__REGIS__690797E6");
+                .HasConstraintName("FK__DATE_LEAR__REGIS__1332DBDC");
 
             entity.HasOne(d => d.StudentNavigation).WithMany(p => p.DateLearns)
                 .HasForeignKey(d => d.Student)
-                .HasConstraintName("FK__DATE_LEAR__STUDE__671F4F74");
+                .HasConstraintName("FK__DATE_LEAR__STUDE__14270015");
 
             entity.HasOne(d => d.TimelineNavigation).WithMany(p => p.DateLearns)
                 .HasForeignKey(d => d.Timeline)
-                .HasConstraintName("FK__DATE_LEAR__TIMEL__69FBBC1F");
+                .HasConstraintName("FK__DATE_LEAR__TIMEL__151B244E");
         });
 
         modelBuilder.Entity<DetailAttendance>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__DETAIL_A__3214EC274995C5C8");
+            entity.HasKey(e => e.Id).HasName("PK__DETAIL_A__3214EC271CAA5AA2");
 
             entity.ToTable("DETAIL_ATTENDANCE");
 
@@ -205,20 +205,20 @@ public partial class NckhDbContext : DbContext
 
             entity.HasOne(d => d.DateLearnNavigation).WithMany(p => p.DetailAttendances)
                 .HasForeignKey(d => d.DateLearn)
-                .HasConstraintName("FK__DETAIL_AT__DATE___7B264821");
+                .HasConstraintName("FK__DETAIL_AT__DATE___160F4887");
 
             entity.HasOne(d => d.DetailTermNavigation).WithMany(p => p.DetailAttendances)
                 .HasForeignKey(d => d.DetailTerm)
-                .HasConstraintName("FK__DETAIL_AT__DETAI__7A3223E8");
+                .HasConstraintName("FK__DETAIL_AT__DETAI__17036CC0");
 
             entity.HasOne(d => d.IdAttendanceNavigation).WithMany(p => p.DetailAttendances)
                 .HasForeignKey(d => d.IdAttendance)
-                .HasConstraintName("FK__DETAIL_AT__ID_AT__793DFFAF");
+                .HasConstraintName("FK__DETAIL_AT__ID_AT__17F790F9");
         });
 
         modelBuilder.Entity<DetailTerm>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__DETAIL_T__3214EC27A35FFC62");
+            entity.HasKey(e => e.Id).HasName("PK__DETAIL_T__3214EC27DE604DAA");
 
             entity.ToTable("DETAIL_TERM");
 
@@ -256,20 +256,20 @@ public partial class NckhDbContext : DbContext
 
             entity.HasOne(d => d.SemesterNavigation).WithMany(p => p.DetailTerms)
                 .HasForeignKey(d => d.Semester)
-                .HasConstraintName("FK__DETAIL_TE__SEMES__34C8D9D1");
+                .HasConstraintName("FK__DETAIL_TE__SEMES__18EBB532");
 
             entity.HasOne(d => d.TermNavigation).WithMany(p => p.DetailTerms)
                 .HasForeignKey(d => d.Term)
-                .HasConstraintName("FK__DETAIL_TER__TERM__33D4B598");
+                .HasConstraintName("FK__DETAIL_TER__TERM__2A164134");
         });
 
         modelBuilder.Entity<Major>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__MAJOR__3214EC27C9C78A29");
+            entity.HasKey(e => e.Id).HasName("PK__MAJOR__3214EC2788C0792B");
 
             entity.ToTable("MAJOR");
 
-            entity.HasIndex(e => e.Code, "UQ__MAJOR__AA1D4379B4112C10").IsUnique();
+            entity.HasIndex(e => e.Code, "UQ__MAJOR__AA1D437998078E9F").IsUnique();
 
             entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.Code)
@@ -300,7 +300,7 @@ public partial class NckhDbContext : DbContext
 
         modelBuilder.Entity<PointProcess>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__POINT_PR__3214EC271F588DC2");
+            entity.HasKey(e => e.Id).HasName("PK__POINT_PR__3214EC27DF478109");
 
             entity.ToTable("POINT_PROCESS");
 
@@ -337,28 +337,28 @@ public partial class NckhDbContext : DbContext
 
             entity.HasOne(d => d.AttendanceNavigation).WithMany(p => p.PointProcesses)
                 .HasForeignKey(d => d.Attendance)
-                .HasConstraintName("FK__POINT_PRO__ATTEN__72910220");
+                .HasConstraintName("FK__POINT_PRO__ATTEN__1AD3FDA4");
 
             entity.HasOne(d => d.DetailTermNavigation).WithMany(p => p.PointProcesses)
                 .HasForeignKey(d => d.DetailTerm)
-                .HasConstraintName("FK__POINT_PRO__DETAI__70A8B9AE");
+                .HasConstraintName("FK__POINT_PRO__DETAI__1BC821DD");
 
             entity.HasOne(d => d.IdStaffNavigation).WithMany(p => p.PointProcesses)
                 .HasForeignKey(d => d.IdStaff)
-                .HasConstraintName("FK__POINT_PRO__ID_ST__73852659");
+                .HasConstraintName("FK__POINT_PRO__ID_ST__1CBC4616");
 
             entity.HasOne(d => d.RegistStudentNavigation).WithMany(p => p.PointProcesses)
                 .HasForeignKey(d => d.RegistStudent)
-                .HasConstraintName("FK__POINT_PRO__REGIS__719CDDE7");
+                .HasConstraintName("FK__POINT_PRO__REGIS__1DB06A4F");
 
             entity.HasOne(d => d.StudentNavigation).WithMany(p => p.PointProcesses)
                 .HasForeignKey(d => d.Student)
-                .HasConstraintName("FK__POINT_PRO__STUDE__6FB49575");
+                .HasConstraintName("FK__POINT_PRO__STUDE__1EA48E88");
         });
 
         modelBuilder.Entity<Position>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__POSITION__3214EC27CF859096");
+            entity.HasKey(e => e.Id).HasName("PK__POSITION__3214EC273A224823");
 
             entity.ToTable("POSITION");
 
@@ -388,7 +388,7 @@ public partial class NckhDbContext : DbContext
 
         modelBuilder.Entity<RegistStudent>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__REGIST_S__3214EC27C959C759");
+            entity.HasKey(e => e.Id).HasName("PK__REGIST_S__3214EC27C13987DD");
 
             entity.ToTable("REGIST_STUDENT");
 
@@ -418,16 +418,16 @@ public partial class NckhDbContext : DbContext
 
             entity.HasOne(d => d.DetailTermNavigation).WithMany(p => p.RegistStudents)
                 .HasForeignKey(d => d.DetailTerm)
-                .HasConstraintName("FK__REGIST_ST__DETAI__4E53A1AA");
+                .HasConstraintName("FK__REGIST_ST__DETAI__1F98B2C1");
 
             entity.HasOne(d => d.StudentNavigation).WithMany(p => p.RegistStudents)
                 .HasForeignKey(d => d.Student)
-                .HasConstraintName("FK__REGIST_ST__STUDE__4D5F7D71");
+                .HasConstraintName("FK__REGIST_ST__STUDE__208CD6FA");
         });
 
         modelBuilder.Entity<Role>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__ROLE__3214EC27C6CEA480");
+            entity.HasKey(e => e.Id).HasName("PK__ROLE__3214EC2714B825AE");
 
             entity.ToTable("ROLE");
 
@@ -457,7 +457,7 @@ public partial class NckhDbContext : DbContext
 
         modelBuilder.Entity<Semester>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__SEMESTER__3214EC2754D3107A");
+            entity.HasKey(e => e.Id).HasName("PK__SEMESTER__3214EC2737F20750");
 
             entity.ToTable("SEMESTER");
 
@@ -493,7 +493,7 @@ public partial class NckhDbContext : DbContext
 
         modelBuilder.Entity<Session>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__SESSION__3214EC27536780CE");
+            entity.HasKey(e => e.Id).HasName("PK__SESSION__3214EC2763C3BB4B");
 
             entity.ToTable("SESSION");
 
@@ -526,11 +526,13 @@ public partial class NckhDbContext : DbContext
 
         modelBuilder.Entity<Staff>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__STAFF__3214EC27726ADF0A");
+            entity.HasKey(e => e.Id).HasName("PK__STAFF__3214EC270AFD0B12");
 
             entity.ToTable("STAFF");
 
-            entity.HasIndex(e => e.Code, "UQ__STAFF__AA1D4379F407C481").IsUnique();
+            entity.HasIndex(e => e.Email, "UQ__STAFF__161CF7246545577B").IsUnique();
+
+            entity.HasIndex(e => e.Code, "UQ__STAFF__AA1D4379F0221B34").IsUnique();
 
             entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.BirthDate)
@@ -578,16 +580,16 @@ public partial class NckhDbContext : DbContext
 
             entity.HasOne(d => d.MajorNavigation).WithMany(p => p.Staff)
                 .HasForeignKey(d => d.Major)
-                .HasConstraintName("FK__STAFF__MAJOR__656C112C");
+                .HasConstraintName("FK__STAFF__MAJOR__2180FB33");
 
             entity.HasOne(d => d.PositionNavigation).WithMany(p => p.Staff)
                 .HasForeignKey(d => d.Position)
-                .HasConstraintName("FK__STAFF__POSITION__66603565");
+                .HasConstraintName("FK__STAFF__POSITION__22751F6C");
         });
 
         modelBuilder.Entity<StaffSubject>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__STAFF_SU__3214EC27309A62D8");
+            entity.HasKey(e => e.Id).HasName("PK__STAFF_SU__3214EC273B0C48A7");
 
             entity.ToTable("STAFF_SUBJECT");
 
@@ -616,20 +618,22 @@ public partial class NckhDbContext : DbContext
 
             entity.HasOne(d => d.StaffNavigation).WithMany(p => p.StaffSubjects)
                 .HasForeignKey(d => d.Staff)
-                .HasConstraintName("FK__STAFF_SUB__STAFF__2FCF1A8A");
+                .HasConstraintName("FK__STAFF_SUB__STAFF__236943A5");
 
             entity.HasOne(d => d.SubjectNavigation).WithMany(p => p.StaffSubjects)
                 .HasForeignKey(d => d.Subject)
-                .HasConstraintName("FK__STAFF_SUB__SUBJE__30C33EC3");
+                .HasConstraintName("FK__STAFF_SUB__SUBJE__245D67DE");
         });
 
         modelBuilder.Entity<Student>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__STUDENT__3214EC2752AEDFE5");
+            entity.HasKey(e => e.Id).HasName("PK__STUDENT__3214EC27FB11C9F5");
 
             entity.ToTable("STUDENT");
 
-            entity.HasIndex(e => e.Code, "UQ__STUDENT__AA1D43799B272382").IsUnique();
+            entity.HasIndex(e => e.Email, "UQ__STUDENT__161CF724DA83189A").IsUnique();
+
+            entity.HasIndex(e => e.Code, "UQ__STUDENT__AA1D4379D3DBEDCB").IsUnique();
 
             entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.AccountNumber)
@@ -732,20 +736,20 @@ public partial class NckhDbContext : DbContext
 
             entity.HasOne(d => d.ClassesNavigation).WithMany(p => p.Students)
                 .HasForeignKey(d => d.Classes)
-                .HasConstraintName("FK__STUDENT__CLASSES__0C85DE4D");
+                .HasConstraintName("FK__STUDENT__CLASSES__25518C17");
 
             entity.HasOne(d => d.MajorNavigation).WithMany(p => p.Students)
                 .HasForeignKey(d => d.Major)
-                .HasConstraintName("FK__STUDENT__MAJOR__0D7A0286");
+                .HasConstraintName("FK__STUDENT__MAJOR__2645B050");
 
             entity.HasOne(d => d.SessionNavigation).WithMany(p => p.Students)
                 .HasForeignKey(d => d.Session)
-                .HasConstraintName("FK__STUDENT__SESSION__0B91BA14");
+                .HasConstraintName("FK__STUDENT__SESSION__2739D489");
         });
 
         modelBuilder.Entity<Subject>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__SUBJECT__3214EC27A0182625");
+            entity.HasKey(e => e.Id).HasName("PK__SUBJECT__3214EC276E7B768E");
 
             entity.ToTable("SUBJECT");
 
@@ -776,12 +780,12 @@ public partial class NckhDbContext : DbContext
 
             entity.HasOne(d => d.MajorNavigation).WithMany(p => p.Subjects)
                 .HasForeignKey(d => d.Major)
-                .HasConstraintName("FK__SUBJECT__MAJOR__04E4BC85");
+                .HasConstraintName("FK__SUBJECT__MAJOR__282DF8C2");
         });
 
         modelBuilder.Entity<TeachingAssignment>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__TEACHING__3214EC27CB3F92C1");
+            entity.HasKey(e => e.Id).HasName("PK__TEACHING__3214EC2755C4DCD2");
 
             entity.ToTable("TEACHING_ASSIGNMENT");
 
@@ -810,20 +814,25 @@ public partial class NckhDbContext : DbContext
 
             entity.HasOne(d => d.DetailTermNavigation).WithMany(p => p.TeachingAssignments)
                 .HasForeignKey(d => d.DetailTerm)
-                .HasConstraintName("FK__TEACHING___DETAI__2739D489");
+                .HasConstraintName("FK__TEACHING___DETAI__29221CFB");
 
             entity.HasOne(d => d.StaffNavigation).WithMany(p => p.TeachingAssignments)
                 .HasForeignKey(d => d.Staff)
-                .HasConstraintName("FK__TEACHING___STAFF__282DF8C2");
+                .HasConstraintName("FK__TEACHING___STAFF__2A164134");
         });
 
         modelBuilder.Entity<Term>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__TERM__3214EC27FC2F0E04");
+            entity.HasKey(e => e.Id).HasName("PK__TERM__3214EC278F8A1173");
 
             entity.ToTable("TERM");
 
+            entity.HasIndex(e => e.Code, "UQ__TERM__AA1D437993998F65").IsUnique();
+
             entity.Property(e => e.Id).HasColumnName("ID");
+            entity.Property(e => e.Code)
+                .HasMaxLength(255)
+                .HasColumnName("CODE");
             entity.Property(e => e.CollegeCredit).HasColumnName("COLLEGE_CREDIT");
             entity.Property(e => e.CreateBy)
                 .HasMaxLength(450)
@@ -850,7 +859,7 @@ public partial class NckhDbContext : DbContext
 
         modelBuilder.Entity<Timeline>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__TIMELINE__3214EC2773AEAE94");
+            entity.HasKey(e => e.Id).HasName("PK__TIMELINE__3214EC278EA3568D");
 
             entity.ToTable("TIMELINE");
 
@@ -883,12 +892,12 @@ public partial class NckhDbContext : DbContext
 
             entity.HasOne(d => d.YearNavigation).WithMany(p => p.Timelines)
                 .HasForeignKey(d => d.Year)
-                .HasConstraintName("FK__TIMELINE__YEAR__14270015");
+                .HasConstraintName("FK__TIMELINE__YEAR__2B0A656D");
         });
 
         modelBuilder.Entity<UserStaff>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__USER_STA__3214EC27A67541A6");
+            entity.HasKey(e => e.Id).HasName("PK__USER_STA__3214EC275275DCE9");
 
             entity.ToTable("USER_STAFF");
 
@@ -922,16 +931,17 @@ public partial class NckhDbContext : DbContext
 
             entity.HasOne(d => d.StaffNavigation).WithMany(p => p.UserStaffs)
                 .HasForeignKey(d => d.Staff)
-                .HasConstraintName("FK__USER_STAF__STAFF__1F98B2C1");
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK__USER_STAF__STAFF__3C34F16F");
         });
 
         modelBuilder.Entity<UserStudent>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__USER_STU__3214EC27CB86E8DB");
+            entity.HasKey(e => e.Id).HasName("PK__USER_STU__3214EC27BC57F16E");
 
             entity.ToTable("USER_STUDENT");
 
-            entity.HasIndex(e => e.Username, "UQ__USER_STU__B15BE12E9EE5999C").IsUnique();
+            entity.HasIndex(e => e.Username, "UQ__USER_STU__B15BE12EB5D41522").IsUnique();
 
             entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.CreateBy)
@@ -963,12 +973,13 @@ public partial class NckhDbContext : DbContext
 
             entity.HasOne(d => d.StudentNavigation).WithMany(p => p.UserStudents)
                 .HasForeignKey(d => d.Student)
-                .HasConstraintName("FK__USER_STUD__STUDE__44CA3770");
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasConstraintName("FK__USER_STUD__STUDE__3D2915A8");
         });
 
         modelBuilder.Entity<Year>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__YEAR__3214EC2776941210");
+            entity.HasKey(e => e.Id).HasName("PK__YEAR__3214EC27EAECAFE7");
 
             entity.ToTable("YEAR");
 

@@ -49,9 +49,15 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a asp-controller="TeachingAssignments" asp-action="Index" class="nav-link">
+                    <a asp-controller="StaffSubjects" asp-action="Index" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Giảng viên thuộc bộ môn</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a asp-controller="TeachingAssignments" asp-action="Index" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Phân công giảng dạy</p>
                     </a>
                 </li>
             </ul>
@@ -143,21 +149,15 @@
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a asp-controller="Attendance" asp-action="Index" class="nav-link">
+                    <a asp-controller="Attendances" asp-action="Index" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Thông tin điểm danh</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a asp-controller="Semesters" asp-action="Index" class="nav-link">
+                    <a asp-controller="DetailAttendances" asp-action="Index" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Chi tiết điểm danh</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a asp-controller="DetailTerms" asp-action="Index" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Chi tiết học phần</p>
                     </a>
                 </li>
                 <li class="nav-item">

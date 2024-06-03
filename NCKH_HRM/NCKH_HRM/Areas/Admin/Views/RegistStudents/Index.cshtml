@@ -24,7 +24,7 @@
             <th>
                 Trạng thái
             </th>
-            
+
             <th>
                 Tên học phần
             </th>
@@ -34,63 +34,65 @@
             <th>
                 Hiển thị
             </th>
-            
+
             <th>Tác vụ</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        stt++;
-        <tr>
-            <td>
-                @stt
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Relearn)
-            </td>
-            <td>
-                @if (item.Status == true)
-                {
-                    <span class="text-success">True</span>
-                }
-                else
-                {
-                    <span class="text-danger">False</span>
-                }
-            </td>
-            <td>
-                @foreach (var itemTerm in Term)
-                {
-                    if (item.DetailTermNavigation.Id == itemTerm.Id)
+        @foreach (var item in Model)
+        {
+            stt++;
+            <tr>
+                <td>
+                    @stt
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Relearn)
+                </td>
+                <td>
+                    @if (item.Status == true)
                     {
-                        @itemTerm.Name
+                        <span class="text-success">True</span>
                     }
-                }
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StudentNavigation.Name)
-            </td>
-            <td>
-                @if (item.IsActive == true)
-                {
-                    <span class="text-success">Active</span>
-                }
-                else
-                {
-                    <span class="text-danger">Inactive</span>
-                }
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-event"><i class="fa-regular fa-pen-to-square"></i></a>
-                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-success btn-event"><i class="fa-solid fa-circle-info"></i></a>
-                <a asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Bạn có chắc muốn xóa mục này không?');" class="btn btn-danger btn-event"><i class="fa-solid fa-trash-can"></i></a>
-            </td>
-        </tr>
-}
+                    else
+                    {
+                        <span class="text-danger">False</span>
+                    }
+                </td>
+                <td>
+                    @foreach (var itemTerm in Term)
+                    {
+                        if (item.DetailTermNavigation.Term == itemTerm.Id)
+                        {
+                            @itemTerm.Name
+                        }
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StudentNavigation.Name)
+                </td>
+                <td>
+                    @if (item.IsActive == true)
+                    {
+                        <span class="text-success">Active</span>
+                    }
+                    else
+                    {
+                        <span class="text-danger">Inactive</span>
+                    }
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-event"><i class="fa-regular fa-pen-to-square"></i></a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-success btn-event"><i class="fa-solid fa-circle-info"></i></a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Bạn có chắc muốn xóa mục này không?');" class="btn btn-danger btn-event"><i class="fa-solid fa-trash-can"></i></a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
 
-@Html.PagedListPager(Model, page=>Url.Action("Index", new {page=page}), new X.PagedList.Web.Common.PagedListRenderOptions{
-        LiElementClasses = new string[] {"page-item"},
-        PageClasses = new string[] {"page-link"}
-    })
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }), new X.PagedList.Web.Common.PagedListRenderOptions
+{
+    LiElementClasses = new string[] { "page-item" },
+    PageClasses = new string[] { "page-link" }
+})

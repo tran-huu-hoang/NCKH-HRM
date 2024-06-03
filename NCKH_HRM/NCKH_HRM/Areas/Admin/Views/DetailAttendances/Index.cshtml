@@ -32,32 +32,33 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-    stt ++;
-        <tr>
-            <th>
-                @stt
-            </th>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateLearnNavigation.Id)
-            </td>
-            <td>
-                @foreach (var itemTerm in Term)
-                {
-                    if (item.DetailTermNavigation.Id == itemTerm.Id)
+        @foreach (var item in Model)
+        {
+            stt++;
+            <tr>
+                <th>
+                    @stt
+                </th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateLearnNavigation.Id)
+                </td>
+                <td>
+                    @foreach (var itemTerm in Term)
                     {
-                        @itemTerm.Name
+                        if (item.DetailTermNavigation.Term == itemTerm.Id)
+                        {
+                            @itemTerm.Name
+                        }
                     }
-                }
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdAttendanceNavigation.Id)
-            </td>
-        </tr>
-}
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdAttendanceNavigation.Id)
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
 @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }), new X.PagedList.Web.Common.PagedListRenderOptions

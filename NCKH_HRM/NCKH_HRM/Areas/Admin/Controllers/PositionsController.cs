@@ -69,6 +69,13 @@ namespace NCKH_HRM.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                var userStaffSession = HttpContext.Session.GetString("AdminLogin");
+                if (string.IsNullOrEmpty(userStaffSession))
+                {
+                    // Handle the case where the session is missing
+                    return RedirectToAction(actionName: "Index", controllerName: "Login");
+                }
+
                 var admin = JsonConvert.DeserializeObject<UserStaff>(HttpContext.Session.GetString("AdminLogin"));
                 position.CreateBy = admin.Username;
                 position.UpdateBy = admin.Username;
@@ -113,6 +120,13 @@ namespace NCKH_HRM.Areas.Admin.Controllers
             {
                 try
                 {
+                    var userStaffSession = HttpContext.Session.GetString("AdminLogin");
+                    if (string.IsNullOrEmpty(userStaffSession))
+                    {
+                        // Handle the case where the session is missing
+                        return RedirectToAction(actionName: "Index", controllerName: "Login");
+                    }
+
                     position.UpdateDate = DateTime.Now;
                     var admin = JsonConvert.DeserializeObject<UserStaff>(HttpContext.Session.GetString("AdminLogin"));
                     position.UpdateBy = admin.Username;
@@ -188,7 +202,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
 
         private bool PositionExists(int id)
         {
-          return (_context.Positions?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Positions?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

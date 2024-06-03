@@ -26,6 +26,9 @@
                 Tên học sinh
             </th>
             <th>
+                Tên môn học
+            </th>
+            <th>
                 Trạng thái
             </th>
             <th>
@@ -34,38 +37,48 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-    stt ++;
-        <tr>
-            <th>
-                @stt
-            </th>
-            <td>
-                @Html.DisplayFor(modelItem => item.OverallScore)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdStaffNavigation.Name)
-            </td>
-            <td>
+        @foreach (var item in Model)
+        {
+            stt++;
+            <tr>
+                <th>
+                    @stt
+                </th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OverallScore)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdStaffNavigation.Name)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.StudentNavigation.Name)
-            </td>
-            <td>
-                @if (item.Status == true)
-                {
-                    <span class="text-success">Đạt</span>
-                }
-                else
-                {
-                    <span class="text-danger">Học lại</span>
-                }
-            </td>
-            
-            
-            <td>
-                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-success btn-event"><i class="fa-solid fa-circle-info"></i></a>
-            </td>
-        </tr>
-}
+                </td>
+                <td>
+                    @foreach (var itemTerm in Term)
+                    {
+                        if (item.DetailTermNavigation.Term == itemTerm.Id)
+                        {
+                            @itemTerm.Name
+                        }
+                    }
+                </td>
+                <td>
+                    @if (item.Status == true)
+                    {
+                        <span class="text-success">Đạt</span>
+                    }
+                    else
+                    {
+                        <span class="text-danger">Học lại</span>
+                    }
+                </td>
+
+
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-success btn-event"><i class="fa-solid fa-circle-info"></i></a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
 @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }), new X.PagedList.Web.Common.PagedListRenderOptions

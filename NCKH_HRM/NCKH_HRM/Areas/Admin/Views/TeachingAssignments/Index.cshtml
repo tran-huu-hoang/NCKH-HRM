@@ -55,7 +55,7 @@
                 <td>
                     @foreach (var itemTerm in Term)
                     {
-                        if (item.DetailTermNavigation.Id == itemTerm.Id)
+                        if (item.DetailTermNavigation.Term == itemTerm.Id)
                         {
                             @itemTerm.Name
                         }

@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "D:\\NCKH\\NCKH_HRM\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|D:\\NCKH\\NCKH_HRM\\nckh_hrm\\controllers\\changepasswordcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|solutionrelative:nckh_hrm\\controllers\\changepasswordcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|d:\\nckh\\nckh_hrm\\nckh_hrm\\areas\\admin\\controllers\\subjectscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|solutionrelative:nckh_hrm\\areas\\admin\\controllers\\subjectscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|d:\\nckh\\nckh_hrm\\nckh_hrm\\views\\changepassword\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|solutionrelative:nckh_hrm\\views\\changepassword\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|d:\\nckh\\nckh_hrm\\nckh_hrm\\areas\\admin\\controllers\\teachingassignmentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|solutionrelative:nckh_hrm\\areas\\admin\\controllers\\teachingassignmentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -26,28 +26,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Views\\ChangePassword\\Index.cshtml",
-              "RelativeDocumentMoniker": "NCKH_HRM\\Views\\ChangePassword\\Index.cshtml",
-              "ToolTip": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Views\\ChangePassword\\Index.cshtml",
-              "RelativeToolTip": "NCKH_HRM\\Views\\ChangePassword\\Index.cshtml",
-              "ViewState": "AQIAABIAAAAAAAAAAAAiwEUAAABHAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-06-02T11:21:09.5Z",
+              "DocumentIndex": 0,
+              "Title": "SubjectsController.cs",
+              "DocumentMoniker": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Areas\\Admin\\Controllers\\SubjectsController.cs",
+              "RelativeDocumentMoniker": "NCKH_HRM\\Areas\\Admin\\Controllers\\SubjectsController.cs",
+              "ToolTip": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Areas\\Admin\\Controllers\\SubjectsController.cs",
+              "RelativeToolTip": "NCKH_HRM\\Areas\\Admin\\Controllers\\SubjectsController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAF4AAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-03T12:19:40.312Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ChangePasswordController.cs",
-              "DocumentMoniker": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Controllers\\ChangePasswordController.cs",
-              "RelativeDocumentMoniker": "NCKH_HRM\\Controllers\\ChangePasswordController.cs",
-              "ToolTip": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Controllers\\ChangePasswordController.cs",
-              "RelativeToolTip": "NCKH_HRM\\Controllers\\ChangePasswordController.cs",
-              "ViewState": "AQIAAB4AAAAAAAAAAAAiwCMAAABYAAAA",
+              "DocumentIndex": 1,
+              "Title": "TeachingAssignmentsController.cs",
+              "DocumentMoniker": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Areas\\Admin\\Controllers\\TeachingAssignmentsController.cs",
+              "RelativeDocumentMoniker": "NCKH_HRM\\Areas\\Admin\\Controllers\\TeachingAssignmentsController.cs",
+              "ToolTip": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Areas\\Admin\\Controllers\\TeachingAssignmentsController.cs",
+              "RelativeToolTip": "NCKH_HRM\\Areas\\Admin\\Controllers\\TeachingAssignmentsController.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAEBAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-02T11:19:27.676Z",
+              "WhenOpened": "2024-06-03T12:19:02.522Z",
               "EditorCaption": ""
             }
           ]

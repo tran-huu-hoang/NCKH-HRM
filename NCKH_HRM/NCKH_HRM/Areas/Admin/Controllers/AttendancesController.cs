@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NCKH_HRM.Models;
+using NCKH_HRM.ViewModels;
 using Newtonsoft.Json;
 using X.PagedList;
 
@@ -49,7 +50,15 @@ namespace NCKH_HRM.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["DetailTerm"] = new SelectList(_context.DetailTerms, "Id", "Name", attendance.DetailTerm);
+            var data = await (from detailterm in _context.DetailTerms
+                              join term in _context.Terms on detailterm.Term equals term.Id
+                              select new NameTermWithIdDT
+                              {
+                                  Id = detailterm.Id,
+                                  Name = term.Name
+                              }).ToListAsync();
+
+            ViewData["DetailTerm"] = new SelectList(data, "Id", "Name");
             ViewData["RegistStudent"] = new SelectList(_context.RegistStudents, "Id", "Id", attendance.RegistStudent);
             ViewData["Student"] = new SelectList(_context.Students, "Id", "Name", attendance.Student);
             return View(attendance);
@@ -71,6 +80,12 @@ namespace NCKH_HRM.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                var userStaffSession = HttpContext.Session.GetString("AdminLogin");
+                if (string.IsNullOrEmpty(userStaffSession))
+                {
+                    // Handle the case where the session is missing
+                    return RedirectToAction(actionName: "Index", controllerName: "Login");
+                }
                 var admin = JsonConvert.DeserializeObject<UserStaff>(HttpContext.Session.GetString("AdminLogin"));
                 attendance.CreateBy = admin.Username;
                 attendance.UpdateBy = admin.Username;
@@ -122,6 +137,13 @@ namespace NCKH_HRM.Areas.Admin.Controllers
             {
                 try
                 {
+                    var userStaffSession = HttpContext.Session.GetString("AdminLogin");
+                    if (string.IsNullOrEmpty(userStaffSession))
+                    {
+                        // Handle the case where the session is missing
+                        return RedirectToAction(actionName: "Index", controllerName: "Login");
+                    }
+
                     attendance.UpdateDate = DateTime.Now;
                     var admin = JsonConvert.DeserializeObject<UserStaff>(HttpContext.Session.GetString("AdminLogin"));
                     attendance.UpdateBy = admin.Username;

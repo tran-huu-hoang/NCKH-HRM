@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NCKH_HRM.Models;
+using NCKH_HRM.ViewModels;
 using Newtonsoft.Json;
 using X.PagedList;
 
@@ -48,16 +49,33 @@ namespace NCKH_HRM.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["DetailTerm"] = new SelectList(_context.Terms, "Id", "Name", teachingAssignment.DetailTerm);
+
+            var data = await (from detailterm in _context.DetailTerms
+                              join term in _context.Terms on detailterm.Term equals term.Id
+                              select new NameTermWithIdDT
+                              {
+                                  Id = detailterm.Id,
+                                  Name = term.Name
+                              }).ToListAsync();
+
+            ViewData["DetailTerm"] = new SelectList(data, "Id", "Name", teachingAssignment.DetailTerm);
             ViewData["Staff"] = new SelectList(_context.Staff, "Id", "Name", teachingAssignment.Staff);
 
             return View(teachingAssignment);
         }
 
         // GET: Admin/TeachingAssignments/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            ViewData["DetailTerm"] = new SelectList(_context.Terms, "Id", "Name");
+            var data = await (from detailterm in _context.DetailTerms
+                              join term in _context.Terms on detailterm.Term equals term.Id
+                              select new NameTermWithIdDT
+                              {
+                                  Id = detailterm.Id,
+                                  Name = term.Name
+                              }).ToListAsync();
+
+            ViewData["DetailTerm"] = new SelectList(data, "Id", "Name");
             ViewData["Staff"] = new SelectList(_context.Staff, "Id", "Name");
             return View();
         }
@@ -71,6 +89,13 @@ namespace NCKH_HRM.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                var userStaffSession = HttpContext.Session.GetString("AdminLogin");
+                if (string.IsNullOrEmpty(userStaffSession))
+                {
+                    // Handle the case where the session is missing
+                    return RedirectToAction(actionName: "Index", controllerName: "Login");
+                }
+
                 var admin = JsonConvert.DeserializeObject<UserStaff>(HttpContext.Session.GetString("AdminLogin"));
                 teachingAssignment.CreateBy = admin.Username;
                 teachingAssignment.UpdateBy = admin.Username;
@@ -80,7 +105,15 @@ namespace NCKH_HRM.Areas.Admin.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DetailTerm"] = new SelectList(_context.Terms, "Id", "Name", teachingAssignment.DetailTerm);
+            var data = await (from detailterm in _context.DetailTerms
+                              join term in _context.Terms on detailterm.Term equals term.Id
+                              select new NameTermWithIdDT
+                              {
+                                  Id = detailterm.Id,
+                                  Name = term.Name
+                              }).ToListAsync();
+
+            ViewData["DetailTerm"] = new SelectList(data, "Id", "Name", teachingAssignment.DetailTerm);
             ViewData["Staff"] = new SelectList(_context.Staff, "Id", "Name", teachingAssignment.Staff);
             return View(teachingAssignment);
         }
@@ -98,7 +131,14 @@ namespace NCKH_HRM.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["DetailTerm"] = new SelectList(_context.Terms, "Id", "Name", teachingAssignment.DetailTerm);
+            var data = await (from detailterm in _context.DetailTerms
+                              join term in _context.Terms on detailterm.Term equals term.Id
+                              select new NameTermWithIdDT
+                              {
+                                  Id = detailterm.Id,
+                                  Name = term.Name
+                              }).ToListAsync();
+            ViewData["DetailTerm"] = new SelectList(data, "Id", "Name");
             ViewData["Staff"] = new SelectList(_context.Staff, "Id", "Name", teachingAssignment.Staff);
             return View(teachingAssignment);
         }
@@ -119,6 +159,14 @@ namespace NCKH_HRM.Areas.Admin.Controllers
             {
                 try
                 {
+                    var userStaffSession = HttpContext.Session.GetString("AdminLogin");
+                    if (string.IsNullOrEmpty(userStaffSession))
+                    {
+                        // Handle the case where the session is missing
+                        return RedirectToAction(actionName: "Index", controllerName: "Login");
+                    }
+
+
                     teachingAssignment.UpdateDate = DateTime.Now;
                     var admin = JsonConvert.DeserializeObject<UserStaff>(HttpContext.Session.GetString("AdminLogin"));
                     teachingAssignment.UpdateBy = admin.Username;
@@ -139,7 +187,15 @@ namespace NCKH_HRM.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DetailTerm"] = new SelectList(_context.Terms, "Id", "Name", teachingAssignment.DetailTerm);
+            var data = await (from detailterm in _context.DetailTerms
+                              join term in _context.Terms on detailterm.Term equals term.Id
+                              select new NameTermWithIdDT
+                              {
+                                  Id = detailterm.Id,
+                                  Name = term.Name
+                              }).ToListAsync();
+
+            ViewData["DetailTerm"] = new SelectList(data, "Id", "Name");
             ViewData["Staff"] = new SelectList(_context.Staff, "Id", "Name", teachingAssignment.Staff);
             return View(teachingAssignment);
         }
@@ -150,8 +206,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-
-            var teachingAssignment = await _context.TeachingAssignments
+var teachingAssignment = await _context.TeachingAssignments
                 .Include(t => t.DetailTermNavigation)
                 .Include(t => t.StaffNavigation)
                 .FirstOrDefaultAsync(m => m.Id == id);
