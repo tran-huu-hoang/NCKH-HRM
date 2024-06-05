@@ -2,6 +2,7 @@
 {
     public class StudentInTerm
     {
+        public long Id { get; set; }
         public string? StudentCode { get; set; }
         public string? StudentName { get; set; }
         public int? Status { get; set; }

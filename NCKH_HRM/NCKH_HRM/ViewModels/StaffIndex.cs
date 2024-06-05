@@ -7,6 +7,7 @@
         public string? StaffName { get; set; }
         public string? SubjectName { get; set; }
         public string? TermName { get; set; }
+        public string? TermCode { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
         public string? Room { get; set; }

@@ -29,7 +29,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
             //số bản ghi trên 1 trang
             int limit = 5;
 
-            var dateLearn = await _context.DateLearns.Include(d => d.DetailTermNavigation).Include(d => d.RegistStudentNavigation).Include(d => d.StudentNavigation).Include(d => d.TimelineNavigation).OrderBy(c => c.Id).ToPagedListAsync(page, limit); ;
+            var dateLearn = await _context.DateLearns.Include(d => d.DetailTermNavigation).Include(d => d.TimelineNavigation).OrderBy(c => c.Id).ToPagedListAsync(page, limit); ;
             ViewBag.Term = await _context.Terms.ToListAsync();
             return View(dateLearn);
         }
@@ -43,8 +43,6 @@ namespace NCKH_HRM.Areas.Admin.Controllers
 
             var dateLearn = await _context.DateLearns
                 .Include(d => d.DetailTermNavigation)
-                .Include(d => d.RegistStudentNavigation)
-                .Include(d => d.StudentNavigation)
                 .Include(d => d.TimelineNavigation)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (dateLearn == null)
@@ -60,16 +58,22 @@ namespace NCKH_HRM.Areas.Admin.Controllers
                               }).ToListAsync();
 
             ViewData["DetailTerm"] = new SelectList(data, "Id", "Name");
-            ViewData["RegistStudent"] = new SelectList(_context.RegistStudents, "Id", "Id", dateLearn.RegistStudent);
-            ViewData["Student"] = new SelectList(_context.Students, "Id", "Name", dateLearn.Student);
             ViewData["Timeline"] = new SelectList(_context.Timelines, "Id", "DateLearn", dateLearn.Timeline);
             return View(dateLearn);
         }
 
         // GET: Admin/DateLearns/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            ViewData["RegistStudent"] = new SelectList(_context.RegistStudents, "Id", "Id");
+            var data = await(from detailterm in _context.DetailTerms
+                             join term in _context.Terms on detailterm.Term equals term.Id
+                             select new NameTermWithIdDT
+                             {
+                                 Id = detailterm.Id,
+                                 Name = term.Name
+                             }).ToListAsync();
+
+            ViewData["DetailTerm"] = new SelectList(data, "Id", "Name");
             ViewData["Timeline"] = new SelectList(_context.Timelines, "Id", "DateLearn");
             return View();
         }
@@ -78,7 +82,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Student,DetailTerm,RegistStudent,Timeline,Status,CreateBy,UpdateBy,CreateDate,UpdateDate,IsDelete,IsActive")] DateLearn dateLearn)
+        public async Task<IActionResult> Create([Bind("Id,DetailTerm,Timeline,Status,CreateBy,UpdateBy,CreateDate,UpdateDate,IsDelete,IsActive")] DateLearn dateLearn)
         {
             if (ModelState.IsValid)
             {
@@ -93,24 +97,29 @@ namespace NCKH_HRM.Areas.Admin.Controllers
                 dateLearn.CreateBy = admin.Username;
                 dateLearn.UpdateBy = admin.Username;
                 dateLearn.IsDelete = false;
-                RegistStudent rs = await _context.RegistStudents.FindAsync(dateLearn.RegistStudent);
-                dateLearn.Student = rs.Student;
-                dateLearn.DetailTerm = rs.DetailTerm;
                 _context.Add(dateLearn);
                 await _context.SaveChangesAsync();
 
-                var dataAttendance = _context.Attendances.Where(c => c.RegistStudent == dateLearn.RegistStudent).FirstOrDefault();
-                DetailAttendance da = new DetailAttendance();
-                da.IdAttendance = dataAttendance.Id;
-                da.DateLearn = dateLearn.Id;
-                da.DetailTerm = dateLearn.DetailTerm;
-                da.Status = null;
-                _context.Add(da);
+                var dataAttendance = await (from datelearn in _context.DateLearns
+                                            join detailterm in _context.DetailTerms on datelearn.DetailTerm equals detailterm.Id
+                                            join attendance in _context.Attendances on detailterm.Id equals attendance.DetailTerm
+                                            select new Attendance
+                                            {
+                                                Id = attendance.Id,
+                                            }).ToListAsync(); ;
+                foreach(var item in dataAttendance)
+                {
+                    DetailAttendance da = new DetailAttendance();
+                    da.IdAttendance = item.Id;
+                    da.DateLearn = dateLearn.Id;
+                    da.DetailTerm = dateLearn.DetailTerm;
+                    da.Status = null;
+                    _context.Add(da);
+                }
 
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["RegistStudent"] = new SelectList(_context.RegistStudents, "Id", "Id", dateLearn.RegistStudent);
             ViewData["Timeline"] = new SelectList(_context.Timelines, "Id", "DateLearn", dateLearn.Timeline);
             return View(dateLearn);
         }
@@ -128,7 +137,6 @@ namespace NCKH_HRM.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["RegistStudent"] = new SelectList(_context.RegistStudents, "Id", "Id", dateLearn.RegistStudent);
             ViewData["Timeline"] = new SelectList(_context.Timelines, "Id", "DateLearn", dateLearn.Timeline);
             return View(dateLearn);
         }
@@ -159,9 +167,6 @@ namespace NCKH_HRM.Areas.Admin.Controllers
                     var user = JsonConvert.DeserializeObject<UserStaff>(HttpContext.Session.GetString("AdminLogin"));
                     dateLearn.UpdateBy = user.Username;
                     dateLearn.UpdateDate = DateTime.Now;
-                    RegistStudent rs = await _context.RegistStudents.FindAsync(dateLearn.RegistStudent);
-                    dateLearn.Student = rs.Student;
-                    dateLearn.DetailTerm = rs.DetailTerm;
                     _context.Update(dateLearn);
                     await _context.SaveChangesAsync();
                 }
@@ -178,7 +183,6 @@ namespace NCKH_HRM.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["RegistStudent"] = new SelectList(_context.RegistStudents, "Id", "Id", dateLearn.RegistStudent);
             ViewData["Timeline"] = new SelectList(_context.Timelines, "Id", "DateLearn", dateLearn.Timeline);
             return View(dateLearn);
         }

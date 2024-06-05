@@ -7,11 +7,7 @@ public partial class DateLearn
 {
     public long Id { get; set; }
 
-    public long? Student { get; set; }
-
     public long? DetailTerm { get; set; }
-
-    public long? RegistStudent { get; set; }
 
     public long? Timeline { get; set; }
 
@@ -32,10 +28,6 @@ public partial class DateLearn
     public virtual ICollection<DetailAttendance> DetailAttendances { get; set; } = new List<DetailAttendance>();
 
     public virtual DetailTerm? DetailTermNavigation { get; set; }
-
-    public virtual RegistStudent? RegistStudentNavigation { get; set; }
-
-    public virtual Student? StudentNavigation { get; set; }
 
     public virtual Timeline? TimelineNavigation { get; set; }
 }

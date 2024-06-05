@@ -61,7 +61,7 @@ public partial class NckhDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=.\\SQLEXPRESS; Database=NCKH_db; uid=sa; pwd=hoang1407; MultipleActiveResultSets=True;TrustServercertificate=true;Connection Timeout=3600");
+        => optionsBuilder.UseSqlServer("Data Source=.\\SQLEXPRESS; Database=NCKH_db; uid=sa; pwd=hoang1407; MultipleActiveResultSets=True;TrustServercertificate=true;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -162,9 +162,7 @@ public partial class NckhDbContext : DbContext
                 .HasDefaultValueSql("((1))")
                 .HasColumnName("IS_ACTIVE");
             entity.Property(e => e.IsDelete).HasColumnName("IS_DELETE");
-            entity.Property(e => e.RegistStudent).HasColumnName("REGIST_STUDENT");
             entity.Property(e => e.Status).HasColumnName("STATUS");
-            entity.Property(e => e.Student).HasColumnName("STUDENT");
             entity.Property(e => e.Timeline).HasColumnName("TIMELINE");
             entity.Property(e => e.UpdateBy)
                 .HasMaxLength(450)
@@ -177,14 +175,6 @@ public partial class NckhDbContext : DbContext
             entity.HasOne(d => d.DetailTermNavigation).WithMany(p => p.DateLearns)
                 .HasForeignKey(d => d.DetailTerm)
                 .HasConstraintName("FK__DATE_LEAR__DETAI__123EB7A3");
-
-            entity.HasOne(d => d.RegistStudentNavigation).WithMany(p => p.DateLearns)
-                .HasForeignKey(d => d.RegistStudent)
-                .HasConstraintName("FK__DATE_LEAR__REGIS__1332DBDC");
-
-            entity.HasOne(d => d.StudentNavigation).WithMany(p => p.DateLearns)
-                .HasForeignKey(d => d.Student)
-                .HasConstraintName("FK__DATE_LEAR__STUDE__14270015");
 
             entity.HasOne(d => d.TimelineNavigation).WithMany(p => p.DateLearns)
                 .HasForeignKey(d => d.Timeline)

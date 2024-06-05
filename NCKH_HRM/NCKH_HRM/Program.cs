@@ -1,5 +1,7 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using NCKH_HRM.Models;
+using NCKH_HRM.Services;
+using NCKH_HRM.ViewModels;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,22 +9,34 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 //Cau hinh ket noi
+var configuration = builder.Configuration;
 var connectionString = builder.Configuration.GetConnectionString("AppConnection");
 builder.Services.AddDbContext<NckhDbContext>(x => x.UseSqlServer(connectionString));
 
-//C?u h�nh s? d?ng session
+//C?u hình s? d?ng session
 builder.Services.AddDistributedMemoryCache();
-
-//??ng k� d?ch v? cho HttpContextAccessor
-builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddSession(options =>
 {
-    options.IdleTimeout = TimeSpan.FromSeconds(60);
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
     options.Cookie.Name = ".NCKH.Session";
 });
+
+//add email config
+builder.Services.AddControllersWithViews();
+
+// Đăng ký EmailConfiguration
+var emailConfig = configuration.GetSection("EmailConfiguration")
+    .Get<EmailConfiguration>();
+builder.Services.AddSingleton(emailConfig);
+
+// Đăng ký IEmailServices
+builder.Services.AddTransient<IEmailServices, EmailServices>();
+
+//??ng kí d?ch v? cho HttpContextAccessor
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 
@@ -42,7 +56,7 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-//S? d?ng session ?� khai b�o ? tr�n
+//S? d?ng session ?ã khai báo ? trên
 app.UseSession();
 
 app.MapControllerRoute(

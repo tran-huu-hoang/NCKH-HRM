@@ -770,3 +770,7 @@ D:\NCKH\NCKH_HRM\NCKH_HRM\obj\Debug\net7.0\refint\NCKH_HRM.dll
 D:\NCKH\NCKH_HRM\NCKH_HRM\obj\Debug\net7.0\NCKH_HRM.pdb
 D:\NCKH\NCKH_HRM\NCKH_HRM\obj\Debug\net7.0\NCKH_HRM.genruntimeconfig.cache
 D:\NCKH\NCKH_HRM\NCKH_HRM\obj\Debug\net7.0\ref\NCKH_HRM.dll
+D:\NCKH\NCKH_HRM\NCKH_HRM\bin\Debug\net7.0\MailKit.dll
+D:\NCKH\NCKH_HRM\NCKH_HRM\bin\Debug\net7.0\MimeKit.dll
+D:\NCKH\NCKH_HRM\NCKH_HRM\bin\Debug\net7.0\NETCore.MailKit.dll
+D:\NCKH\NCKH_HRM\NCKH_HRM\bin\Debug\net7.0\BouncyCastle.Crypto.dll

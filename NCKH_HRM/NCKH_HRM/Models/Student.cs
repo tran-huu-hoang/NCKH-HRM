@@ -71,8 +71,6 @@ public partial class Student
 
     public virtual Class? ClassesNavigation { get; set; }
 
-    public virtual ICollection<DateLearn> DateLearns { get; set; } = new List<DateLearn>();
-
     public virtual Major? MajorNavigation { get; set; }
 
     public virtual ICollection<PointProcess> PointProcesses { get; set; } = new List<PointProcess>();

@@ -42,6 +42,7 @@ namespace NCKH_HRM.Controllers
                                   StaffName = staff.Name,
                                   SubjectName = subject.Name,
                                   TermName = term.Name,
+                                  TermCode = term.Code,
                                   StartDate = detailterm.StartDate,
                                   EndDate = detailterm.EndDate,
                                   Room = detailterm.Room,
@@ -56,15 +57,19 @@ namespace NCKH_HRM.Controllers
             var data = await(from term in _context.Terms
                              join detailterm in _context.DetailTerms on term.Id equals detailterm.Term
                              join registstudent in _context.RegistStudents on detailterm.Id equals registstudent.DetailTerm
-                             join student in _context.Students on registstudent.Student equals student.Id
-                             join datelearn in _context.DateLearns on detailterm.Id equals datelearn.DetailTerm
+                             join attendance in _context.Attendances on registstudent.Id equals attendance.RegistStudent
+                             join detailattendance in _context.DetailAttendances on attendance.Id equals detailattendance.IdAttendance
+                             join datelearn in _context.DateLearns on detailattendance.DateLearn equals datelearn.Id
                              join timeline in _context.Timelines on datelearn.Timeline equals timeline.Id
-                             join attendance in _context.Attendances on detailterm.Id equals attendance.Id
+                             join student in _context.Students on registstudent.Student equals student.Id
                              where term.Id == id && timeline.DateLearn.Value.Date == DateTime.Now.Date
-                             group new { student, timeline, registstudent, datelearn, detailterm, attendance } by new 
-                             { student.Code, student.Name, timeline.DateLearn, student.Id, attendanceId = attendance.Id, detailtermId = detailterm.Id, datelearnId = datelearn.Id} into g
+                             group new { student, timeline, registstudent, datelearn, detailterm, attendance, detailattendance } by new 
+                             { student.Code, student.Name, timeline.DateLearn, student.Id, attendanceId = attendance.Id,
+                                 detailtermId = detailterm.Id, datelearnId = datelearn.Id, detailattendance.Status,
+                                 detailattendanceId = detailattendance.Id} into g
                              select new StudentInTerm
                              {
+                                 Id = g.Key.detailattendanceId,
                                  StudentCode = g.Key.Code,
                                  StudentName = g.Key.Name,
                                  DateLearn = g.Key.DateLearn,
@@ -72,6 +77,7 @@ namespace NCKH_HRM.Controllers
                                  AttendanceId = g.Key.attendanceId,
                                  DetailTermId = g.Key.detailtermId,
                                  DateLearnId = g.Key.datelearnId,
+                                 Status = g.Key.Status,
                              }).ToListAsync();
             var termName = await _context.Terms.FindAsync(id);
             ViewBag.TermName = termName.Name;
@@ -86,12 +92,13 @@ namespace NCKH_HRM.Controllers
             for (int i =0; i< itemCount; i ++)
             {
                 DetailAttendance attendancedetail = new DetailAttendance();
+                attendancedetail.Id = long.Parse(form["Id"][i]);
                 attendancedetail.IdAttendance = long.Parse(form["AttendanceId"][i]);
                 attendancedetail.DetailTerm = long.Parse(form["DetailTermId"][i]);
                 attendancedetail.DateLearn = long.Parse(form["DateLearnId"][i]);
                 attendancedetail.Status = int.Parse(form[(i+1).ToString()]);
                     
-                _context.Add(attendancedetail);
+                _context.Update(attendancedetail);
                 
             }
 

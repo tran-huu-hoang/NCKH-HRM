@@ -5,7 +5,7 @@
 }
 
 <h1 class="py-3">Danh sách điểm danh sinh viên học phần @ViewBag.TermName</h1>
-<form method="post" asp-action="StudentInTerm">
+@* <form method="post" asp-action="StudentInTerm">
   
     <div class="d-flex justify-content-between mb-3">
         <input type="submit" onclick="return confirm('Bạn đã điểm danh xong?');" class="btn btn-success" value="Điểm danh" />
@@ -71,4 +71,50 @@
             <input name="DateLearnId" value="@item.DateLearnId" hidden />
         }
     </div>
-</form>
+</form> *@
+
+<div class="container mt-5">
+    <form method="post" asp-action="StudentInTerm">
+        <div class="d-flex justify-content-between mb-3">
+            <input type="submit" onclick="return confirm('Bạn đã điểm danh xong?');" class="btn btn-success" value="Điểm danh" />
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-2"><strong>STT</strong></div>
+                    <div class="col-3"><strong>Mã sinh viên</strong></div>
+                    <div class="col-3"><strong>Tên sinh viên</strong></div>
+                    <div class="col-1"><strong>Có mặt</strong></div>
+                    <div class="col-1"><strong>Có phép</strong></div>
+                    <div class="col-1"><strong>Muộn</strong></div>
+                    <div class="col-1"><strong>Vắng</strong></div>
+                </div>
+                @foreach (var item in Model)
+                {
+                    stt++;
+                    <div class="row mb-3">
+                        <div class="col-2">@stt</div>
+                        <div class="col-3">@item.StudentCode</div>
+                        <div class="col-3">@item.StudentName</div>
+                        <div class="col-1">
+                            <input type="radio" value="1" @(item.Status == 1 ? "checked" : "") name="@stt" required>
+                        </div>
+                        <div class="col-1">
+                            <input type="radio" value="2" @(item.Status == 2 ? "checked" : "") name="@stt">
+                        </div>
+                        <div class="col-1">
+                            <input type="radio" value="3" @(item.Status == 3 ? "checked" : "") name="@stt">
+                        </div>
+                        <div class="col-1">
+                            <input type="radio" value="4" @(item.Status == 4 ? "checked" : "") name="@stt">
+                        </div>
+                    </div>
+                    <input name="Id" value="@item.Id" hidden />
+                    <input name="AttendanceId" value="@item.AttendanceId" hidden />
+                    <input name="DetailTermId" value="@item.DetailTermId" hidden />
+                    <input name="DateLearnId" value="@item.DateLearnId" hidden />
+                }
+            </div>
+        </div>
+    </form>
+</div>

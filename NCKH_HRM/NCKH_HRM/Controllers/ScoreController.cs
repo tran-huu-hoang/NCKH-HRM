@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using NCKH_HRM.Models;
 using NCKH_HRM.ViewModels;
 using Newtonsoft.Json;
@@ -28,7 +29,7 @@ namespace NCKH_HRM.Controllers
                               join teachingassignment in _context.TeachingAssignments on staff.Id equals teachingassignment.Staff
                               join detailterm in _context.DetailTerms on teachingassignment.DetailTerm equals detailterm.Id
                               join term in _context.Terms on detailterm.Term equals term.Id
-                              where staff.Id == user_staff.Id
+                              where userstaff.Id == user_staff.Id
                               select new Term
                               {
                                   Id = term.Id,
@@ -96,9 +97,30 @@ namespace NCKH_HRM.Controllers
                 pointProcess.DetailTerm = long.Parse(form["DetailTerm"][i]);
                 pointProcess.Student = long.Parse(form["Student"][i]);
                 pointProcess.RegistStudent = long.Parse(form["RegistStudent"][i]);
-                pointProcess.ComponentPoint = Double.Parse(form["ComponentPoint"][i]);
-                pointProcess.MidtermPoint = Double.Parse(form["MidtermPoint"][i]);
-                pointProcess.TestScore = Double.Parse(form["TestScore"][i]);
+                if(form["ComponentPoint"][i].IsNullOrEmpty())
+                {
+                    pointProcess.ComponentPoint = null;
+                }
+                else
+                {
+                    pointProcess.ComponentPoint = Double.Parse(form["ComponentPoint"][i]);
+                }
+                if (form["MidtermPoint"][i].IsNullOrEmpty())
+                {
+                    pointProcess.MidtermPoint = null;
+                }
+                else
+                {
+                    pointProcess.MidtermPoint = Double.Parse(form["MidtermPoint"][i]);
+                }
+                if (form["TestScore"][i].IsNullOrEmpty())
+                {
+                    pointProcess.TestScore = null;
+                }
+                else
+                {
+                    pointProcess.TestScore = Double.Parse(form["TestScore"][i]);
+                }
                 Double valueToRound = (pointProcess.ComponentPoint ?? 0) * 0.1 + (pointProcess.MidtermPoint ?? 0) * 0.3 + (pointProcess.TestScore ?? 0) * 0.6;
                 pointProcess.OverallScore = Math.Round(valueToRound, 2);
                 if(pointProcess.OverallScore >=4)

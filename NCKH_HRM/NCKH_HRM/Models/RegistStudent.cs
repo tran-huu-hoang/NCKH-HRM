@@ -29,8 +29,6 @@ public partial class RegistStudent
 
     public virtual ICollection<Attendance> Attendances { get; set; } = new List<Attendance>();
 
-    public virtual ICollection<DateLearn> DateLearns { get; set; } = new List<DateLearn>();
-
     public virtual DetailTerm? DetailTermNavigation { get; set; }
 
     public virtual ICollection<PointProcess> PointProcesses { get; set; } = new List<PointProcess>();
