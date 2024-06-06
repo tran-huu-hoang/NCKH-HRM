@@ -103,9 +103,13 @@ namespace NCKH_HRM.Areas.Admin.Controllers
                 var dataAttendance = await (from datelearn in _context.DateLearns
                                             join detailterm in _context.DetailTerms on datelearn.DetailTerm equals detailterm.Id
                                             join attendance in _context.Attendances on detailterm.Id equals attendance.DetailTerm
+                                            group new { attendance } by new
+                                            {
+                                                attendance.Id,
+                                            } into g
                                             select new Attendance
                                             {
-                                                Id = attendance.Id,
+                                                Id = g.Key.Id,
                                             }).ToListAsync(); ;
                 foreach(var item in dataAttendance)
                 {

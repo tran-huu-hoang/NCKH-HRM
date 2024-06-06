@@ -35,18 +35,31 @@ namespace NCKH_HRM.Controllers
                               join staffsubject in _context.StaffSubjects on staff.Id equals staffsubject.Staff
                               join subject in _context.Subjects on staffsubject.Subject equals subject.Id
                               where userstaff.Id == user_staff.Id && year.Name == DateTime.Now.Year
+                              group new { term, staff, subject, detailterm } by new
+                              {
+                                  term.Id,
+                                  term.Name,
+                                  term.Code,
+                                  term.CollegeCredit,
+                                  staffCode = staff.Code,
+                                  staffName = staff.Name,
+                                  subjectName = subject.Name,
+                                  detailterm.StartDate,
+                                  detailterm.EndDate,
+                                  detailterm.Room,
+                              } into g
                               select new StaffIndex
                               {
-                                  TermId = term.Id,
-                                  StaffCode = staff.Code,
-                                  StaffName = staff.Name,
-                                  SubjectName = subject.Name,
-                                  TermName = term.Name,
-                                  TermCode = term.Code,
-                                  StartDate = detailterm.StartDate,
-                                  EndDate = detailterm.EndDate,
-                                  Room = detailterm.Room,
-                                  CollegeCredit = term.CollegeCredit,
+                                  TermId = g.Key.Id,
+                                  StaffCode = g.Key.Code,
+                                  StaffName = g.Key.Name,
+                                  SubjectName = g.Key.subjectName,
+                                  TermName = g.Key.Name,
+                                  TermCode = g.Key.Code,
+                                  StartDate = g.Key.StartDate,
+                                  EndDate = g.Key.EndDate,
+                                  Room = g.Key.Room,
+                                  CollegeCredit = g.Key.CollegeCredit,
                               }).ToListAsync();
             
             return View(data);

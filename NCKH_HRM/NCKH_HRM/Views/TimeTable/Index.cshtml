@@ -1,0 +1,29 @@
+﻿@model IEnumerable<NCKH_HRM.ViewModels.TimeTable>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <button class="btn btn-primary rounded-pill">Xuất file excel</button>
+    </div>
+    @foreach (var item in Model)
+    {
+        <div class="card mb-3 shadow-sm" style="border-radius: 10px;">
+            <div class="card-body">
+                <h6 class="card-title text-primary fw-bold">
+                    Ngày: @if (item.DateLearn.HasValue)
+                    {
+                        @item.DateLearn.Value.ToShortDateString()
+                    }&nbsp;
+                    @if (item.DateLearn.HasValue)
+                    {
+                        @item.DateLearn.Value.ToShortTimeString()
+                    }
+                    Phòng học: @item.Room
+                </h6>
+                <p class="card-text fs-6 text-muted">Số sinh viên có mặt tại lớp: @item.PresentStudent/@item.TotalStudent</p>
+            </div>
+        </div>
+    }
+</div>
