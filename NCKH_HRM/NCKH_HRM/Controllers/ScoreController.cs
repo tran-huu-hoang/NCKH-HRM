@@ -52,7 +52,7 @@ namespace NCKH_HRM.Controllers
                               join pointprocess in _context.PointProcesses on registstudent.Id equals pointprocess.RegistStudent
                               where term.Id == id && year.Name == DateTime.Now.Year
                               group new { student, timeline, attendance, pointprocess } by new
-                              { student.Code, student.Name, timeline.DateLearn, attendanceId = attendance.Id,
+                              { student.Code, student.Name,
                                   pointprocessId = pointprocess.Id, pointprocess.ComponentPoint, pointprocess.MidtermPoint,
                                   pointprocess.TestScore, pointprocess.Student, pointprocess.DetailTerm, pointprocess.RegistStudent,
                                   pointprocess.Attendance, pointprocess.NumberTest, pointprocess.IdStaff,
