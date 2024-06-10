@@ -30,10 +30,15 @@ namespace NCKH_HRM.Controllers
                               join detailterm in _context.DetailTerms on teachingassignment.DetailTerm equals detailterm.Id
                               join term in _context.Terms on detailterm.Term equals term.Id
                               where userstaff.Id == user_staff.Id
-                              select new Term
+                              group new { term, detailterm } by new
                               {
-                                  Id = term.Id,
-                                  Name = term.Name,
+                                  term.Name,
+                                  detailterm.Id
+                              } into g
+                              select new NameTermWithIdDT
+                              {
+                                  Id = g.Key.Id,
+                                  Name = g.Key.Name,
                               }).ToListAsync();
 
             return View(data);
@@ -50,14 +55,28 @@ namespace NCKH_HRM.Controllers
                               join attendance in _context.Attendances on detailterm.Id equals attendance.Id
                               join year in _context.Years on timeline.Year equals year.Id
                               join pointprocess in _context.PointProcesses on registstudent.Id equals pointprocess.RegistStudent
-                              where term.Id == id && year.Name == DateTime.Now.Year
+                              where detailterm.Id == id && year.Name == DateTime.Now.Year
                               group new { student, timeline, attendance, pointprocess } by new
-                              { student.Code, student.Name,
-                                  pointprocessId = pointprocess.Id, pointprocess.ComponentPoint, pointprocess.MidtermPoint,
-                                  pointprocess.TestScore, pointprocess.Student, pointprocess.DetailTerm, pointprocess.RegistStudent,
-                                  pointprocess.Attendance, pointprocess.NumberTest, pointprocess.IdStaff,
-                                  pointprocess.CreateBy, pointprocess.UpdateBy, pointprocess.CreateDate,
-                                  pointprocess.UpdateDate, pointprocess.IsDelete, pointprocess.IsActive} into g
+                              {
+                                  student.Code,
+                                  student.Name,
+                                  pointprocessId = pointprocess.Id,
+                                  pointprocess.ComponentPoint,
+                                  pointprocess.MidtermPoint,
+                                  pointprocess.TestScore,
+                                  pointprocess.Student,
+                                  pointprocess.DetailTerm,
+                                  pointprocess.RegistStudent,
+                                  pointprocess.Attendance,
+                                  pointprocess.NumberTest,
+                                  pointprocess.IdStaff,
+                                  pointprocess.CreateBy,
+                                  pointprocess.UpdateBy,
+                                  pointprocess.CreateDate,
+                                  pointprocess.UpdateDate,
+                                  pointprocess.IsDelete,
+                                  pointprocess.IsActive
+                              } into g
                               select new EnterScore
                               {
                                   StudentCode = g.Key.Code,
@@ -79,9 +98,16 @@ namespace NCKH_HRM.Controllers
                                   IsDelete = g.Key.IsDelete,
                                   IsActive = g.Key.IsActive,
                               }).ToListAsync();
-            var termName = await _context.Terms.FindAsync(id);
+            var termName = (from detailterm in _context.DetailTerms
+                            join term in _context.Terms on detailterm.Term equals term.Id
+                            where detailterm.Id == id
+                            select new NameTermWithIdDT
+                            {
+                                Id = detailterm.Id,
+                                Name = term.Name
+                            }).FirstOrDefault();
             ViewBag.TermName = termName.Name;
-            return View(data);  
+            return View(data);
         }
 
         [HttpPost]
@@ -97,7 +123,7 @@ namespace NCKH_HRM.Controllers
                 pointProcess.DetailTerm = long.Parse(form["DetailTerm"][i]);
                 pointProcess.Student = long.Parse(form["Student"][i]);
                 pointProcess.RegistStudent = long.Parse(form["RegistStudent"][i]);
-                if(form["ComponentPoint"][i].IsNullOrEmpty())
+                if (form["ComponentPoint"][i].IsNullOrEmpty())
                 {
                     pointProcess.ComponentPoint = null;
                 }
@@ -123,12 +149,13 @@ namespace NCKH_HRM.Controllers
                 }
                 Double valueToRound = (pointProcess.ComponentPoint ?? 0) * 0.1 + (pointProcess.MidtermPoint ?? 0) * 0.3 + (pointProcess.TestScore ?? 0) * 0.6;
                 pointProcess.OverallScore = Math.Round(valueToRound, 2);
-                if(pointProcess.OverallScore >=4)
+                if (pointProcess.OverallScore >= 4)
                 {
                     pointProcess.Status = true;
-                }else
+                }
+                else
                 {
-                    pointProcess.Status=false;
+                    pointProcess.Status = false;
                 }
                 pointProcess.NumberTest = 1;
                 pointProcess.IdStaff = user_staff.Staff;

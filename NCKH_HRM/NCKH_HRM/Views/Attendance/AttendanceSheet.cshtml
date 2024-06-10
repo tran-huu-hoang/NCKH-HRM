@@ -1,0 +1,75 @@
+﻿@model IEnumerable<NCKH_HRM.ViewModels.AttendanceSheet>
+@{
+    ViewData["Title"] = "AttendanceSheet";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var datelearns = ViewBag.dateLearn;
+    var stt = 0;
+}
+
+<h1 class="py-3">Danh sách điểm danh sinh viên học phần @ViewBag.TermName</h1>
+
+<div class="container mt-5">
+    <form method="post" asp-action="StudentInTerm">
+        <div class="d-flex justify-content-between mb-3">
+            <a asp-action="StudentInTerm" asp-route-id="@ViewBag.detailTerm" class="btn btn-success" value="">Điểm danh</a>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                
+                    <div class="row mb-3">
+                        <div class="col-4 row">
+                            <div class="col-2"><strong>STT</strong></div>
+                            <div class="col-5"><strong>Mã sinh viên</strong></div>
+                            <div class="col-5"><strong>Tên sinh viên</strong></div>
+                        </div>
+                        <div class="col-8 row">
+                            @foreach(var item in datelearns)
+                            {
+                                <div class="col-1"><strong>@item.DateLearn.ToShortDateString()</strong></div>
+                            }
+                        </div>
+                    </div>
+                
+                @foreach (var item in Model)
+                {
+                    stt++;
+                    <div class="row mb-3">
+                        <div class="col-4 row">
+                            <div class="col-2">@stt</div>
+                            <div class="col-5">@item.StudentCode</div>
+                            <div class="col-5">@item.StudentName</div>
+                        </div>
+                        <div class="col-8 row">
+                            @for (int i = 0; i < item.Statuses.Count; i++)
+                            {
+                                string statusText = "";
+                                if (item.Statuses[i] == 1)
+                                {
+                                    statusText = "Có mặt";
+                                }
+                                else if (item.Statuses[i] == 2)
+                                {
+                                    statusText = "Có phép";
+                                }
+                                else if (item.Statuses[i] == 3)
+                                {
+                                    statusText = "Muộn";
+                                }
+                                else if (item.Statuses[i] == 4)
+                                {
+                                    statusText = "Vắng";
+                                }
+
+                                <div class="col-1">
+                                    @* <input type="text" class="form-control" value="@statusText" name="@($"Statuses[{stt}][{i}]")" required /> *@
+                                    <p>@statusText</p>
+                                </div>
+                            }
+                        </div>
+                        
+                    </div>
+                }
+            </div>
+        </div>
+    </form>
+</div>

@@ -15,7 +15,7 @@ namespace NCKH_HRM.Controllers
     {
         private readonly NckhDbContext _context;
 
-        public AttendanceController (NckhDbContext context)
+        public AttendanceController(NckhDbContext context)
         {
             _context = context;
         }
@@ -37,7 +37,7 @@ namespace NCKH_HRM.Controllers
                               where userstaff.Id == user_staff.Id && year.Name == DateTime.Now.Year
                               group new { term, staff, subject, detailterm } by new
                               {
-                                  term.Id,
+                                  detailterm.Id,
                                   term.Name,
                                   term.Code,
                                   term.CollegeCredit,
@@ -50,7 +50,7 @@ namespace NCKH_HRM.Controllers
                               } into g
                               select new StaffIndex
                               {
-                                  TermId = g.Key.Id,
+                                  DetailTermId = g.Key.Id,
                                   StaffCode = g.Key.Code,
                                   StaffName = g.Key.Name,
                                   SubjectName = g.Key.subjectName,
@@ -61,38 +61,109 @@ namespace NCKH_HRM.Controllers
                                   Room = g.Key.Room,
                                   CollegeCredit = g.Key.CollegeCredit,
                               }).ToListAsync();
-            
+
             return View(data);
         }
-        
+
+        public async Task<IActionResult> AttendanceSheet(long? id)
+        {
+            var data = await (from term in _context.Terms
+                              join detailterm in _context.DetailTerms on term.Id equals detailterm.Term
+                              join registstudent in _context.RegistStudents on detailterm.Id equals registstudent.DetailTerm
+                              join attendance in _context.Attendances on registstudent.Id equals attendance.RegistStudent
+                              join detailattendance in _context.DetailAttendances on attendance.Id equals detailattendance.IdAttendance
+                              join datelearn in _context.DateLearns on detailattendance.DateLearn equals datelearn.Id
+                              join timeline in _context.Timelines on datelearn.Timeline equals timeline.Id
+                              join student in _context.Students on registstudent.Student equals student.Id
+                              where detailterm.Id == 1
+                              group new { student, detailattendance, detailterm } by new
+                              {
+                                  student.Code,
+                                  student.Name,
+                              } into g
+                              select new AttendanceSheet
+                              {
+                                  StudentCode = g.Key.Code,
+                                  StudentName = g.Key.Name,
+                                  Statuses = g.Select(x => x.detailattendance.Status ?? -1).ToList()
+                              }).ToListAsync();
+
+            var dateLearn = await (
+                              from detailterm in _context.DetailTerms
+                              join registstudent in _context.RegistStudents on detailterm.Id equals registstudent.DetailTerm
+                              join attendance in _context.Attendances on registstudent.Id equals attendance.RegistStudent
+                              join detailattendance in _context.DetailAttendances on attendance.Id equals detailattendance.IdAttendance
+                              join datelearn in _context.DateLearns on detailattendance.DateLearn equals datelearn.Id
+                              join timeline in _context.Timelines on datelearn.Timeline equals timeline.Id
+                              where detailterm.Id == id
+                              group new { timeline, registstudent, datelearn, detailterm, attendance, detailattendance } by new
+                              {
+                                  timeline.DateLearn,
+                              } into g
+                              select new Timeline
+                              {
+                                  DateLearn = g.Key.DateLearn,
+
+                              }).ToListAsync();
+
+
+            var termName = (from detailterm in _context.DetailTerms
+                            join term in _context.Terms on detailterm.Term equals term.Id
+                            where detailterm.Id == id
+                            select new NameTermWithIdDT
+                            {
+                                Id = detailterm.Id,
+                                Name = term.Name
+                            }).FirstOrDefault();
+            ViewBag.TermName = termName.Name;
+            ViewBag.dateLearn = dateLearn;
+            ViewBag.detailTerm = id;
+            return View(data);
+        }
+
         public async Task<IActionResult> StudentInTerm(long? id)
         {
-            var data = await(from term in _context.Terms
-                             join detailterm in _context.DetailTerms on term.Id equals detailterm.Term
-                             join registstudent in _context.RegistStudents on detailterm.Id equals registstudent.DetailTerm
-                             join attendance in _context.Attendances on registstudent.Id equals attendance.RegistStudent
-                             join detailattendance in _context.DetailAttendances on attendance.Id equals detailattendance.IdAttendance
-                             join datelearn in _context.DateLearns on detailattendance.DateLearn equals datelearn.Id
-                             join timeline in _context.Timelines on datelearn.Timeline equals timeline.Id
-                             join student in _context.Students on registstudent.Student equals student.Id
-                             where term.Id == id && timeline.DateLearn.Value.Date == DateTime.Now.Date
-                             group new { student, timeline, registstudent, datelearn, detailterm, attendance, detailattendance } by new 
-                             { student.Code, student.Name, timeline.DateLearn, student.Id, attendanceId = attendance.Id,
-                                 detailtermId = detailterm.Id, datelearnId = datelearn.Id, detailattendance.Status,
-                                 detailattendanceId = detailattendance.Id} into g
-                             select new StudentInTerm
-                             {
-                                 Id = g.Key.detailattendanceId,
-                                 StudentCode = g.Key.Code,
-                                 StudentName = g.Key.Name,
-                                 DateLearn = g.Key.DateLearn,
-                                 StudentId = g.Key.Id,
-                                 AttendanceId = g.Key.attendanceId,
-                                 DetailTermId = g.Key.detailtermId,
-                                 DateLearnId = g.Key.datelearnId,
-                                 Status = g.Key.Status,
-                             }).ToListAsync();
-            var termName = await _context.Terms.FindAsync(id);
+            var data = await (from term in _context.Terms
+                              join detailterm in _context.DetailTerms on term.Id equals detailterm.Term
+                              join registstudent in _context.RegistStudents on detailterm.Id equals registstudent.DetailTerm
+                              join attendance in _context.Attendances on registstudent.Id equals attendance.RegistStudent
+                              join detailattendance in _context.DetailAttendances on attendance.Id equals detailattendance.IdAttendance
+                              join datelearn in _context.DateLearns on detailattendance.DateLearn equals datelearn.Id
+                              join timeline in _context.Timelines on datelearn.Timeline equals timeline.Id
+                              join student in _context.Students on registstudent.Student equals student.Id
+                              where detailterm.Id == id && timeline.DateLearn.Value.Date == DateTime.Now.Date
+                              group new { student, timeline, registstudent, datelearn, detailterm, attendance, detailattendance } by new
+                              {
+                                  student.Code,
+                                  student.Name,
+                                  timeline.DateLearn,
+                                  student.Id,
+                                  attendanceId = attendance.Id,
+                                  detailtermId = detailterm.Id,
+                                  datelearnId = datelearn.Id,
+                                  detailattendance.Status,
+                                  detailattendanceId = detailattendance.Id
+                              } into g
+                              select new StudentInTerm
+                              {
+                                  Id = g.Key.detailattendanceId,
+                                  StudentCode = g.Key.Code,
+                                  StudentName = g.Key.Name,
+                                  DateLearn = g.Key.DateLearn,
+                                  StudentId = g.Key.Id,
+                                  AttendanceId = g.Key.attendanceId,
+                                  DetailTermId = g.Key.detailtermId,
+                                  DateLearnId = g.Key.datelearnId,
+                                  Status = g.Key.Status,
+                              }).ToListAsync();
+            var termName = (from detailterm in _context.DetailTerms
+                            join term in _context.Terms on detailterm.Term equals term.Id
+                            where detailterm.Id == id
+                            select new NameTermWithIdDT
+                            {
+                                Id = detailterm.Id,
+                                Name = term.Name
+                            }).FirstOrDefault();
             ViewBag.TermName = termName.Name;
             return View(data);
         }
@@ -102,17 +173,17 @@ namespace NCKH_HRM.Controllers
         public async Task<IActionResult> StudentInTerm(IFormCollection form)
         {
             int itemCount = form["AttendanceId"].Count;
-            for (int i =0; i< itemCount; i ++)
+            for (int i = 0; i < itemCount; i++)
             {
                 DetailAttendance attendancedetail = new DetailAttendance();
                 attendancedetail.Id = long.Parse(form["Id"][i]);
                 attendancedetail.IdAttendance = long.Parse(form["AttendanceId"][i]);
                 attendancedetail.DetailTerm = long.Parse(form["DetailTermId"][i]);
                 attendancedetail.DateLearn = long.Parse(form["DateLearnId"][i]);
-                attendancedetail.Status = int.Parse(form[(i+1).ToString()]);
-                    
+                attendancedetail.Status = int.Parse(form[(i + 1).ToString()]);
+
                 _context.Update(attendancedetail);
-                
+
             }
 
             await _context.SaveChangesAsync();
