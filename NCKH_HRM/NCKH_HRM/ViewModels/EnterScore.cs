@@ -2,6 +2,7 @@
 {
     public class EnterScore
     {
+        public long DetailTermId { get; set; }
         public string? StudentCode { get; set; }
         public string? StudentName { get; set; }
         public long PointId { get; set; }

@@ -6,6 +6,7 @@
 
 <h1 class="py-3">Nhập điểm lớp ... học phần @ViewBag.TermName</h1>
 <div class="container mt-5">
+    <a asp-action="Export" asp-route-id="@Model.FirstOrDefault().DetailTermId" class="btn btn-primary">Xuất file excel</a>
     <form method="post" asp-action="EnterScore">
         <div class="text-end mb-3">
             <input type="submit" onclick="return confirm('Bạn đã nhập điểm xong?');" class="btn btn-success" value="Lưu thay đổi" />

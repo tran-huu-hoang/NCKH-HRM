@@ -4,6 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using NCKH_HRM.Models;
 using NCKH_HRM.ViewModels;
 using Newtonsoft.Json;
+using OfficeOpenXml;
 
 namespace NCKH_HRM.Controllers
 {
@@ -56,8 +57,9 @@ namespace NCKH_HRM.Controllers
                               join year in _context.Years on timeline.Year equals year.Id
                               join pointprocess in _context.PointProcesses on registstudent.Id equals pointprocess.RegistStudent
                               where detailterm.Id == id && year.Name == DateTime.Now.Year
-                              group new { student, timeline, attendance, pointprocess } by new
+                              group new { student, timeline, attendance, pointprocess, detailterm } by new
                               {
+                                  detailterm.Id,
                                   student.Code,
                                   student.Name,
                                   pointprocessId = pointprocess.Id,
@@ -79,6 +81,7 @@ namespace NCKH_HRM.Controllers
                               } into g
                               select new EnterScore
                               {
+                                  DetailTermId = g.Key.Id,
                                   StudentCode = g.Key.Code,
                                   StudentName = g.Key.Name,
                                   PointId = g.Key.pointprocessId,
@@ -172,6 +175,91 @@ namespace NCKH_HRM.Controllers
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Export(long? id)
+        {
+            var data = await (from term in _context.Terms
+                              join detailterm in _context.DetailTerms on term.Id equals detailterm.Term
+                              join registstudent in _context.RegistStudents on detailterm.Id equals registstudent.DetailTerm
+                              join student in _context.Students on registstudent.Student equals student.Id
+                              join datelearn in _context.DateLearns on detailterm.Id equals datelearn.DetailTerm
+                              join timeline in _context.Timelines on datelearn.Timeline equals timeline.Id
+                              join attendance in _context.Attendances on detailterm.Id equals attendance.Id
+                              join year in _context.Years on timeline.Year equals year.Id
+                              join pointprocess in _context.PointProcesses on registstudent.Id equals pointprocess.RegistStudent
+                              where detailterm.Id == id && year.Name == DateTime.Now.Year
+                              group new { student, timeline, attendance, pointprocess, detailterm } by new
+                              {
+                                  detailterm.Id,
+                                  student.Code,
+                                  student.Name,
+                                  pointprocessId = pointprocess.Id,
+                                  pointprocess.ComponentPoint,
+                                  pointprocess.MidtermPoint,
+                                  pointprocess.TestScore,
+                                  pointprocess.Student,
+                                  pointprocess.DetailTerm,
+                                  pointprocess.RegistStudent,
+                                  pointprocess.Attendance,
+                                  pointprocess.NumberTest,
+                                  pointprocess.IdStaff,
+                                  pointprocess.CreateBy,
+                                  pointprocess.UpdateBy,
+                                  pointprocess.CreateDate,
+                                  pointprocess.UpdateDate,
+                                  pointprocess.IsDelete,
+                                  pointprocess.IsActive
+                              } into g
+                              select new EnterScore
+                              {
+                                  DetailTermId = g.Key.Id,
+                                  StudentCode = g.Key.Code,
+                                  StudentName = g.Key.Name,
+                                  PointId = g.Key.pointprocessId,
+                                  ComponentPoint = g.Key.ComponentPoint,
+                                  MidtermPoint = g.Key.MidtermPoint,
+                                  TestScore = g.Key.TestScore,
+                                  Student = g.Key.Student,
+                                  DetailTerm = g.Key.DetailTerm,
+                                  RegistStudent = g.Key.RegistStudent,
+                                  Attendance = g.Key.Attendance,
+                                  NumberTest = g.Key.NumberTest,
+                                  IdStaff = g.Key.IdStaff,
+                                  CreateBy = g.Key.CreateBy,
+                                  UpdateBy = g.Key.UpdateBy,
+                                  CreateDate = g.Key.CreateDate,
+                                  UpdateDate = g.Key.UpdateDate,
+                                  IsDelete = g.Key.IsDelete,
+                                  IsActive = g.Key.IsActive,
+                              }).ToListAsync();
+
+            using (var package = new ExcelPackage())
+            {
+                var worksheet = package.Workbook.Worksheets.Add("Scores");
+                worksheet.Cells[1, 1].Value = "MSV";
+                worksheet.Cells[1, 2].Value = "Tên SV";
+                worksheet.Cells[1, 3].Value = "Điểm thành phần";
+                worksheet.Cells[1, 4].Value = "Điểm giữa kỳ";
+                worksheet.Cells[1, 5].Value = "Điểm cuối môn";
+
+                var dataCount = data.Count();
+                for (int i = 0; i < dataCount; i++)
+                {
+                    worksheet.Cells[i + 2, 1].Value = data[i].StudentCode;
+                    worksheet.Cells[i + 2, 2].Value = data[i].StudentName;
+                    worksheet.Cells[i + 2, 3].Value = data[i].ComponentPoint;
+                    worksheet.Cells[i + 2, 4].Value = data[i].MidtermPoint;
+                    worksheet.Cells[i + 2, 5].Value = data[i].TestScore;
+                }
+
+                var stream = new MemoryStream();
+                package.SaveAs(stream);
+
+                var content = stream.ToArray();
+                return File(content, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "scores.xlsx");
+            }
         }
     }
 }
