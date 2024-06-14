@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using NCKH_HRM.Models;
 using NCKH_HRM.ViewModels;
 using Newtonsoft.Json;
+using OfficeOpenXml;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -188,6 +189,39 @@ namespace NCKH_HRM.Controllers
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Import(IFormFile file, IFormCollection form)
+        {
+            if (file == null || file.Length == 0)
+            {
+                return BadRequest("File is empty.");
+            }
+
+            using (var stream = new MemoryStream())
+            {
+                file.CopyTo(stream);
+                using (var package = new ExcelPackage(stream))
+                {
+                    var worksheet = package.Workbook.Worksheets[0];
+                    var rowCount = worksheet.Dimension.Rows;
+                    for (int row = 0; row < rowCount; row++)
+                    {
+                        DetailAttendance detailAttendance = new DetailAttendance();
+                        detailAttendance.Id = long.Parse(form["Id"][row]);
+                        detailAttendance.IdAttendance = long.Parse(form["AttendanceId"][row]);
+                        detailAttendance.DetailTerm = long.Parse(form["DetailTermId"][row]);
+                        detailAttendance.DateLearn = long.Parse(form["DateLearnId"][row]);
+                        detailAttendance.Status = int.Parse(worksheet.Cells[row + 1, 3].Value.ToString().Trim());
+
+                        _context.Update(detailAttendance);
+                    }
+                }
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index", "Attendance");
         }
     }
 }

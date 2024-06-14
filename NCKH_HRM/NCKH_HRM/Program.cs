@@ -2,6 +2,7 @@
 using NCKH_HRM.Models;
 using NCKH_HRM.Services;
 using NCKH_HRM.ViewModels;
+using OfficeOpenXml;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +24,9 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
     options.Cookie.Name = ".NCKH.Session";
 });
+
+// Thiết lập LicenseContext cho EPPlus
+ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
 //add email config
 builder.Services.AddControllersWithViews();

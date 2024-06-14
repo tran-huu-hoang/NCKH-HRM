@@ -5,75 +5,24 @@
 }
 
 <h1 class="py-3">Danh sách điểm danh sinh viên học phần @ViewBag.TermName</h1>
-@* <form method="post" asp-action="StudentInTerm">
-  
-    <div class="d-flex justify-content-between mb-3">
-        <input type="submit" onclick="return confirm('Bạn đã điểm danh xong?');" class="btn btn-success" value="Điểm danh" />
-    </div>
 
-    <div class="row">
-        <div class="col-2 border bg-secondary text-white">
-            STT
+<div class="container mt-5">
+    <form method="post" asp-action="Import" enctype="multipart/form-data">
+        <div>
+            <label>Upload Excel File</label>
+            <input type="file" name="file" />
         </div>
-        <div class="col-2 border bg-secondary text-white">
-            ID
+        <div class="d-flex justify-content-between mb-3">
+            <input type="submit" class="btn btn-primary" value="Nhập file excel" />
         </div>
-        <div class="col-2 border bg-secondary text-white">
-            Tên sinh viên
-        </div>
-        <div class="col-6">
-            <div class="row">
-                <div class="col-3 border bg-secondary text-white">
-                    Có mặt
-                </div>
-                <div class="col-3 border bg-secondary text-white">
-                    Có phép
-                </div>
-                <div class="col-3 border bg-secondary text-white">
-                    Muộn
-                </div>
-                <div class="col-3 border bg-secondary text-white">
-                    Vắng
-                </div>
-            </div>
-        </div>
-
         @foreach(var item in Model)
         {
-            stt++;
-            <div class="col-2 border">
-                @stt
-            </div>
-            <div class="col-2 border">
-                @item.StudentCode
-            </div>
-            <div class="col-2 border">
-                @item.StudentName
-            </div>
-            <div class="col-6">
-                <div class="row">
-                    <div class="col-3 border border-white">
-                        <input type="radio" name="@stt" value="1" required />
-                    </div>
-                    <div class="col-3 border border-white">
-                        <input type="radio" name="@stt" value="2" />
-                    </div>
-                    <div class="col-3 border border-white">
-                        <input type="radio" name="@stt" value="3" />
-                    </div>
-                    <div class="col-3 border border-white">
-                        <input type="radio" name="@stt" value="4" />
-                    </div>
-                </div>
-            </div>
+            <input name="Id" value="@item.Id" hidden />
             <input name="AttendanceId" value="@item.AttendanceId" hidden />
             <input name="DetailTermId" value="@item.DetailTermId" hidden />
             <input name="DateLearnId" value="@item.DateLearnId" hidden />
         }
-    </div>
-</form> *@
-
-<div class="container mt-5">
+    </form>
     <form method="post" asp-action="StudentInTerm">
         <div class="d-flex justify-content-between mb-3">
             <input type="submit" onclick="return confirm('Bạn đã điểm danh xong?');" class="btn btn-success" value="Điểm danh" />
