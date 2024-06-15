@@ -5,70 +5,101 @@
     var datelearns = ViewBag.dateLearn;
     var stt = 0;
 }
+<style>
+    .scroll-container {
+        width: 100%;
+        overflow-x: auto; /* Only horizontal scrollbar */
+        overflow-y: hidden; /* Hide vertical scrollbar */
+    }
+
+    .content {
+        width: calc(7rem*@ViewBag.countDateLearn);
+    }
+
+
+    .col1of12 {
+        width: 7rem;
+    }
+</style>
 
 <h1 class="py-3">Danh sách điểm danh sinh viên học phần @ViewBag.TermName</h1>
 
 <div class="container mt-5">
     <form method="post" asp-action="StudentInTerm">
         <div class="d-flex justify-content-between mb-3">
-            <a asp-action="StudentInTerm" asp-route-id="@ViewBag.detailTerm" class="btn btn-success" value="">Điểm danh</a>
+            <a asp-action="StudentInTerm" asp-route-id="@ViewBag.detailTerm" class="btn btn-success" value="">Điểm danh hôm nay</a>
         </div>
         <div class="card">
             <div class="card-body">
-                
-                    <div class="row mb-3">
-                        <div class="col-4 row">
-                            <div class="col-2"><strong>STT</strong></div>
-                            <div class="col-5"><strong>Mã sinh viên</strong></div>
-                            <div class="col-5"><strong>Tên sinh viên</strong></div>
+                <div class="d-flex">
+                    <div class="col-6 border border-top-0 border-bottom-0 border-left-0">
+                        <div class="row mb-3">
+                            <div class="col-1"><strong>STT</strong></div>
+                            <div class="col-3"><strong>MSV</strong></div>
+                            <div class="col-5"><strong>Tên SV</strong></div>
+                            <div class="col-3"><strong>Buổi có mặt</strong></div>
                         </div>
-                        <div class="col-8 row">
-                            @foreach(var item in datelearns)
-                            {
-                                <div class="col-1"><strong>@item.DateLearn.ToShortDateString()</strong></div>
-                            }
-                        </div>
+                        @foreach (var item in Model)
+                        {
+                            stt++;
+                            <div class="row mb-3">
+                                <div class="col-1">@stt</div>
+                                <div class="col-3">@item.StudentCode</div>
+                                <div class="col-5">@item.StudentName</div>
+                                <div class="col-3 @if (((float)item.numberOfClassesAttended / (float)ViewBag.countDateLearn) < 0.8){
+                                    <text>text-danger</text>
+                                }"> @item.numberOfClassesAttended / @ViewBag.countDateLearn </div>
+                            </div>
+                        }
                     </div>
-                
-                @foreach (var item in Model)
-                {
-                    stt++;
-                    <div class="row mb-3">
-                        <div class="col-4 row">
-                            <div class="col-2">@stt</div>
-                            <div class="col-5">@item.StudentCode</div>
-                            <div class="col-5">@item.StudentName</div>
-                        </div>
-                        <div class="col-8 row">
-                            @for (int i = 0; i < item.Statuses.Count; i++)
+                    <div class="col-6 scroll-container">
+                        <div class="content">
+                            <div class="row mb-3">
+                                @foreach (var item in datelearns)
+                                {
+                                    <div class="col1of12"><strong>@item.DateLearn.ToString("dd/MM")</strong></div>
+                                }
+                            </div>
+                            @foreach (var item in Model)
                             {
-                                string statusText = "";
-                                if (item.Statuses[i] == 1)
-                                {
-                                    statusText = "Có mặt";
-                                }
-                                else if (item.Statuses[i] == 2)
-                                {
-                                    statusText = "Có phép";
-                                }
-                                else if (item.Statuses[i] == 3)
-                                {
-                                    statusText = "Muộn";
-                                }
-                                else if (item.Statuses[i] == 4)
-                                {
-                                    statusText = "Vắng";
-                                }
+                                <div class="row mb-3">
+                                    @for (int i = 0; i < item.Statuses.Count; i++)
+                                    {
+                                        string statusText = "";
+                                        string bgColor = "";
+                                        if (item.Statuses[i] == 1)
+                                        {
+                                            statusText = "Có mặt";
+                                        }
+                                        else if (item.Statuses[i] == 2)
+                                        {
+                                            statusText = "Có phép";
+                                        }
+                                        else if (item.Statuses[i] == 3)
+                                        {
+                                            statusText = "Muộn";
+                                            bgColor = "text-warning";
+                                        }
+                                        else if (item.Statuses[i] == 4)
+                                        {
+                                            statusText = "Vắng";
+                                            bgColor = "text-danger";
+                                        }
 
-                                <div class="col-1">
-                                    @* <input type="text" class="form-control" value="@statusText" name="@($"Statuses[{stt}][{i}]")" required /> *@
-                                    <p>@statusText</p>
+                                        <div class="col1of12">
+                                            @* <input type="text" class="form-control" value="@statusText" name="@($"Statuses[{stt}][{i}]")" required /> *@
+                                            <p class="mb-0 @bgColor">@statusText</p>
+                                        </div>
+                                    }
+
                                 </div>
                             }
                         </div>
-                        
                     </div>
-                }
+                </div>
+
+
+
             </div>
         </div>
     </form>

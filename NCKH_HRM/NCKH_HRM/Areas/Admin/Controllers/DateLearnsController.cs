@@ -124,6 +124,14 @@ namespace NCKH_HRM.Areas.Admin.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            var data = await (from detailterm in _context.DetailTerms
+                              join term in _context.Terms on detailterm.Term equals term.Id
+                              select new NameTermWithIdDT
+                              {
+                                  Id = detailterm.Id,
+                                  Name = term.Name
+                              }).ToListAsync();
+            ViewData["DetailTerm"] = new SelectList(data, "Id", "Name", dateLearn.DetailTerm);
             ViewData["Timeline"] = new SelectList(_context.Timelines, "Id", "DateLearn", dateLearn.Timeline);
             return View(dateLearn);
         }
@@ -141,6 +149,15 @@ namespace NCKH_HRM.Areas.Admin.Controllers
             {
                 return NotFound();
             }
+
+            var data = await (from detailterm in _context.DetailTerms
+                              join term in _context.Terms on detailterm.Term equals term.Id
+                              select new NameTermWithIdDT
+                              {
+                                  Id = detailterm.Id,
+                                  Name = term.Name
+                              }).ToListAsync();
+            ViewData["DetailTerm"] = new SelectList(data, "Id", "Name", dateLearn.DetailTerm);
             ViewData["Timeline"] = new SelectList(_context.Timelines, "Id", "DateLearn", dateLearn.Timeline);
             return View(dateLearn);
         }
@@ -187,6 +204,14 @@ namespace NCKH_HRM.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            var data = await (from detailterm in _context.DetailTerms
+                              join term in _context.Terms on detailterm.Term equals term.Id
+                              select new NameTermWithIdDT
+                              {
+                                  Id = detailterm.Id,
+                                  Name = term.Name
+                              }).ToListAsync();
+            ViewData["DetailTerm"] = new SelectList(data, "Id", "Name", dateLearn.DetailTerm);
             ViewData["Timeline"] = new SelectList(_context.Timelines, "Id", "DateLearn", dateLearn.Timeline);
             return View(dateLearn);
         }

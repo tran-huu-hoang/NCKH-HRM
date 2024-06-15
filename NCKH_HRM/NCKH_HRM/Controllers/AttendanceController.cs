@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using NCKH_HRM.Models;
 using NCKH_HRM.ViewModels;
@@ -73,8 +74,6 @@ namespace NCKH_HRM.Controllers
                               join registstudent in _context.RegistStudents on detailterm.Id equals registstudent.DetailTerm
                               join attendance in _context.Attendances on registstudent.Id equals attendance.RegistStudent
                               join detailattendance in _context.DetailAttendances on attendance.Id equals detailattendance.IdAttendance
-                              join datelearn in _context.DateLearns on detailattendance.DateLearn equals datelearn.Id
-                              join timeline in _context.Timelines on datelearn.Timeline equals timeline.Id
                               join student in _context.Students on registstudent.Student equals student.Id
                               where detailterm.Id == 1
                               group new { student, detailattendance, detailterm } by new
@@ -86,7 +85,8 @@ namespace NCKH_HRM.Controllers
                               {
                                   StudentCode = g.Key.Code,
                                   StudentName = g.Key.Name,
-                                  Statuses = g.Select(x => x.detailattendance.Status ?? -1).ToList()
+                                  Statuses = g.Select(x => x.detailattendance.Status ?? -1).ToList(),
+                                  numberOfClassesAttended = g.Count(x => x.detailattendance.Status == 1 || x.detailattendance.Status == 3)
                               }).ToListAsync();
 
             var dateLearn = await (
@@ -119,6 +119,8 @@ namespace NCKH_HRM.Controllers
             ViewBag.TermName = termName.Name;
             ViewBag.dateLearn = dateLearn;
             ViewBag.detailTerm = id;
+            ViewBag.countDateLearn = dateLearn.Count;
+
             return View(data);
         }
 
@@ -214,7 +216,6 @@ namespace NCKH_HRM.Controllers
                         detailAttendance.DetailTerm = long.Parse(form["DetailTermId"][row]);
                         detailAttendance.DateLearn = long.Parse(form["DateLearnId"][row]);
                         detailAttendance.Status = int.Parse(worksheet.Cells[row + 1, 3].Value.ToString().Trim());
-
                         _context.Update(detailAttendance);
                     }
                 }

@@ -8,5 +8,7 @@
 
         public List<int> Statuses { get; set; }
 
+        public int numberOfClassesAttended { get; set; }
+
     }
 }
