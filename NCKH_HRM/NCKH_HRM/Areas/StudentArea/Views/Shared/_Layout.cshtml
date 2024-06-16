@@ -32,16 +32,13 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Attendance" asp-action="Index">Điểm danh</a>
+                            <a class="nav-link text-dark" asp-area="StudentArea" asp-controller="Attendance" asp-action="Index">Điểm danh</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Score" asp-action="Index">Nhập điểm</a>
+                            <a class="nav-link text-dark" asp-area="StudentArea" asp-controller="Score" asp-action="Index">Xem điểm</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="TimeTable" asp-action="Index">Lịch dạy tổng quát</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="FullCalendar" asp-action="Index">Lịch dạy</a>
+                            <a class="nav-link text-dark" asp-area="StudentArea" asp-controller="FullCalendar" asp-action="Index">Lịch học</a>
                         </li>
                     </ul>
                 </div>
@@ -51,7 +48,6 @@
                     if (HttpContextAccessor.HttpContext.Session.GetString("StudentLogin") != null)
                     {
                         var user = JsonConvert.DeserializeObject<UserStaff>(HttpContextAccessor.HttpContext.Session.GetString("StudentLogin"));
-                        
                         <div class="btn-group">
                             <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                 @user.Username
