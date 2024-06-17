@@ -6,7 +6,7 @@
 
 <h1 class="py-3">Danh sách điểm danh sinh viên học phần @ViewBag.TermName</h1>
 
-<div class="container mt-5">
+<div class="container m-auto">
     <form method="post" asp-action="Import" enctype="multipart/form-data">
         <div>
             <label>Upload Excel File</label>
@@ -15,7 +15,7 @@
         <div class="d-flex justify-content-between mb-3">
             <input type="submit" class="btn btn-primary" value="Nhập file excel" />
         </div>
-        @foreach(var item in Model)
+        @foreach (var item in Model)
         {
             <input name="Id" value="@item.Id" hidden />
             <input name="AttendanceId" value="@item.AttendanceId" hidden />
@@ -29,33 +29,41 @@
         </div>
         <div class="card">
             <div class="card-body">
-                <div class="row mb-3">
-                    <div class="col-2"><strong>STT</strong></div>
-                    <div class="col-3"><strong>Mã sinh viên</strong></div>
-                    <div class="col-3"><strong>Tên sinh viên</strong></div>
-                    <div class="col-1"><strong>Có mặt</strong></div>
-                    <div class="col-1"><strong>Có phép</strong></div>
-                    <div class="col-1"><strong>Muộn</strong></div>
-                    <div class="col-1"><strong>Vắng</strong></div>
+                <div class="row mb-3 sticky-header">
+                    <div class="col-1 d-lg-block d-none"><strong>STT</strong></div>
+                    <div class="col-3 d-lg-block d-none"><strong>Mã sinh viên</strong></div>
+                    <div class="col-4 d-lg-block d-none"><strong>Tên sinh viên</strong></div>
+                    <div class="col-1 d-lg-block d-none"><strong>Có mặt</strong></div>
+                    <div class="col-1 d-lg-block d-none"><strong>Phép</strong></div>
+                    <div class="col-1 d-lg-block d-none"><strong>Muộn</strong></div>
+                    <div class="col-1 d-lg-block d-none"><strong>Vắng</strong></div>
+                    @* responsive khi màn hình dưới 960px *@
+                    <div class="col-1 d-lg-none"><strong>#</strong></div>
+                    <div class="col-3 d-lg-none"><strong>MSV</strong></div>
+                    <div class="col-4 d-lg-none"><strong>Tên</strong></div>
+                    <div class="col-1 d-lg-none"><strong>C</strong></div>
+                    <div class="col-1 d-lg-none"><strong>P</strong></div>
+                    <div class="col-1 d-lg-none"><strong>M</strong></div>
+                    <div class="col-1 d-lg-none"><strong>V</strong></div>
                 </div>
                 @foreach (var item in Model)
                 {
                     stt++;
                     <div class="row mb-3">
-                        <div class="col-2">@stt</div>
+                        <div class="col-1">@stt</div>
                         <div class="col-3">@item.StudentCode</div>
-                        <div class="col-3">@item.StudentName</div>
+                        <div class="col-4">@item.StudentName</div>
                         <div class="col-1">
-                            <input type="radio" value="1" @(item.Status == 1 ? "checked" : "") name="@stt" required>
+                            <input type="radio" value="1" @(item.Status == 1 ? "checked" : "") name="status-@stt" required>
                         </div>
                         <div class="col-1">
-                            <input type="radio" value="2" @(item.Status == 2 ? "checked" : "") name="@stt">
+                            <input type="radio" value="2" @(item.Status == 2 ? "checked" : "") name="status-@stt">
                         </div>
                         <div class="col-1">
-                            <input type="radio" value="3" @(item.Status == 3 ? "checked" : "") name="@stt">
+                            <input type="radio" value="3" @(item.Status == 3 ? "checked" : "") name="status-@stt">
                         </div>
                         <div class="col-1">
-                            <input type="radio" value="4" @(item.Status == 4 ? "checked" : "") name="@stt">
+                            <input type="radio" value="4" @(item.Status == 4 ? "checked" : "") name="status-@stt">
                         </div>
                     </div>
                     <input name="Id" value="@item.Id" hidden />
