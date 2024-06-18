@@ -5,9 +5,8 @@
     Layout = "~/Areas/Admin/Views/Shared/Admin.cshtml";
 }
 
-<h1>Edit</h1>
+<h1>Sửa thông tin điểm danh</h1>
 
-<h4>Attendance</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -15,7 +14,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="RegistStudent" class="control-label"></label>
+                <label asp-for="RegistStudent" class="control-label">ID đăng ký học phần</label>
                 <select asp-for="RegistStudent" class="form-control" asp-items="ViewBag.RegistStudent"></select>
                 <span asp-validation-for="RegistStudent" class="text-danger"></span>
             </div>
@@ -60,10 +59,6 @@
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {
