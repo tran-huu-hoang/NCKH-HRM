@@ -13,12 +13,12 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="Staff" class="control-label"></label>
+                <label asp-for="Staff" class="control-label">Tên giảng viên</label>
                 <select asp-for="Staff" class="form-control" asp-items="ViewBag.Staff"></select>
                 <span asp-validation-for="Staff" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Subject" class="control-label"></label>
+                <label asp-for="Subject" class="control-label">Tên bộ môn</label>
                 <select asp-for="Subject" class="form-control" asp-items="ViewBag.Subject"></select>
                 <span asp-validation-for="Subject" class="text-danger"></span>
             </div>
@@ -31,12 +31,12 @@
                 <span asp-validation-for="Status" class="text-danger"></span>
             </div>
             <div class="form-group d-none">
-                <label asp-for="CreateBy" class="control-label"></label>
+                <label asp-for="CreateBy" class="control-label">Người tạo</label>
                 <input asp-for="CreateBy" class="form-control" />
                 <span asp-validation-for="CreateBy" class="text-danger"></span>
             </div>
             <div class="form-group d-none">
-                <label asp-for="CreateDate" class="control-label"></label>
+                <label asp-for="CreateDate" class="control-label">Ngày tạo</label>
                 <input asp-for="CreateDate" class="form-control" />
                 <span asp-validation-for="CreateDate" class="text-danger"></span>
             </div>
