@@ -9,5 +9,6 @@
         public TimeOnly? TimeStart { get; set; }
         public TimeOnly? TimeEnd { get; set; }
         public string? Room { get; set; }
+        public int? Status { get; set;}
     }
 }
