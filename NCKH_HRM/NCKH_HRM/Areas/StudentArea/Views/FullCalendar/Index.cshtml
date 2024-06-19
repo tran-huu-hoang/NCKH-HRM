@@ -44,12 +44,33 @@
             var events = @Html.Raw(eventsJson);
             calendar.batchRendering(function () {
                 events.forEach(function (event) {
+                    var backgroundColor = "";
+                    var textStatus = "";
+                    if (event.Status === 1) {
+                        backgroundColor = "blue";
+                        textStatus = " - Có mặt"
+                    } else if (event.Status === 2) {
+                        backgroundColor = "blue";
+                        textStatus = " - Phép"
+                    } else if (event.Status === 3) {
+                        backgroundColor = "#FFA500";
+                        textStatus = " - Muộn";
+                    } else if (event.Status === 4) {
+                        backgroundColor = "red";
+                        textStatus = " - Vắng";
+                    } else {
+                        backgroundColor = "#A9A9A9";
+                    }
+
                     calendar.addEvent({
+                        
                         title: event.Name + '\n'
                         + event.TimeStart + ' - ' + event.TimeEnd
-                        +'\nPhòng: '+ event.Room,
+                        +'\nPhòng: '+ event.Room
+                        + textStatus,
                         /*url: '/Attendance',*/
-                        start: event.DateOnly
+                        start: event.DateOnly,
+                        backgroundColor: backgroundColor
                     });
 
                 });

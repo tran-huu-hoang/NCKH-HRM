@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using NCKH_HRM.Areas.StudentArea.Controllers;
 using NCKH_HRM.Models;
-using NCKH_HRM.ViewModels;
+using NCKH_HRM.Areas.StudentArea;
 using Newtonsoft.Json;
 
 namespace NCKH_HRM.Areas.Controllers
@@ -23,20 +23,22 @@ namespace NCKH_HRM.Areas.Controllers
             var data = await (from userstudent in _context.UserStudents
                               join student in _context.Students on userstudent.Student equals student.Id
                               join registstudent in _context.RegistStudents on student.Id equals registstudent.Student
+                              join attendance in _context.Attendances on registstudent.Id equals attendance.RegistStudent
+                              join detailattendance in _context.DetailAttendances on attendance.Id equals detailattendance.IdAttendance
+                              join datelearn in _context.DateLearns on detailattendance.DateLearn equals datelearn.Id
                               join detailterm in _context.DetailTerms on registstudent.DetailTerm equals detailterm.Id
                               join term in _context.Terms on detailterm.Term equals term.Id
-                              join datelearn in _context.DateLearns on detailterm.Id equals datelearn.DetailTerm
                               join timeline in _context.Timelines on datelearn.Timeline equals timeline.Id
-                              join year in _context.Years on timeline.Year equals year.Id
+                              /*join year in _context.Years on timeline.Year equals year.Id*/
                               where userstudent.Id == user_staff.Id
-                              group new { term, timeline, detailterm } by new
+                              group new { term, timeline, detailterm, detailattendance } by new
                               {
                                   term.Name,
                                   timeline.DateLearn,
                                   detailterm.Room,
-                                  datelearn.Id
+                                  detailattendance.Status
                               } into g
-                              select new FullCalendarVM
+                              select new ViewModels.FullCalendarVM
                               {
                                   Name = g.Key.Name,
                                   DateLearn = g.Key.DateLearn,
@@ -44,6 +46,7 @@ namespace NCKH_HRM.Areas.Controllers
                                   TimeStart = TimeOnly.FromDateTime(g.Key.DateLearn.Value),
                                   TimeEnd = TimeOnly.FromDateTime(g.Key.DateLearn.Value).AddHours(3).AddMinutes(30),
                                   Room = g.Key.Room,
+                                  Status = g.Key.Status
                               }).ToListAsync();
 
             return View(data);
