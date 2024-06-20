@@ -121,6 +121,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
                         DetailTerm = dateLearn.DetailTerm,
                         Status = null,
                         BeginClass = null,
+                        EndClass = null,
                         Decription = null
                     };
                     _context.Add(da);
