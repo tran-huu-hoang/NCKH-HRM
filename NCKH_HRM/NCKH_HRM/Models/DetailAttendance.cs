@@ -13,7 +13,13 @@ public partial class DetailAttendance
 
     public long? DateLearn { get; set; }
 
+    public int? BeginClass { get; set; }
+
+    public int? EndClass { get; set; }
+
     public int? Status { get; set; }
+
+    public string? Decription { get; set; }
 
     public virtual DateLearn? DateLearnNavigation { get; set; }
 

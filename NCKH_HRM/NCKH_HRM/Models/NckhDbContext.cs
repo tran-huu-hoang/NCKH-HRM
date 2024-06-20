@@ -61,7 +61,7 @@ public partial class NckhDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=ADMIN; Database=NCKH_db; uid=sa; pwd=sa123; MultipleActiveResultSets=True;TrustServercertificate=true;");
+        => optionsBuilder.UseSqlServer("Data Source=.\\SQLEXPRESS; Database=NCKH_db; uid=sa; pwd=hoang1407; MultipleActiveResultSets=True;TrustServercertificate=true;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -188,8 +188,11 @@ public partial class NckhDbContext : DbContext
             entity.ToTable("DETAIL_ATTENDANCE");
 
             entity.Property(e => e.Id).HasColumnName("ID");
+            entity.Property(e => e.BeginClass).HasColumnName("BEGIN_CLASS");
             entity.Property(e => e.DateLearn).HasColumnName("DATE_LEARN");
+            entity.Property(e => e.Decription).HasColumnName("DECRIPTION");
             entity.Property(e => e.DetailTerm).HasColumnName("DETAIL_TERM");
+            entity.Property(e => e.EndClass).HasColumnName("END_CLASS");
             entity.Property(e => e.IdAttendance).HasColumnName("ID_ATTENDANCE");
             entity.Property(e => e.Status).HasColumnName("STATUS");
 

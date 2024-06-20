@@ -16,9 +16,7 @@
             <th>
                 STT
             </th>
-            <th>
-                Trạng thái
-            </th>
+            
             <th>
                 Id ngày học
             </th>
@@ -28,7 +26,15 @@
             <th>
                 Id điểm danh
             </th>
-
+            <th>
+                Đầu giờ
+            </th>
+            <th>
+                Cuối giờ
+            </th>
+            <th>
+                Ghi chú
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -39,9 +45,7 @@
                 <th>
                     @stt
                 </th>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Status)
-                </td>
+                
                 <td>
                     @Html.DisplayFor(modelItem => item.DateLearnNavigation.Id)
                 </td>
@@ -56,6 +60,37 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.IdAttendanceNavigation.Id)
+                </td>
+                <td>
+                    @if(item.BeginClass == 1)
+                    {
+                        <text>Có mặt</text>
+                    }
+                    else if (item.BeginClass == 2)
+                    {
+                        <text>Vắng</text>
+                    }
+                    else if (item.BeginClass == 3)
+                    {
+                        <text>Có phép</text>
+                    }
+                </td>
+                <td>
+                    @if (item.EndClass == 1)
+                    {
+                        <text>Có mặt</text>
+                    }
+                    else if (item.EndClass == 2)
+                    {
+                        <text>Vắng</text>
+                    }
+                    else if (item.EndClass == 3)
+                    {
+                        <text>Có phép</text>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Decription)
                 </td>
             </tr>
         }

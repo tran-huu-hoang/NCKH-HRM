@@ -100,6 +100,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
                 _context.Add(dateLearn);
                 await _context.SaveChangesAsync();
 
+
                 var dataAttendance = await (from datelearn in _context.DateLearns
                                             join detailterm in _context.DetailTerms on datelearn.DetailTerm equals detailterm.Id
                                             join attendance in _context.Attendances on detailterm.Id equals attendance.DetailTerm
@@ -113,11 +114,15 @@ namespace NCKH_HRM.Areas.Admin.Controllers
                                             }).ToListAsync(); ;
                 foreach(var item in dataAttendance)
                 {
-                    DetailAttendance da = new DetailAttendance();
-                    da.IdAttendance = item.Id;
-                    da.DateLearn = dateLearn.Id;
-                    da.DetailTerm = dateLearn.DetailTerm;
-                    da.Status = null;
+                    DetailAttendance da = new DetailAttendance
+                    {
+                        IdAttendance = item.Id,
+                        DateLearn = dateLearn.Id,
+                        DetailTerm = dateLearn.DetailTerm,
+                        Status = null,
+                        BeginClass = null,
+                        Decription = null
+                    };
                     _context.Add(da);
                 }
 
