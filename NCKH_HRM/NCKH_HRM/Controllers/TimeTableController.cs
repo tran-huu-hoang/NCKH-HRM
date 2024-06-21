@@ -40,7 +40,7 @@ namespace NCKH_HRM.Controllers
                                  DateLearn = g.Key.DateLearn,
                                  Room = g.Key.Room,
                                  PresentStudent = _context.DetailAttendances
-                                                      .Count(da => da.DateLearn == g.Key.Id && (da.Status == 1 || da.Status == 3)),
+                                                      .Count(da => da.DateLearn == g.Key.Id && (da.BeginClass == 1 || da.EndClass == 1)),
                                  TotalStudent = _context.DetailAttendances
                                                       .Count(da => da.DateLearn == g.Key.Id),
                              }).ToListAsync();

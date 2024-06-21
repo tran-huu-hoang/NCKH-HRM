@@ -119,10 +119,9 @@ namespace NCKH_HRM.Areas.Admin.Controllers
                         IdAttendance = item.Id,
                         DateLearn = dateLearn.Id,
                         DetailTerm = dateLearn.DetailTerm,
-                        Status = null,
                         BeginClass = null,
                         EndClass = null,
-                        Decription = null
+                        Description = null
                     };
                     _context.Add(da);
                 }

@@ -190,11 +190,10 @@ public partial class NckhDbContext : DbContext
             entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.BeginClass).HasColumnName("BEGIN_CLASS");
             entity.Property(e => e.DateLearn).HasColumnName("DATE_LEARN");
-            entity.Property(e => e.Decription).HasColumnName("DECRIPTION");
+            entity.Property(e => e.Description).HasColumnName("DESCRIPTION");
             entity.Property(e => e.DetailTerm).HasColumnName("DETAIL_TERM");
             entity.Property(e => e.EndClass).HasColumnName("END_CLASS");
             entity.Property(e => e.IdAttendance).HasColumnName("ID_ATTENDANCE");
-            entity.Property(e => e.Status).HasColumnName("STATUS");
 
             entity.HasOne(d => d.DateLearnNavigation).WithMany(p => p.DetailAttendances)
                 .HasForeignKey(d => d.DateLearn)

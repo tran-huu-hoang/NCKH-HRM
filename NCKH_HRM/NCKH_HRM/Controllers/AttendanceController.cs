@@ -85,8 +85,8 @@ namespace NCKH_HRM.Controllers
                               {
                                   StudentCode = g.Key.Code,
                                   StudentName = g.Key.Name,
-                                  Statuses = g.Select(x => x.detailattendance.Status ?? -1).ToList(),
-                                  numberOfClassesAttended = g.Count(x => x.detailattendance.Status == 1 || x.detailattendance.Status == 3)
+                                  Statuses = g.Select(x => x.detailattendance.BeginClass ?? -1).ToList(),
+                                  numberOfClassesAttended = g.Count(x => x.detailattendance.BeginClass == 1 || x.detailattendance.BeginClass == 3)
                               }).ToListAsync();
 
             var dateLearn = await (
@@ -144,7 +144,9 @@ namespace NCKH_HRM.Controllers
                                   attendanceId = attendance.Id,
                                   detailtermId = detailterm.Id,
                                   datelearnId = datelearn.Id,
-                                  detailattendance.Status,
+                                  detailattendance.BeginClass,
+                                  detailattendance.EndClass,
+                                  detailattendance.Description,
                                   detailattendanceId = detailattendance.Id
                               } into g
                               select new StudentInTerm
@@ -157,7 +159,9 @@ namespace NCKH_HRM.Controllers
                                   AttendanceId = g.Key.attendanceId,
                                   DetailTermId = g.Key.detailtermId,
                                   DateLearnId = g.Key.datelearnId,
-                                  Status = g.Key.Status,
+                                  BeginClass = g.Key.BeginClass,
+                                  EndClass = g.Key.EndClass,
+                                  Description = g.Key.Description,
                               }).ToListAsync();
             var termName = (from detailterm in _context.DetailTerms
                             join term in _context.Terms on detailterm.Term equals term.Id
@@ -183,7 +187,9 @@ namespace NCKH_HRM.Controllers
                 attendancedetail.IdAttendance = long.Parse(form["AttendanceId"][i]);
                 attendancedetail.DetailTerm = long.Parse(form["DetailTermId"][i]);
                 attendancedetail.DateLearn = long.Parse(form["DateLearnId"][i]);
-                attendancedetail.Status = int.Parse(form[(i + 1).ToString()]);
+                attendancedetail.BeginClass = int.Parse(form["BeginClass"][i].ToString());
+                attendancedetail.EndClass = int.Parse(form["EndClass"][i].ToString());
+                attendancedetail.Description = form["Description"][i].ToString().ToString();
 
                 _context.Update(attendancedetail);
 
@@ -215,7 +221,7 @@ namespace NCKH_HRM.Controllers
                         detailAttendance.IdAttendance = long.Parse(form["AttendanceId"][row]);
                         detailAttendance.DetailTerm = long.Parse(form["DetailTermId"][row]);
                         detailAttendance.DateLearn = long.Parse(form["DateLearnId"][row]);
-                        detailAttendance.Status = int.Parse(worksheet.Cells[row + 1, 3].Value.ToString().Trim());
+                        /*detailAttendance.Status = int.Parse(worksheet.Cells[row + 1, 3].Value.ToString().Trim());*/
                         _context.Update(detailAttendance);
                     }
                 }

@@ -17,9 +17,7 @@ public partial class DetailAttendance
 
     public int? EndClass { get; set; }
 
-    public int? Status { get; set; }
-
-    public string? Decription { get; set; }
+    public string? Description { get; set; }
 
     public virtual DateLearn? DateLearnNavigation { get; set; }
 
