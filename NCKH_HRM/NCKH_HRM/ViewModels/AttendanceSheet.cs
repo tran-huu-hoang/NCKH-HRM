@@ -6,9 +6,14 @@
 
         public string StudentName { get; set; }
 
-        public List<int> Statuses { get; set; }
+        public List<int> ListBeginClass { get; set; }
 
-        public int numberOfClassesAttended { get; set; }
+        public List<int> ListEndClass { get; set; }
+
+        public float NumberOfBeginClassesAttended { get; set; }
+        public float NumberOfEndClassesAttended { get; set; }
+
+        public float CountDateLearn { get; set; }
 
     }
 }

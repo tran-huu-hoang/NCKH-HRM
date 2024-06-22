@@ -85,8 +85,13 @@ namespace NCKH_HRM.Controllers
                               {
                                   StudentCode = g.Key.Code,
                                   StudentName = g.Key.Name,
-                                  Statuses = g.Select(x => x.detailattendance.BeginClass ?? -1).ToList(),
-                                  numberOfClassesAttended = g.Count(x => x.detailattendance.BeginClass == 1 || x.detailattendance.BeginClass == 3)
+                                  ListBeginClass = g.Select(x => x.detailattendance.BeginClass ?? -1).ToList(),
+                                  ListEndClass = g.Select(x => x.detailattendance.EndClass ?? -1).ToList(),
+                                  NumberOfBeginClassesAttended = g.Count(x => x.detailattendance.BeginClass == 1 ||
+                                  !x.detailattendance.BeginClass.HasValue),
+                                  NumberOfEndClassesAttended = g.Count(x => x.detailattendance.EndClass == 1 ||
+                                  !x.detailattendance.EndClass.HasValue),
+                                  CountDateLearn = g.Count(x => x.detailattendance.BeginClass.HasValue || !x.detailattendance.BeginClass.HasValue) *2
                               }).ToListAsync();
 
             var dateLearn = await (
@@ -117,10 +122,9 @@ namespace NCKH_HRM.Controllers
                                 Name = term.Name
                             }).FirstOrDefault();
             ViewBag.TermName = termName.Name;
-            ViewBag.dateLearn = dateLearn;
             ViewBag.detailTerm = id;
+            ViewBag.dateLearn = dateLearn;
             ViewBag.countDateLearn = dateLearn.Count;
-
             return View(data);
         }
 

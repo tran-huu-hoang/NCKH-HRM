@@ -51,13 +51,14 @@ namespace NCKH_HRM.Controllers
                               join detailterm in _context.DetailTerms on term.Id equals detailterm.Term
                               join registstudent in _context.RegistStudents on detailterm.Id equals registstudent.DetailTerm
                               join student in _context.Students on registstudent.Student equals student.Id
-                              join datelearn in _context.DateLearns on detailterm.Id equals datelearn.DetailTerm
+                              join attendance in _context.Attendances on registstudent.Id equals attendance.RegistStudent
+                              join detailattendance in _context.DetailAttendances on attendance.Id equals detailattendance.IdAttendance
+                              join datelearn in _context.DateLearns on detailattendance.DateLearn equals datelearn.Id
                               join timeline in _context.Timelines on datelearn.Timeline equals timeline.Id
-                              join attendance in _context.Attendances on detailterm.Id equals attendance.Id
                               join year in _context.Years on timeline.Year equals year.Id
                               join pointprocess in _context.PointProcesses on registstudent.Id equals pointprocess.RegistStudent
                               where detailterm.Id == id && year.Name == DateTime.Now.Year
-                              group new { student, timeline, attendance, pointprocess, detailterm } by new
+                              group new { student, timeline, attendance, pointprocess, detailterm, detailattendance } by new
                               {
                                   detailterm.Id,
                                   student.Code,
@@ -100,6 +101,10 @@ namespace NCKH_HRM.Controllers
                                   UpdateDate = g.Key.UpdateDate,
                                   IsDelete = g.Key.IsDelete,
                                   IsActive = g.Key.IsActive,
+                                  //tính điểm chuyên cần
+                                  AttendancePoint = (double)(g.Count(x => x.detailattendance.BeginClass == 1) //đếm số buổi đầu giờ đi học
+                                  + g.Count(x => x.detailattendance.EndClass == 1)) //đếm số buổi cuối giờ đi học
+                                   /(g.Count(x => x.detailattendance.BeginClass.HasValue) * 2)//đếm số buổi học (đầu giờ + cuối giờ)
                               }).ToListAsync();
             var termName = (from detailterm in _context.DetailTerms
                             join term in _context.Terms on detailterm.Term equals term.Id
@@ -118,8 +123,11 @@ namespace NCKH_HRM.Controllers
         {
             var user_staff = JsonConvert.DeserializeObject<UserStaff>(HttpContext.Session.GetString("StaffLogin"));
             int itemCount = form["Attendance"].Count;
+            
             for (int i = 0; i < itemCount; i++)
             {
+                bool checkAttendace = false;
+                double AttendancePoint = -1;
                 PointProcess pointProcess = new PointProcess();
                 pointProcess.Id = long.Parse(form["PointId"][i]);
                 pointProcess.Attendance = long.Parse(form["Attendance"][i]);
@@ -134,6 +142,7 @@ namespace NCKH_HRM.Controllers
                 {
                     pointProcess.ComponentPoint = Double.Parse(form["ComponentPoint"][i]);
                 }
+
                 if (form["MidtermPoint"][i].IsNullOrEmpty())
                 {
                     pointProcess.MidtermPoint = null;
@@ -142,6 +151,7 @@ namespace NCKH_HRM.Controllers
                 {
                     pointProcess.MidtermPoint = Double.Parse(form["MidtermPoint"][i]);
                 }
+
                 if (form["TestScore"][i].IsNullOrEmpty())
                 {
                     pointProcess.TestScore = null;
@@ -150,16 +160,35 @@ namespace NCKH_HRM.Controllers
                 {
                     pointProcess.TestScore = Double.Parse(form["TestScore"][i]);
                 }
-                Double valueToRound = (pointProcess.ComponentPoint ?? 0) * 0.1 + (pointProcess.MidtermPoint ?? 0) * 0.3 + (pointProcess.TestScore ?? 0) * 0.6;
-                pointProcess.OverallScore = Math.Round(valueToRound, 2);
-                if (pointProcess.OverallScore >= 4)
+
+                if (!form["AttendancePoint"][i].IsNullOrEmpty())
                 {
-                    pointProcess.Status = true;
+                    AttendancePoint = Double.Parse(form["AttendancePoint"][i]);
+                }
+
+                if(AttendancePoint >= 0.8) {
+                    checkAttendace = true;
+                }
+
+                if (pointProcess.ComponentPoint != null && pointProcess.MidtermPoint != null && pointProcess.TestScore != null && AttendancePoint != -1)
+                {
+                    Double valueToRound = AttendancePoint + (pointProcess.ComponentPoint ?? 0) * 0.1 + (pointProcess.MidtermPoint ?? 0) * 0.2 + (pointProcess.TestScore ?? 0) * 0.6;
+                    pointProcess.OverallScore = Math.Round(valueToRound, 2);
+                    if (pointProcess.OverallScore >= 4 && checkAttendace)
+                    {
+                        pointProcess.Status = true;
+                    }
+                    else
+                    {
+                        pointProcess.Status = false;
+                    }
                 }
                 else
                 {
-                    pointProcess.Status = false;
+                    pointProcess.OverallScore = null;
+                    pointProcess.Status = null;
                 }
+                
                 pointProcess.NumberTest = 1;
                 pointProcess.IdStaff = user_staff.Staff;
                 pointProcess.CreateBy = form["CreateBy"][i].ToString();
