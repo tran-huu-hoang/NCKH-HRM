@@ -36,7 +36,8 @@ namespace NCKH_HRM.Areas.Controllers
                                   term.Name,
                                   timeline.DateLearn,
                                   detailterm.Room,
-                                  detailattendance.BeginClass
+                                  detailattendance.BeginClass,
+                                  detailattendance.EndClass
                               } into g
                               select new ViewModels.FullCalendarVM
                               {
@@ -46,7 +47,8 @@ namespace NCKH_HRM.Areas.Controllers
                                   TimeStart = TimeOnly.FromDateTime(g.Key.DateLearn.Value),
                                   TimeEnd = TimeOnly.FromDateTime(g.Key.DateLearn.Value).AddHours(3).AddMinutes(30),
                                   Room = g.Key.Room,
-                                  Status = g.Key.BeginClass
+                                  BeginClass = g.Key.BeginClass,
+                                  EndClass = g.Key.EndClass
                               }).ToListAsync();
 
             return View(data);

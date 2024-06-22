@@ -13,6 +13,10 @@
         public long? RegistStudent { get; set; }
 
         public long? Attendance { get; set; }
+        public double CountDateLearn { get; set; }
+        public double NumberOfBeginClassesAttended { get; set; }
+        public double NumberOfEndClassesAttended { get; set; }
+        public double? AttendancePoint { get; set; }
 
         public double? ComponentPoint { get; set; }
 

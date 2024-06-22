@@ -13,12 +13,15 @@
     }
 
     .content {
-        width: calc(7rem*@ViewBag.countDateLearn);
+        width: calc(8rem*@ViewBag.countDateLearn);
     }
 
+    .height-48px{
+        height: 48px;
+    }
 
     .col1of12 {
-        width: 7rem;
+        width: 8rem;
     }
 </style>
 
@@ -33,7 +36,7 @@
             <div class="card-body">
                 <div class="d-flex">
                     <div class="col-6 border border-top-0 border-bottom-0 border-left-0">
-                        <div class="row mb-3">
+                        <div class="row mb-3 height-48px">
                             <div class="col-1"><strong>STT</strong></div>
                             <div class="col-3"><strong>MSV</strong></div>
                             <div class="col-5"><strong>Tên SV</strong></div>
@@ -46,9 +49,9 @@
                                 <div class="col-1">@stt</div>
                                 <div class="col-3">@item.StudentCode</div>
                                 <div class="col-5">@item.StudentName</div>
-                                <div class="col-3 @if (((float)item.numberOfClassesAttended / (float)ViewBag.countDateLearn) < 0.8){
+                                <div class="col-3 @if (((item.NumberOfBeginClassesAttended + item.NumberOfEndClassesAttended) / item.CountDateLearn) <= 0.8){
                                     <text>text-danger</text>
-                                }"> @item.numberOfClassesAttended / @ViewBag.countDateLearn </div>
+                                }"> @(Math.Round((item.NumberOfBeginClassesAttended + item.NumberOfEndClassesAttended)*100 / item.CountDateLearn)) </div>
                             </div>
                         }
                     </div>
@@ -57,38 +60,53 @@
                             <div class="row mb-3">
                                 @foreach (var item in datelearns)
                                 {
-                                    <div class="col1of12"><strong>@item.DateLearn.ToString("dd/MM")</strong></div>
+                                    <div class="col1of12 row text-center"><strong>@item.DateLearn.ToString("dd/MM")</strong>
+                                        <div class="col-6"><strong>DG</strong></div>
+                                        <div class="col-6"><strong>CG</strong></div>
+                                    </div>
                                 }
                             </div>
                             @foreach (var item in Model)
                             {
                                 <div class="row mb-3">
-                                    @for (int i = 0; i < item.Statuses.Count; i++)
+                                    @for (int i = 0; i < item.ListBeginClass.Count; i++)
                                     {
-                                        string statusText = "";
-                                        string bgColor = "";
-                                        if (item.Statuses[i] == 1)
+                                        string statusText1 = "";
+                                        string textColor1 = "";
+                                        string statusText2 = "";
+                                        string textColor2 = "";
+                                        if (item.ListBeginClass[i] == 1)
                                         {
-                                            statusText = "Có mặt";
+                                            statusText1 = "C";
                                         }
-                                        else if (item.Statuses[i] == 2)
+                                        else if (item.ListBeginClass[i] == 2)
                                         {
-                                            statusText = "Có phép";
+                                            statusText1 = "V";
+                                            textColor1 = "text-danger";
                                         }
-                                        else if (item.Statuses[i] == 3)
+                                        else if (item.ListBeginClass[i] == 3)
                                         {
-                                            statusText = "Muộn";
-                                            bgColor = "text-warning";
+                                            statusText1 = "P";
+                                            textColor1 = "text-warning";
                                         }
-                                        else if (item.Statuses[i] == 4)
+                                        if (item.ListEndClass[i] == 1)
                                         {
-                                            statusText = "Vắng";
-                                            bgColor = "text-danger";
+                                            statusText2 = "C";
                                         }
-
-                                        <div class="col1of12">
+                                        else if (item.ListEndClass[i] == 2)
+                                        {
+                                            statusText2 = "V";
+                                            textColor2 = "text-danger";
+                                        }
+                                        else if (item.ListEndClass[i] == 3)
+                                        {
+                                            statusText2 = "P";
+                                            textColor2 = "text-warning";
+                                        }
+                                        <div class="col1of12 row text-center">
                                             @* <input type="text" class="form-control" value="@statusText" name="@($"Statuses[{stt}][{i}]")" required /> *@
-                                            <p class="mb-0 @bgColor">@statusText</p>
+                                            <div class="mb-0 col-6 @textColor1">@statusText1</div>
+                                            <div class="mb-0 col-6 @textColor2">@statusText2</div>
                                         </div>
                                     }
 
