@@ -9,477 +9,479 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = NCKH_HRM
 build_property.RootNamespace = NCKH_HRM
-build_property.ProjectDir = E:\study\NCKH-HRM\NCKH_HRM\NCKH_HRM\
+build_property.ProjectDir = D:\NCKH\NCKH_HRM\NCKH_HRM\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = E:\study\NCKH-HRM\NCKH_HRM\NCKH_HRM
+build_property.MSBuildProjectDirectory = D:\NCKH\NCKH_HRM\NCKH_HRM
 build_property._RazorSourceGeneratorDebug = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Attendances/Create.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Attendances/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQXR0ZW5kYW5jZXNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Attendances/Details.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Attendances/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQXR0ZW5kYW5jZXNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Attendances/Edit.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Attendances/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQXR0ZW5kYW5jZXNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Attendances/Index.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Attendances/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQXR0ZW5kYW5jZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Classes/Create.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Classes/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ2xhc3Nlc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Classes/Details.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Classes/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ2xhc3Nlc1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Classes/Edit.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Classes/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ2xhc3Nlc1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Classes/Index.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Classes/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ2xhc3Nlc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Dashboard/Index.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Dashboard/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGFzaGJvYXJkXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/DateLearns/Create.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/DateLearns/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGF0ZUxlYXJuc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/DateLearns/Details.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/DateLearns/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGF0ZUxlYXJuc1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/DateLearns/Edit.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/DateLearns/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGF0ZUxlYXJuc1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/DateLearns/Index.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/DateLearns/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGF0ZUxlYXJuc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/DetailAttendances/Index.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/DetailAttendances/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGV0YWlsQXR0ZW5kYW5jZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/DetailTerms/Create.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/DetailTerms/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGV0YWlsVGVybXNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/DetailTerms/Details.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/DetailTerms/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGV0YWlsVGVybXNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/DetailTerms/Edit.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/DetailTerms/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGV0YWlsVGVybXNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/DetailTerms/Index.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/DetailTerms/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGV0YWlsVGVybXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Login/Index.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Login/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTG9naW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Majors/Create.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Majors/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTWFqb3JzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Majors/Details.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Majors/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTWFqb3JzXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Majors/Edit.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Majors/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTWFqb3JzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Majors/Index.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Majors/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTWFqb3JzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/PointProcesses/Details.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/PointProcesses/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUG9pbnRQcm9jZXNzZXNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/PointProcesses/Index.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/PointProcesses/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUG9pbnRQcm9jZXNzZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Positions/Create.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Positions/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUG9zaXRpb25zXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Positions/Details.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Positions/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUG9zaXRpb25zXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Positions/Edit.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Positions/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUG9zaXRpb25zXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Positions/Index.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Positions/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUG9zaXRpb25zXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/RegistStudents/Create.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/RegistStudents/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUmVnaXN0U3R1ZGVudHNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/RegistStudents/Details.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/RegistStudents/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUmVnaXN0U3R1ZGVudHNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/RegistStudents/Edit.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/RegistStudents/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUmVnaXN0U3R1ZGVudHNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/RegistStudents/Index.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/RegistStudents/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUmVnaXN0U3R1ZGVudHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Semesters/Create.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Semesters/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2VtZXN0ZXJzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Semesters/Details.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Semesters/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2VtZXN0ZXJzXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Semesters/Edit.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Semesters/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2VtZXN0ZXJzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Semesters/Index.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Semesters/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2VtZXN0ZXJzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Sessions/Create.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Sessions/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2Vzc2lvbnNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Sessions/Details.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Sessions/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2Vzc2lvbnNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Sessions/Edit.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Sessions/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2Vzc2lvbnNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Sessions/Index.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Sessions/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2Vzc2lvbnNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Shared/Admin.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Shared/Admin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXEFkbWluLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Shared/_Banner.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Shared/_Banner.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9CYW5uZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Shared/_Navbar.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Shared/_Navbar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9OYXZiYXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Shared/_Preloader.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Shared/_Preloader.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9QcmVsb2FkZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Shared/_Sidebar.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Shared/_Sidebar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9TaWRlYmFyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/StaffSubjects/Create.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/StaffSubjects/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU3RhZmZTdWJqZWN0c1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/StaffSubjects/Details.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/StaffSubjects/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU3RhZmZTdWJqZWN0c1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/StaffSubjects/Edit.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/StaffSubjects/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU3RhZmZTdWJqZWN0c1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/StaffSubjects/Index.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/StaffSubjects/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU3RhZmZTdWJqZWN0c1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Staffs/Create.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Staffs/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU3RhZmZzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Staffs/Details.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Staffs/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU3RhZmZzXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Staffs/Edit.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Staffs/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU3RhZmZzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Staffs/Index.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Staffs/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU3RhZmZzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Students/Create.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Students/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU3R1ZGVudHNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Students/Details.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Students/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU3R1ZGVudHNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Students/Edit.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Students/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU3R1ZGVudHNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Students/Index.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Students/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU3R1ZGVudHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Subjects/Create.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Subjects/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU3ViamVjdHNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Subjects/Details.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Subjects/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU3ViamVjdHNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Subjects/Edit.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Subjects/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU3ViamVjdHNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Subjects/Index.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Subjects/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU3ViamVjdHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/TeachingAssignments/Create.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/TeachingAssignments/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVGVhY2hpbmdBc3NpZ25tZW50c1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/TeachingAssignments/Details.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/TeachingAssignments/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVGVhY2hpbmdBc3NpZ25tZW50c1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/TeachingAssignments/Edit.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/TeachingAssignments/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVGVhY2hpbmdBc3NpZ25tZW50c1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/TeachingAssignments/Index.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/TeachingAssignments/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVGVhY2hpbmdBc3NpZ25tZW50c1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Terms/Create.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Terms/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVGVybXNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Terms/Details.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Terms/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVGVybXNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Terms/Edit.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Terms/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVGVybXNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Terms/Index.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Terms/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVGVybXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Timelines/Create.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Timelines/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVGltZWxpbmVzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Timelines/Details.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Timelines/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVGltZWxpbmVzXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Timelines/Edit.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Timelines/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVGltZWxpbmVzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Timelines/Index.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Timelines/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVGltZWxpbmVzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/UserStaffs/Details.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/UserStaffs/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVXNlclN0YWZmc1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/UserStaffs/Edit.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/UserStaffs/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVXNlclN0YWZmc1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/UserStaffs/Index.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/UserStaffs/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVXNlclN0YWZmc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/UserStudents/Details.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/UserStudents/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVXNlclN0dWRlbnRzXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/UserStudents/Edit.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/UserStudents/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVXNlclN0dWRlbnRzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/UserStudents/Index.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/UserStudents/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVXNlclN0dWRlbnRzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Years/Create.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Years/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcWWVhcnNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Years/Details.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Years/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcWWVhcnNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Years/Edit.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Years/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcWWVhcnNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Years/Index.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/Years/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcWWVhcnNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/_ViewImports.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/_ViewStarts.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/Admin/Views/_ViewStarts.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdTdGFydHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/StudentArea/Views/ChangePassword/Index.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/StudentArea/Views/ChangePassword/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU3R1ZGVudEFyZWFcVmlld3NcQ2hhbmdlUGFzc3dvcmRcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/StudentArea/Views/Dashboard/Index.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/StudentArea/Views/Dashboard/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU3R1ZGVudEFyZWFcVmlld3NcRGFzaGJvYXJkXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/StudentArea/Views/ForgotPassword/Index.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/StudentArea/Views/ForgotPassword/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU3R1ZGVudEFyZWFcVmlld3NcRm9yZ290UGFzc3dvcmRcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/StudentArea/Views/ForgotPassword/PasswordRecoverySuccess.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/StudentArea/Views/ForgotPassword/PasswordRecoverySuccess.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU3R1ZGVudEFyZWFcVmlld3NcRm9yZ290UGFzc3dvcmRcUGFzc3dvcmRSZWNvdmVyeVN1Y2Nlc3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/StudentArea/Views/ForgotPassword/ResetPassword.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/StudentArea/Views/ForgotPassword/ResetPassword.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU3R1ZGVudEFyZWFcVmlld3NcRm9yZ290UGFzc3dvcmRcUmVzZXRQYXNzd29yZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/StudentArea/Views/FullCalendar/Index.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/StudentArea/Views/FullCalendar/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU3R1ZGVudEFyZWFcVmlld3NcRnVsbENhbGVuZGFyXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/StudentArea/Views/Login/Index.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/StudentArea/Views/Login/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU3R1ZGVudEFyZWFcVmlld3NcTG9naW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/StudentArea/Views/Shared/Error.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/StudentArea/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU3R1ZGVudEFyZWFcVmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/StudentArea/Views/Shared/_ValidationScriptsPartial.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/StudentArea/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU3R1ZGVudEFyZWFcVmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/StudentArea/Views/_ViewImports.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/StudentArea/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU3R1ZGVudEFyZWFcVmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/StudentArea/Views/_ViewStarts.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/StudentArea/Views/_ViewStarts.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU3R1ZGVudEFyZWFcVmlld3NcX1ZpZXdTdGFydHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Views/Attendance/AttendanceSheet.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Views/Attendance/AttendanceSheet.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXR0ZW5kYW5jZVxBdHRlbmRhbmNlU2hlZXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Views/Attendance/Index.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Views/Attendance/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXR0ZW5kYW5jZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Views/Attendance/StudentInTerm.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Views/Attendance/StudentInTerm.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXR0ZW5kYW5jZVxTdHVkZW50SW5UZXJtLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Views/ChangePassword/Index.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Views/ChangePassword/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhbmdlUGFzc3dvcmRcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Views/ForgotPassword/Index.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Views/ForgotPassword/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9yZ290UGFzc3dvcmRcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Views/ForgotPassword/PasswordRecoverySuccess.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Views/ForgotPassword/PasswordRecoverySuccess.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9yZ290UGFzc3dvcmRcUGFzc3dvcmRSZWNvdmVyeVN1Y2Nlc3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Views/ForgotPassword/ResetPassword.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Views/ForgotPassword/ResetPassword.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9yZ290UGFzc3dvcmRcUmVzZXRQYXNzd29yZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Views/FullCalendar/Index.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Views/FullCalendar/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRnVsbENhbGVuZGFyXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Views/Home/Index.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Views/Home/Privacy.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Views/Login/Index.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Views/Login/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Views/Score/EnterScore.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Views/Score/EnterScore.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2NvcmVcRW50ZXJTY29yZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Views/Score/Index.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Views/Score/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2NvcmVcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Views/Shared/Error.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Views/Shared/_ValidationScriptsPartial.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Views/TimeTable/Index.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Views/TimeTable/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGltZVRhYmxlXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Views/_ViewImports.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Views/_ViewStart.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Areas/StudentArea/Views/Shared/_Layout.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Areas/StudentArea/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU3R1ZGVudEFyZWFcVmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-n7pwmsgxfs
 
-[E:/study/NCKH-HRM/NCKH_HRM/NCKH_HRM/Views/Shared/_Layout.cshtml]
+[D:/NCKH/NCKH_HRM/NCKH_HRM/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-zb9pu58exg

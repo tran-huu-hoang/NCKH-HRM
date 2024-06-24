@@ -15,13 +15,13 @@
 <div>
     <div class="list-group d-flex justify-content-between flex-row mb-3">
         <div>
-            Mã giảng viên: @Model.FirstOrDefault().StaffCode
+            Mã giảng viên: @ViewBag.StaffInfo.StaffCode
         </div>
         <div>
-            Tên giảng viên: @Model.FirstOrDefault().StaffName
+            Tên giảng viên: @ViewBag.StaffInfo.StaffName
         </div>
         <div>
-            Bộ môn: @Model.FirstOrDefault().SubjectName
+            Bộ môn: @ViewBag.StaffInfo.SubjectName
         </div>
     </div>
 

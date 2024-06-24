@@ -36,9 +36,11 @@ namespace NCKH_HRM.Controllers
             {
                 //lưu session khi đăng nhập thành công
                 HttpContext.Session.SetString("StaffLogin", data);
+                TempData["SuccessMessage"] = "Đăng nhập thành công";
 
                 return RedirectToAction("Index", "Home");
             }
+            TempData["ErrorMessage"] = "Sai tên đăng nhập hoặc mật khẩu";
             return View(model);
         }
 

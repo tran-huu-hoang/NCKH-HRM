@@ -53,8 +53,8 @@ namespace NCKH_HRM.Controllers
                               select new StaffIndex
                               {
                                   DetailTermId = g.Key.Id,
-                                  StaffCode = g.Key.Code,
-                                  StaffName = g.Key.Name,
+                                  StaffCode = g.Key.staffCode,
+                                  StaffName = g.Key.staffName,
                                   SubjectName = g.Key.subjectName,
                                   TermName = g.Key.Name,
                                   TermCode = g.Key.Code,
@@ -63,6 +63,19 @@ namespace NCKH_HRM.Controllers
                                   Room = g.Key.Room,
                                   CollegeCredit = g.Key.CollegeCredit,
                               }).ToListAsync();
+
+            var staffinfodata = await (from userstaff in _context.UserStaffs
+                              join staff in _context.Staff on userstaff.Staff equals staff.Id
+                              join staffsubject in _context.StaffSubjects on staff.Id equals staffsubject.Staff
+                              join subject in _context.Subjects on staffsubject.Subject equals subject.Id
+                              where userstaff.Id == user_staff.Id
+                              select new StaffIndex
+                              {
+                                  StaffCode = staff.Code,
+                                  StaffName = staff.Name,
+                                  SubjectName = subject.Name,
+                              }).FirstOrDefaultAsync();
+            ViewBag.StaffInfo = staffinfodata;
 
             return View(data);
         }
