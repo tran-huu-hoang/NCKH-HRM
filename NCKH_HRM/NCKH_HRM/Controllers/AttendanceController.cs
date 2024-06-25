@@ -104,6 +104,8 @@ namespace NCKH_HRM.Controllers
                                   !x.detailattendance.BeginClass.HasValue),
                                   NumberOfEndClassesAttended = g.Count(x => x.detailattendance.EndClass == 1 ||
                                   !x.detailattendance.EndClass.HasValue),
+                                  NumberOfBeginLate = g.Count(x => x.detailattendance.BeginClass == 4),
+                                  NumberOfEndLate = g.Count(x => x.detailattendance.EndClass == 4),
                                   CountDateLearn = g.Count(x => x.detailattendance.BeginClass.HasValue || !x.detailattendance.BeginClass.HasValue) *2
                               }).ToListAsync();
 
@@ -156,6 +158,7 @@ namespace NCKH_HRM.Controllers
                               {
                                   student.Code,
                                   student.Name,
+                                  student.BirthDate,
                                   timeline.DateLearn,
                                   student.Id,
                                   attendanceId = attendance.Id,
@@ -171,6 +174,7 @@ namespace NCKH_HRM.Controllers
                                   Id = g.Key.detailattendanceId,
                                   StudentCode = g.Key.Code,
                                   StudentName = g.Key.Name,
+                                  BirthDate = g.Key.BirthDate,
                                   DateLearn = g.Key.DateLearn,
                                   StudentId = g.Key.Id,
                                   AttendanceId = g.Key.attendanceId,
@@ -204,8 +208,8 @@ namespace NCKH_HRM.Controllers
                 attendancedetail.IdAttendance = long.Parse(form["AttendanceId"][i]);
                 attendancedetail.DetailTerm = long.Parse(form["DetailTermId"][i]);
                 attendancedetail.DateLearn = long.Parse(form["DateLearnId"][i]);
-                attendancedetail.BeginClass = int.Parse(form["BeginClass"][i].ToString());
-                attendancedetail.EndClass = int.Parse(form["EndClass"][i].ToString());
+                attendancedetail.BeginClass = int.Parse(form["begin-"+(i+1)].ToString());
+                attendancedetail.EndClass = int.Parse(form["end-"+(i+1)].ToString());
                 attendancedetail.Description = form["Description"][i].ToString().ToString();
 
                 _context.Update(attendancedetail);

@@ -5,6 +5,7 @@
         public long Id { get; set; }
         public string? StudentCode { get; set; }
         public string? StudentName { get; set; }
+        public DateTime? BirthDate { get; set; }
         public int? BeginClass { get; set; }
         public int? EndClass { get; set; }
         public string? Description { get; set; }

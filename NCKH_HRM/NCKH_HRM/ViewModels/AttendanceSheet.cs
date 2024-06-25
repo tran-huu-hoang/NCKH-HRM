@@ -12,7 +12,8 @@
 
         public float NumberOfBeginClassesAttended { get; set; }
         public float NumberOfEndClassesAttended { get; set; }
-
+        public float NumberOfBeginLate { get; set; }
+        public float NumberOfEndLate { get; set; }
         public float CountDateLearn { get; set; }
 
     }
