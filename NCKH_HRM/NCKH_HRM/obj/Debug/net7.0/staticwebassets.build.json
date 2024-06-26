@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "DTCpi+STOYbXSsUbqlw5CYN5aDnGjtrsNmN9DQ15ud8=",
+  "Hash": "tevypwvpWTA5UvI+422PkYMORz+JNSU+9J5bl8hE4w8=",
   "Source": "NCKH_HRM",
   "BasePath": "_content/NCKH_HRM",
   "Mode": "Default",
@@ -36072,6 +36072,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Uploads\\student\\go3.jfif"
+    },
+    {
+      "Identity": "E:\\study\\NCKH-HRM\\NCKH_HRM\\NCKH_HRM\\wwwroot\\Uploads\\student\\noAvatar.jpg",
+      "SourceId": "NCKH_HRM",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\study\\NCKH-HRM\\NCKH_HRM\\NCKH_HRM\\wwwroot\\",
+      "BasePath": "_content/NCKH_HRM",
+      "RelativePath": "Uploads/student/noAvatar.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Uploads\\student\\noAvatar.jpg"
     }
   ]
 }

@@ -28,9 +28,13 @@
 <h1 class="py-3">Danh sách điểm danh sinh viên học phần @ViewBag.TermName</h1>
 
 <div class="container mt-5">
-    <form method="post" asp-action="StudentInTerm">
+    <form method="post" asp-action="AttendanceSheet">
         <div class="d-flex justify-content-between mb-3">
             <a asp-action="StudentInTerm" asp-route-id="@ViewBag.detailTerm" class="btn btn-success" value="">Điểm danh hôm nay</a>
+            <select asp-items="@ViewBag.dataclass" name="class">
+
+            </select>
+            <input hidden name="detailTerm" value="@ViewBag.detailTerm" />
         </div>
         <div class="card">
             <div class="card-body">
