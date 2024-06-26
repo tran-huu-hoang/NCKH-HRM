@@ -103,7 +103,8 @@ namespace NCKH_HRM.Controllers
                                   IsActive = g.Key.IsActive,
                                   //tính điểm chuyên cần
                                   AttendancePoint = (double)(g.Count(x => x.detailattendance.BeginClass == 1) //đếm số buổi đầu giờ đi học
-                                  + g.Count(x => x.detailattendance.EndClass == 1)) //đếm số buổi cuối giờ đi học
+                                  + g.Count(x => x.detailattendance.EndClass == 1) //đếm số buổi cuối giờ đi học
+                                  + (double)(g.Count(x => x.detailattendance.BeginClass == 4) + g.Count(x => x.detailattendance.EndClass == 4)) /2) //đếm số buổi muộn
                                    /(g.Count(x => x.detailattendance.BeginClass.HasValue) * 2)//đếm số buổi học (đầu giờ + cuối giờ)
                               }).ToListAsync();
             var termName = (from detailterm in _context.DetailTerms
