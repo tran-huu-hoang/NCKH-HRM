@@ -25,6 +25,10 @@
       "PackagePath": "staticwebassets\\Uploads\\student\\go3.jfif"
     },
     {
+      "Id": "E:\\study\\NCKH-HRM\\NCKH_HRM\\NCKH_HRM\\wwwroot\\Uploads\\student\\noAvatar.jpg",
+      "PackagePath": "staticwebassets\\Uploads\\student\\noAvatar.jpg"
+    },
+    {
       "Id": "E:\\study\\NCKH-HRM\\NCKH_HRM\\NCKH_HRM\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
