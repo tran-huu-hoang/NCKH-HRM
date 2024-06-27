@@ -13,6 +13,8 @@ public partial class DateLearn
 
     public bool? Status { get; set; }
 
+    public int? Room { get; set; }
+
     public string? CreateBy { get; set; }
 
     public string? UpdateBy { get; set; }
@@ -28,6 +30,8 @@ public partial class DateLearn
     public virtual ICollection<DetailAttendance> DetailAttendances { get; set; } = new List<DetailAttendance>();
 
     public virtual DetailTerm? DetailTermNavigation { get; set; }
+
+    public virtual Room? RoomNavigation { get; set; }
 
     public virtual Timeline? TimelineNavigation { get; set; }
 }

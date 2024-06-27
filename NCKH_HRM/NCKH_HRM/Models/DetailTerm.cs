@@ -15,7 +15,7 @@ public partial class DetailTerm
 
     public DateTime? EndDate { get; set; }
 
-    public string? Room { get; set; }
+    public string? TermClass { get; set; }
 
     public int? MaxNumber { get; set; }
 

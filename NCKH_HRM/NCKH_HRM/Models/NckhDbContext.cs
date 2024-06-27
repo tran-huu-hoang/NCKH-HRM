@@ -35,6 +35,8 @@ public partial class NckhDbContext : DbContext
 
     public virtual DbSet<Role> Roles { get; set; }
 
+    public virtual DbSet<Room> Rooms { get; set; }
+
     public virtual DbSet<Semester> Semesters { get; set; }
 
     public virtual DbSet<Session> Sessions { get; set; }
@@ -61,7 +63,7 @@ public partial class NckhDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=LAPTOP-2C5N86N9\\SQLEXPRESS; Database=NCKH_db; uid=sa; pwd=hoang1407; MultipleActiveResultSets=True;TrustServercertificate=true;");
+        => optionsBuilder.UseSqlServer("Data Source=.\\SQLEXPRESS; Database=NCKH_db; uid=sa; pwd=hoang1407; MultipleActiveResultSets=True;TrustServercertificate=true;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -162,6 +164,7 @@ public partial class NckhDbContext : DbContext
                 .HasDefaultValueSql("((1))")
                 .HasColumnName("IS_ACTIVE");
             entity.Property(e => e.IsDelete).HasColumnName("IS_DELETE");
+            entity.Property(e => e.Room).HasColumnName("ROOM");
             entity.Property(e => e.Status).HasColumnName("STATUS");
             entity.Property(e => e.Timeline).HasColumnName("TIMELINE");
             entity.Property(e => e.UpdateBy)
@@ -175,6 +178,10 @@ public partial class NckhDbContext : DbContext
             entity.HasOne(d => d.DetailTermNavigation).WithMany(p => p.DateLearns)
                 .HasForeignKey(d => d.DetailTerm)
                 .HasConstraintName("FK__DATE_LEAR__DETAI__123EB7A3");
+
+            entity.HasOne(d => d.RoomNavigation).WithMany(p => p.DateLearns)
+                .HasForeignKey(d => d.Room)
+                .HasConstraintName("FK_DATE_LEARN_ROOM");
 
             entity.HasOne(d => d.TimelineNavigation).WithMany(p => p.DateLearns)
                 .HasForeignKey(d => d.Timeline)
@@ -230,14 +237,14 @@ public partial class NckhDbContext : DbContext
                 .HasColumnName("IS_ACTIVE");
             entity.Property(e => e.IsDelete).HasColumnName("IS_DELETE");
             entity.Property(e => e.MaxNumber).HasColumnName("MAX_NUMBER");
-            entity.Property(e => e.Room)
-                .HasMaxLength(255)
-                .HasColumnName("ROOM");
             entity.Property(e => e.Semester).HasColumnName("SEMESTER");
             entity.Property(e => e.StartDate)
                 .HasColumnType("datetime")
                 .HasColumnName("START_DATE");
             entity.Property(e => e.Term).HasColumnName("TERM");
+            entity.Property(e => e.TermClass)
+                .HasMaxLength(255)
+                .HasColumnName("TERM_CLASS");
             entity.Property(e => e.UpdateBy)
                 .HasMaxLength(450)
                 .HasColumnName("UPDATE_BY");
@@ -445,6 +452,17 @@ public partial class NckhDbContext : DbContext
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
                 .HasColumnName("UPDATE_DATE");
+        });
+
+        modelBuilder.Entity<Room>(entity =>
+        {
+            entity.ToTable("ROOM");
+
+            entity.Property(e => e.Id).HasColumnName("ID");
+            entity.Property(e => e.Name)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("NAME");
         });
 
         modelBuilder.Entity<Semester>(entity =>
