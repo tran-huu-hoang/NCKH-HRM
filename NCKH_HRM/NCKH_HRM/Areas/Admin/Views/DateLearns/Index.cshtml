@@ -5,7 +5,6 @@
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/Admin.cshtml";
     var stt = 0;
-    var Term = ViewBag.Term;
 }
 <h1 class="py-3">Danh sách lịch học của từng học phần</h1>
 
@@ -19,7 +18,10 @@
                 STT
             </th>
             <th>
-                Tên học phần
+                Tên lớp học phần
+            </th>
+            <th>
+                Phòng học
             </th>
             <th>
                 Ngày giờ ca học
@@ -39,13 +41,10 @@
                     @stt
                 </td>
                 <td>
-                    @foreach (var itemTerm in Term)
-                    {
-                        if (item.DetailTermNavigation.Term == itemTerm.Id)
-                        {
-                            @itemTerm.Name
-                        }
-                    }
+                    @Html.DisplayFor(modelItem => item.DetailTermNavigation.TermClass)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoomNavigation.Name)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.TimelineNavigation.DateLearn)

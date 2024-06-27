@@ -4,7 +4,6 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/Admin.cshtml";
-    var Term = ViewBag.Term;
     var stt = 0;
 }
 
@@ -26,7 +25,7 @@
                 Tên học sinh
             </th>
             <th>
-                Tên môn học
+                Lớp học phần
             </th>
             <th>
                 Trạng thái
@@ -54,13 +53,7 @@
                     @Html.DisplayFor(modelItem => item.StudentNavigation.Name)
                 </td>
                 <td>
-                    @foreach (var itemTerm in Term)
-                    {
-                        if (item.DetailTermNavigation.Term == itemTerm.Id)
-                        {
-                            @itemTerm.Name
-                        }
-                    }
+                    @Html.DisplayFor(modelItem => item.DetailTermNavigation.TermClass)
                 </td>
                 <td>
                     @if (item.Status == true)

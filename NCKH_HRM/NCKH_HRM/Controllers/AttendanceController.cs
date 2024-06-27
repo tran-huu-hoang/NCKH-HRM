@@ -32,6 +32,7 @@ namespace NCKH_HRM.Controllers
                               join detailterm in _context.DetailTerms on teachingassignment.DetailTerm equals detailterm.Id
                               join term in _context.Terms on detailterm.Term equals term.Id
                               join datelearn in _context.DateLearns on detailterm.Id equals datelearn.DetailTerm
+                         
                               join timeline in _context.Timelines on datelearn.Timeline equals timeline.Id
                               join year in _context.Years on timeline.Year equals year.Id
                               join staffsubject in _context.StaffSubjects on staff.Id equals staffsubject.Staff
@@ -43,24 +44,17 @@ namespace NCKH_HRM.Controllers
                                   term.Name,
                                   term.Code,
                                   term.CollegeCredit,
-                                  staffCode = staff.Code,
-                                  staffName = staff.Name,
-                                  subjectName = subject.Name,
+                                  
                                   detailterm.StartDate,
                                   detailterm.EndDate,
-                                  detailterm.Room,
                               } into g
                               select new StaffIndex
                               {
                                   DetailTermId = g.Key.Id,
-                                  StaffCode = g.Key.staffCode,
-                                  StaffName = g.Key.staffName,
-                                  SubjectName = g.Key.subjectName,
                                   TermName = g.Key.Name,
                                   TermCode = g.Key.Code,
                                   StartDate = g.Key.StartDate,
                                   EndDate = g.Key.EndDate,
-                                  Room = g.Key.Room,
                                   CollegeCredit = g.Key.CollegeCredit,
                               }).ToListAsync();
 

@@ -29,7 +29,6 @@ namespace NCKH_HRM.Areas.Admin.Controllers
             int limit = 5;
 
             var teachingAssignment = await _context.TeachingAssignments.Include(t => t.DetailTermNavigation).Include(t => t.StaffNavigation).OrderBy(c => c.Id).ToPagedListAsync(page, limit);
-            ViewBag.Term = await _context.Terms.ToListAsync();
             return View(teachingAssignment);
         }
 
@@ -50,15 +49,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var data = await (from detailterm in _context.DetailTerms
-                              join term in _context.Terms on detailterm.Term equals term.Id
-                              select new NameTermWithIdDT
-                              {
-                                  Id = detailterm.Id,
-                                  Name = term.Name
-                              }).ToListAsync();
-
-            ViewData["DetailTerm"] = new SelectList(data, "Id", "Name", teachingAssignment.DetailTerm);
+            ViewData["DetailTerm"] = new SelectList(_context.DetailTerms, "Id", "TermClass", teachingAssignment.DetailTerm);
             ViewData["Staff"] = new SelectList(_context.Staff, "Id", "Name", teachingAssignment.Staff);
 
             return View(teachingAssignment);
@@ -67,15 +58,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
         // GET: Admin/TeachingAssignments/Create
         public async Task<IActionResult> Create()
         {
-            var data = await (from detailterm in _context.DetailTerms
-                              join term in _context.Terms on detailterm.Term equals term.Id
-                              select new NameTermWithIdDT
-                              {
-                                  Id = detailterm.Id,
-                                  Name = term.Name
-                              }).ToListAsync();
-
-            ViewData["DetailTerm"] = new SelectList(data, "Id", "Name");
+            ViewData["DetailTerm"] = new SelectList(_context.DetailTerms, "Id", "TermClass");
             ViewData["Staff"] = new SelectList(_context.Staff, "Id", "Name");
             return View();
         }
@@ -105,15 +88,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            var data = await (from detailterm in _context.DetailTerms
-                              join term in _context.Terms on detailterm.Term equals term.Id
-                              select new NameTermWithIdDT
-                              {
-                                  Id = detailterm.Id,
-                                  Name = term.Name
-                              }).ToListAsync();
-
-            ViewData["DetailTerm"] = new SelectList(data, "Id", "Name", teachingAssignment.DetailTerm);
+            ViewData["DetailTerm"] = new SelectList(_context.DetailTerms, "Id", "TermClass", teachingAssignment.DetailTerm);
             ViewData["Staff"] = new SelectList(_context.Staff, "Id", "Name", teachingAssignment.Staff);
             return View(teachingAssignment);
         }
@@ -131,14 +106,8 @@ namespace NCKH_HRM.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            var data = await (from detailterm in _context.DetailTerms
-                              join term in _context.Terms on detailterm.Term equals term.Id
-                              select new NameTermWithIdDT
-                              {
-                                  Id = detailterm.Id,
-                                  Name = term.Name
-                              }).ToListAsync();
-            ViewData["DetailTerm"] = new SelectList(data, "Id", "Name");
+            ViewData["DetailTerm"] = new SelectList(_context.DetailTerms, "Id", "TermClass", teachingAssignment.DetailTerm);
+
             ViewData["Staff"] = new SelectList(_context.Staff, "Id", "Name", teachingAssignment.Staff);
             return View(teachingAssignment);
         }
@@ -187,15 +156,8 @@ namespace NCKH_HRM.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            var data = await (from detailterm in _context.DetailTerms
-                              join term in _context.Terms on detailterm.Term equals term.Id
-                              select new NameTermWithIdDT
-                              {
-                                  Id = detailterm.Id,
-                                  Name = term.Name
-                              }).ToListAsync();
+            ViewData["DetailTerm"] = new SelectList(_context.DetailTerms, "Id", "TermClass", teachingAssignment.DetailTerm);
 
-            ViewData["DetailTerm"] = new SelectList(data, "Id", "Name");
             ViewData["Staff"] = new SelectList(_context.Staff, "Id", "Name", teachingAssignment.Staff);
             return View(teachingAssignment);
         }

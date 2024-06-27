@@ -5,7 +5,6 @@
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/Admin.cshtml";
     var stt = 0;
-    var Term = ViewBag.Term;
 }
 
 <h1 class="py-3">Danh sách thông tin giảng dạy</h1>
@@ -23,7 +22,7 @@
                 Trạng thái
             </th>
             <th>
-                Tên học phần
+                Tên lớp học phần
             </th>
             <th>
                 Giảng viên
@@ -53,13 +52,7 @@
                     }
                 </td>
                 <td>
-                    @foreach (var itemTerm in Term)
-                    {
-                        if (item.DetailTermNavigation.Term == itemTerm.Id)
-                        {
-                            @itemTerm.Name
-                        }
-                    }
+                    @Html.DisplayFor(modelItem => item.DetailTermNavigation.TermClass)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.StaffNavigation.Name)

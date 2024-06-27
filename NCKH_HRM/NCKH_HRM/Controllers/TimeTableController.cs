@@ -25,20 +25,21 @@ namespace NCKH_HRM.Controllers
                              join detailterm in _context.DetailTerms on teachingassignment.DetailTerm equals detailterm.Id
                              join term in _context.Terms on detailterm.Term equals term.Id
                              join datelearn in _context.DateLearns on detailterm.Id equals datelearn.DetailTerm
+                             join room in _context.Rooms on datelearn.Room equals room.Id
                              join timeline in _context.Timelines on datelearn.Timeline equals timeline.Id
                              join year in _context.Years on timeline.Year equals year.Id
                              join detailattendances in _context.DetailAttendances on datelearn.Id equals detailattendances.DateLearn
                              where userstaff.Id == user_staff.Id && year.Name == DateTime.Now.Year
-                             group new {timeline, detailterm, datelearn, detailattendances } by new
+                             group new {timeline, detailterm, datelearn, detailattendances, room } by new
                              {
                                  timeline.DateLearn,
-                                 detailterm.Room,
+                                 roomName = room.Name,
                                  datelearn.Id,
                              } into g
                              select new TimeTable
                              {
                                  DateLearn = g.Key.DateLearn,
-                                 Room = g.Key.Room,
+                                 Room = g.Key.roomName,
                                  PresentStudent = _context.DetailAttendances
                                                       .Count(da => da.DateLearn == g.Key.Id && (da.BeginClass == 1 || da.EndClass == 1)),
                                  TotalStudent = _context.DetailAttendances

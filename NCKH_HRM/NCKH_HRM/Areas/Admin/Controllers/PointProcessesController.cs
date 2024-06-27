@@ -28,7 +28,6 @@ namespace NCKH_HRM.Areas.Admin.Controllers
             int limit = 5;
 
             var account = await _context.PointProcesses.Include(p => p.AttendanceNavigation).Include(p => p.DetailTermNavigation).Include(p => p.IdStaffNavigation).Include(p => p.RegistStudentNavigation).Include(p => p.StudentNavigation).OrderBy(c => c.Id).ToPagedListAsync(page, limit);
-            ViewBag.Term = await _context.Terms.ToListAsync();
             return View(account);
         }
         /*public async Task<IActionResult> Index()
@@ -56,15 +55,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            var data = await (from detailterm in _context.DetailTerms
-                              join term in _context.Terms on detailterm.Term equals term.Id
-                              select new NameTermWithIdDT
-                              {
-                                  Id = detailterm.Id,
-                                  Name = term.Name
-                              }).ToListAsync();
-
-            ViewData["DetailTerm"] = new SelectList(data, "Id", "Name");
+            ViewData["DetailTerm"] = new SelectList(_context.DetailTerms, "Id", "TermClass");
             ViewData["Attendance"] = new SelectList(_context.Attendances, "Id", "Id");
             ViewData["IdStaff"] = new SelectList(_context.Staff, "Id", "Name");
             ViewData["RegistStudent"] = new SelectList(_context.RegistStudents, "Id", "Id");

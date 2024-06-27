@@ -65,7 +65,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Term,Semester,StartDate,EndDate,Room,MaxNumber,CreateBy,UpdateBy,CreateDate,UpdateDate,IsDelete,IsActive")] DetailTerm detailTerm)
+        public async Task<IActionResult> Create([Bind("Id,Term,Semester,StartDate,EndDate,TermClass,MaxNumber,CreateBy,UpdateBy,CreateDate,UpdateDate,IsDelete,IsActive")] DetailTerm detailTerm)
         {
             if (ModelState.IsValid)
             {
@@ -113,7 +113,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, [Bind("Id,Term,Semester,StartDate,EndDate,Room,MaxNumber,CreateBy,UpdateBy,CreateDate,UpdateDate,IsDelete,IsActive")] DetailTerm detailTerm)
+        public async Task<IActionResult> Edit(long id, [Bind("Id,Term,Semester,StartDate,EndDate,TermClass,MaxNumber,CreateBy,UpdateBy,CreateDate,UpdateDate,IsDelete,IsActive")] DetailTerm detailTerm)
         {
             if (id != detailTerm.Id)
             {
