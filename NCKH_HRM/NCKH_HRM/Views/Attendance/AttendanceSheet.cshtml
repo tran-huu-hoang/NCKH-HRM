@@ -28,9 +28,13 @@
 <h1 class="py-3">Danh sách điểm danh sinh viên học phần @ViewBag.TermName</h1>
 
 <div class="container mt-5">
-    <form method="post" asp-action="StudentInTerm">
+    <form method="post" asp-action="AttendanceSheet">
         <div class="d-flex justify-content-between mb-3">
             <a asp-action="StudentInTerm" asp-route-id="@ViewBag.detailTerm" class="btn btn-success" value="">Điểm danh hôm nay</a>
+            <select asp-items="@ViewBag.dataclass" name="class">
+
+            </select>
+            <input hidden name="detailTerm" value="@ViewBag.detailTerm" />
         </div>
         <div class="card">
             <div class="card-body">
@@ -44,20 +48,21 @@
                         </div>
                         @foreach (var item in Model)
                         {
+                            var total = (item.NumberOfBeginClassesAttended + item.NumberOfEndClassesAttended + (item.NumberOfBeginLate + item.NumberOfEndLate) / 2);
                             stt++;
                             <div class="row mb-3">
                                 <div class="col-1">@stt</div>
                                 <div class="col-3">@item.StudentCode</div>
                                 <div class="col-5">@item.StudentName</div>
-                                <div class="col-3 @if (((item.NumberOfBeginClassesAttended + item.NumberOfEndClassesAttended) / item.CountDateLearn) <= 0.8){
+                                <div class="col-3 @if (( total/ item.CountDateLearn) <= 0.8){
                                     <text>text-danger</text>
-                                }"> @(Math.Round((item.NumberOfBeginClassesAttended + item.NumberOfEndClassesAttended)*100 / item.CountDateLearn)) </div>
+                                }"> @(Math.Round(total * 100 / item.CountDateLearn)) </div>
                             </div>
                         }
                     </div>
                     <div class="col-6 scroll-container">
                         <div class="content">
-                            <div class="row mb-3">
+                            <div class="row mb-3 justify-content-around">
                                 @foreach (var item in datelearns)
                                 {
                                     <div class="col1of12 row text-center"><strong>@item.DateLearn.ToString("dd/MM")</strong>
@@ -68,7 +73,7 @@
                             </div>
                             @foreach (var item in Model)
                             {
-                                <div class="row mb-3">
+                                <div class="row mb-3 justify-content-around">
                                     @for (int i = 0; i < item.ListBeginClass.Count; i++)
                                     {
                                         string statusText1 = "";
@@ -77,31 +82,41 @@
                                         string textColor2 = "";
                                         if (item.ListBeginClass[i] == 1)
                                         {
-                                            statusText1 = "C";
+                                            statusText1 = "P";
                                         }
                                         else if (item.ListBeginClass[i] == 2)
                                         {
-                                            statusText1 = "V";
-                                            textColor1 = "text-danger";
+                                            statusText1 = "A";
+                                            textColor1 = "text-warning";
                                         }
                                         else if (item.ListBeginClass[i] == 3)
                                         {
-                                            statusText1 = "P";
+                                            statusText1 = "PA";
                                             textColor1 = "text-warning";
+                                        }
+                                        else if (item.ListBeginClass[i] == 4)
+                                        {
+                                            statusText1 = "P-";
+                                            textColor1 = "text-danger";
                                         }
                                         if (item.ListEndClass[i] == 1)
                                         {
-                                            statusText2 = "C";
+                                            statusText2 = "P";
                                         }
                                         else if (item.ListEndClass[i] == 2)
                                         {
-                                            statusText2 = "V";
-                                            textColor2 = "text-danger";
+                                            statusText2 = "A";
+                                            textColor2 = "text-warning";
                                         }
                                         else if (item.ListEndClass[i] == 3)
                                         {
-                                            statusText2 = "P";
+                                            statusText2 = "PA";
                                             textColor2 = "text-warning";
+                                        }
+                                        else if (item.ListEndClass[i] == 4)
+                                        {
+                                            statusText2 = "P-";
+                                            textColor2 = "text-danger";
                                         }
                                         <div class="col1of12 row text-center">
                                             @* <input type="text" class="form-control" value="@statusText" name="@($"Statuses[{stt}][{i}]")" required /> *@

@@ -2,9 +2,19 @@
     font-size: 14px;
 }
 
+
 @media (min-width: 991.98px) {
     html {
         font-size: 16px;
+    }
+    .boder-right-pc {
+        border-right: 1px solid #dee2e6;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .border-bot-mobile {
+        border-bottom: 1px solid #000000;
     }
 }
 
