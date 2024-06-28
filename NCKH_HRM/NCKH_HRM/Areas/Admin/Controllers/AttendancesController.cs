@@ -50,15 +50,8 @@ namespace NCKH_HRM.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            var data = await (from detailterm in _context.DetailTerms
-                              join term in _context.Terms on detailterm.Term equals term.Id
-                              select new NameTermWithIdDT
-                              {
-                                  Id = detailterm.Id,
-                                  Name = term.Name
-                              }).ToListAsync();
 
-            ViewData["DetailTerm"] = new SelectList(data, "Id", "Name");
+            ViewData["DetailTerm"] = new SelectList(_context.DetailTerms, "Id", "TermClass", attendance.DetailTerm);
             ViewData["RegistStudent"] = new SelectList(_context.RegistStudents, "Id", "Id", attendance.RegistStudent);
             ViewData["Student"] = new SelectList(_context.Students, "Id", "Name", attendance.Student);
             return View(attendance);

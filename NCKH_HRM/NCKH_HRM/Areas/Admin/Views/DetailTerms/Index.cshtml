@@ -32,14 +32,15 @@
                 Tên học phần
             </th>
             <th>
+                Lớp học phần
+            </th>
+            <th>
                 Ngày bắt đầu
             </th>
             <th>
                 Ngày kết thúc
             </th>
-            <th>
-                Phòng học
-            </th>
+            
             <th>
                 Số SV tối đa
             </th>
@@ -67,6 +68,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.TermNavigation.Name)
             </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TermClass)
+                </td>
             <td>
                 @if (item.StartDate.HasValue)
                 {
@@ -79,9 +83,7 @@
                     @item.EndDate.Value.ToShortDateString()
                 }
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Room)
-            </td>
+            
             <td>
                 @Html.DisplayFor(modelItem => item.MaxNumber)
             </td>

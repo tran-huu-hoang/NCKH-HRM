@@ -30,7 +30,6 @@ namespace NCKH_HRM.Areas.Admin.Controllers
             int limit = 5;
 
             var registStudent = await _context.RegistStudents.Include(r => r.DetailTermNavigation).Include(r => r.StudentNavigation).OrderBy(c => c.Id).ToPagedListAsync(page, limit);
-            ViewBag.Term = await _context.Terms.ToListAsync();
             return View(registStudent);
         }
 
@@ -51,15 +50,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var data = await (from detailterm in _context.DetailTerms
-                              join term in _context.Terms on detailterm.Term equals term.Id
-                              select new NameTermWithIdDT
-                              {
-                                  Id = detailterm.Id,
-                                  Name = term.Name
-                              }).ToListAsync();
-
-            ViewData["DetailTerm"] = new SelectList(data, "Id", "Name");
+            ViewData["DetailTerm"] = new SelectList(_context.DetailTerms, "Id", "TermClass", registStudent.DetailTerm);
             ViewData["Student"] = new SelectList(_context.Students, "Id", "Name", registStudent.Student);
             return View(registStudent);
         }
@@ -67,15 +58,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
         // GET: Admin/RegistStudents/Create
         public async Task<IActionResult> Create()
         {
-            var data = await (from detailterm in _context.DetailTerms
-                              join term in _context.Terms on detailterm.Term equals term.Id
-                              select new NameTermWithIdDT
-                              {
-                                  Id = detailterm.Id,
-                                  Name = term.Name
-                              }).ToListAsync();
-
-            ViewData["DetailTerm"] = new SelectList(data, "Id", "Name");
+            ViewData["DetailTerm"] = new SelectList(_context.DetailTerms, "Id", "TermClass");
             ViewData["Student"] = new SelectList(_context.Students, "Id", "Name");
             return View();
         }
@@ -136,15 +119,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
-            var data = await (from detailterm in _context.DetailTerms
-                              join term in _context.Terms on detailterm.Term equals term.Id
-                              select new NameTermWithIdDT
-                              {
-                                  Id = detailterm.Id,
-                                  Name = term.Name
-                              }).ToListAsync();
-
-            ViewData["DetailTerm"] = new SelectList(data, "Id", "Name");
+            ViewData["DetailTerm"] = new SelectList(_context.DetailTerms, "Id", "TermClass", registStudent.DetailTerm);
             ViewData["Student"] = new SelectList(_context.Students, "Id", "Name", registStudent.Student);
             return View(registStudent);
         }
@@ -162,15 +137,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            var data = await (from detailterm in _context.DetailTerms
-                              join term in _context.Terms on detailterm.Term equals term.Id
-                              select new NameTermWithIdDT
-                              {
-                                  Id = detailterm.Id,
-                                  Name = term.Name
-                              }).ToListAsync();
-
-            ViewData["DetailTerm"] = new SelectList(data, "Id", "Name");
+            ViewData["DetailTerm"] = new SelectList(_context.DetailTerms, "Id", "TermClass", registStudent.DetailTerm);
             ViewData["Student"] = new SelectList(_context.Students, "Id", "Name", registStudent.Student);
             return View(registStudent);
         }
@@ -218,15 +185,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            var data = await (from detailterm in _context.DetailTerms
-                              join term in _context.Terms on detailterm.Term equals term.Id
-                              select new NameTermWithIdDT
-                              {
-                                  Id = detailterm.Id,
-                                  Name = term.Name
-                              }).ToListAsync();
-
-            ViewData["DetailTerm"] = new SelectList(data, "Id", "Name");
+            ViewData["DetailTerm"] = new SelectList(_context.DetailTerms, "Id", "TermClass", registStudent.DetailTerm);
             ViewData["Student"] = new SelectList(_context.Students, "Id", "Name", registStudent.Student);
             return View(registStudent);
         }

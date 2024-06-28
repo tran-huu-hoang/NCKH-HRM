@@ -32,14 +32,11 @@
         <div class="col-2 border bg-secondary text-white">
             Mã HP
         </div>
-        <div class="col-2 border bg-secondary text-white">
+        <div class="col-3 border bg-secondary text-white">
             Tên HP
         </div>
-        <div class="col-3 border bg-secondary text-white">
+        <div class="col-4 border bg-secondary text-white">
             Thời gian
-        </div>
-        <div class="col-2 border bg-secondary text-white">
-            Địa điểm
         </div>
         <div class="col-1 border bg-secondary text-white">
             Số TC
@@ -56,10 +53,10 @@
             <div class="col-2 border">
                 @item.TermCode
             </div>
-            <div class="col-2 border">
+            <div class="col-3 border">
                 @item.TermName
             </div>
-            <div class="col-3 border">
+            <div class="col-4 border">
                 @if (item.StartDate.HasValue)
                 {
                     @item.StartDate.Value.ToShortDateString()
@@ -69,9 +66,6 @@
                 {
                     @item.EndDate.Value.ToShortDateString()
                 }
-            </div>
-            <div class="col-2 border">
-                @item.Room
             </div>
             <div class="col-1 border">
                 @item.CollegeCredit

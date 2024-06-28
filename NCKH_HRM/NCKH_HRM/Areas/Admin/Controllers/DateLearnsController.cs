@@ -29,8 +29,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
             //số bản ghi trên 1 trang
             int limit = 5;
 
-            var dateLearn = await _context.DateLearns.Include(d => d.DetailTermNavigation).Include(d => d.TimelineNavigation).OrderBy(c => c.Id).ToPagedListAsync(page, limit); ;
-            ViewBag.Term = await _context.Terms.ToListAsync();
+            var dateLearn = await _context.DateLearns.Include(d => d.RoomNavigation).Include(d => d.DetailTermNavigation).Include(d => d.TimelineNavigation).OrderBy(c => c.Id).ToPagedListAsync(page, limit); ;
             return View(dateLearn);
         }
         // GET: Admin/DateLearns/Details/5
@@ -49,15 +48,8 @@ namespace NCKH_HRM.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            var data = await (from detailterm in _context.DetailTerms
-                              join term in _context.Terms on detailterm.Term equals term.Id
-                              select new NameTermWithIdDT
-                              {
-                                  Id = detailterm.Id,
-                                  Name = term.Name
-                              }).ToListAsync();
-
-            ViewData["DetailTerm"] = new SelectList(data, "Id", "Name");
+            ViewData["Room"] = new SelectList(_context.Rooms, "Id", "Name", dateLearn.Room);
+            ViewData["DetailTerm"] = new SelectList(_context.DetailTerms, "Id", "TermClass", dateLearn.DetailTerm);
             ViewData["Timeline"] = new SelectList(_context.Timelines, "Id", "DateLearn", dateLearn.Timeline);
             return View(dateLearn);
         }
@@ -65,17 +57,9 @@ namespace NCKH_HRM.Areas.Admin.Controllers
         // GET: Admin/DateLearns/Create
         public async Task<IActionResult> Create()
         {
-            var data = await(from detailterm in _context.DetailTerms
-                             join term in _context.Terms on detailterm.Term equals term.Id
-                             select new NameTermWithIdDT
-                             {
-                                 Id = detailterm.Id,
-                                 Name = term.Name
-                             }).ToListAsync();
-
-            ViewData["DetailTerm"] = new SelectList(data, "Id", "Name");
+            ViewData["DetailTerm"] = new SelectList(_context.DetailTerms, "Id", "TermClass");
             ViewData["Timeline"] = new SelectList(_context.Timelines, "Id", "DateLearn");
-            ViewData["Class"] = new SelectList(_context.Classes, "Id", "Name");
+            ViewData["Room"] = new SelectList(_context.Rooms, "Id", "Name");
             return View();
         }
         // POST: Admin/DateLearns/Create
@@ -83,7 +67,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,DetailTerm,Timeline,Status,CreateBy,UpdateBy,CreateDate,UpdateDate,IsDelete,IsActive")] DateLearn dateLearn, IFormCollection form)
+        public async Task<IActionResult> Create([Bind("Id,DetailTerm,Room,Timeline,Status,CreateBy,UpdateBy,CreateDate,UpdateDate,IsDelete,IsActive")] DateLearn dateLearn, IFormCollection form)
         {
             if (ModelState.IsValid)
             {
@@ -98,14 +82,14 @@ namespace NCKH_HRM.Areas.Admin.Controllers
                 dateLearn.CreateBy = admin.Username;
                 dateLearn.UpdateBy = admin.Username;
                 dateLearn.IsDelete = false;
+
+                var detailtermId = dateLearn.DetailTerm;
                 _context.Add(dateLearn);
                 await _context.SaveChangesAsync();
-                var dataAttendance = await (from classes in _context.Classes
-                                            join student in _context.Students on classes.Id equals student.Classes
-                                            join registstudent in _context.RegistStudents on student.Id equals registstudent.Student
-                                            join attendance in _context.Attendances on registstudent.Id equals attendance.RegistStudent
-                                            
-                                            where classes.Id == int.Parse(form["class"])
+                var dataAttendance = await (from datelearn in _context.DateLearns
+                                            join detailterm in _context.DetailTerms on datelearn.DetailTerm equals detailterm.Id
+                                            join attendance in _context.Attendances on detailterm.Id equals attendance.DetailTerm
+                                            where detailterm.Id == detailtermId
                                             group new { attendance } by new
                                             {
                                                 attendance.Id,
@@ -114,7 +98,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
                                             {
                                                 Id = g.Key.Id,
                                             }).ToListAsync(); ;
-                foreach(var item in dataAttendance)
+                foreach (var item in dataAttendance)
                 {
                     DetailAttendance da = new DetailAttendance
                     {
@@ -131,16 +115,9 @@ namespace NCKH_HRM.Areas.Admin.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            var data = await (from detailterm in _context.DetailTerms
-                              join term in _context.Terms on detailterm.Term equals term.Id
-                              select new NameTermWithIdDT
-                              {
-                                  Id = detailterm.Id,
-                                  Name = term.Name
-                              }).ToListAsync();
-            ViewData["DetailTerm"] = new SelectList(data, "Id", "Name", dateLearn.DetailTerm);
+            ViewData["DetailTerm"] = new SelectList(_context.DetailTerms, "Id", "TermClass", dateLearn.DetailTerm);
             ViewData["Timeline"] = new SelectList(_context.Timelines, "Id", "DateLearn", dateLearn.Timeline);
-            ViewData["Class"] = new SelectList(_context.Classes, "Id", "Name");
+            ViewData["Room"] = new SelectList(_context.Rooms, "Id", "Name", dateLearn.Room);
             return View(dateLearn);
         }
 
@@ -158,15 +135,9 @@ namespace NCKH_HRM.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var data = await (from detailterm in _context.DetailTerms
-                              join term in _context.Terms on detailterm.Term equals term.Id
-                              select new NameTermWithIdDT
-                              {
-                                  Id = detailterm.Id,
-                                  Name = term.Name
-                              }).ToListAsync();
-            ViewData["DetailTerm"] = new SelectList(data, "Id", "Name", dateLearn.DetailTerm);
+            ViewData["DetailTerm"] = new SelectList(_context.DetailTerms, "Id", "TermClass", dateLearn.DetailTerm);
             ViewData["Timeline"] = new SelectList(_context.Timelines, "Id", "DateLearn", dateLearn.Timeline);
+            ViewData["Room"] = new SelectList(_context.Rooms, "Id", "Name", dateLearn.Room);
             return View(dateLearn);
         }
 
@@ -175,7 +146,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, [Bind("Id,Student,DetailTerm,RegistStudent,Timeline,Status,CreateBy,UpdateBy,CreateDate,UpdateDate,IsDelete,IsActive")] DateLearn dateLearn)
+        public async Task<IActionResult> Edit(long id, [Bind("Id,DetailTerm,Room,Timeline,Status,CreateBy,UpdateBy,CreateDate,UpdateDate,IsDelete,IsActive")] DateLearn dateLearn)
         {
             if (id != dateLearn.Id)
             {
@@ -212,15 +183,9 @@ namespace NCKH_HRM.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            var data = await (from detailterm in _context.DetailTerms
-                              join term in _context.Terms on detailterm.Term equals term.Id
-                              select new NameTermWithIdDT
-                              {
-                                  Id = detailterm.Id,
-                                  Name = term.Name
-                              }).ToListAsync();
-            ViewData["DetailTerm"] = new SelectList(data, "Id", "Name", dateLearn.DetailTerm);
+            ViewData["DetailTerm"] = new SelectList(_context.DetailTerms, "Id", "TermClass", dateLearn.DetailTerm);
             ViewData["Timeline"] = new SelectList(_context.Timelines, "Id", "DateLearn", dateLearn.Timeline);
+            ViewData["Room"] = new SelectList(_context.Rooms, "Id", "Name", dateLearn.Room);
             return View(dateLearn);
         }
 
