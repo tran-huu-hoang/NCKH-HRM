@@ -2,7 +2,7 @@
 {
     public class StaffIndex
     {
-        public long DetailTermId { get; set; }
+        public long TermId { get; set; }
         public string? StaffCode { get; set; }
         public string? StaffName { get; set; }
         public string? SubjectName { get; set; }

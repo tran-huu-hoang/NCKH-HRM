@@ -3,28 +3,16 @@
   "WorkspaceRootPath": "D:\\NCKH\\NCKH_HRM\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|D:\\NCKH\\NCKH_HRM\\nckh_hrm\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|solutionrelative:nckh_hrm\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|d:\\nckh\\nckh_hrm\\nckh_hrm\\views\\attendance\\partialbodyattendancesheet.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|solutionrelative:nckh_hrm\\views\\attendance\\partialbodyattendancesheet.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|d:\\nckh\\nckh_hrm\\nckh_hrm\\models\\nckhdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|solutionrelative:nckh_hrm\\models\\nckhdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|d:\\nckh\\nckh_hrm\\nckh_hrm\\views\\attendance\\attendancesheet.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|solutionrelative:nckh_hrm\\views\\attendance\\attendancesheet.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|D:\\NCKH\\NCKH_HRM\\nckh_hrm\\areas\\admin\\controllers\\datelearnscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|solutionrelative:nckh_hrm\\areas\\admin\\controllers\\datelearnscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|D:\\NCKH\\NCKH_HRM\\nckh_hrm\\views\\login\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|solutionrelative:nckh_hrm\\views\\login\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|D:\\NCKH\\NCKH_HRM\\nckh_hrm\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|solutionrelative:nckh_hrm\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|D:\\NCKH\\NCKH_HRM\\nckh_hrm\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|solutionrelative:nckh_hrm\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|d:\\nckh\\nckh_hrm\\nckh_hrm\\controllers\\attendancecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|solutionrelative:nckh_hrm\\controllers\\attendancecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,85 +22,50 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AttendanceController.cs",
+              "DocumentMoniker": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Controllers\\AttendanceController.cs",
+              "RelativeDocumentMoniker": "NCKH_HRM\\Controllers\\AttendanceController.cs",
+              "ToolTip": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Controllers\\AttendanceController.cs",
+              "RelativeToolTip": "NCKH_HRM\\Controllers\\AttendanceController.cs",
+              "ViewState": "AQIAAKAAAAAAAAAAAADwv6wAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-28T07:37:52.595Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "NckhDbContext.cs",
-              "DocumentMoniker": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Models\\NckhDbContext.cs",
-              "RelativeDocumentMoniker": "NCKH_HRM\\Models\\NckhDbContext.cs",
-              "ToolTip": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Models\\NckhDbContext.cs",
-              "RelativeToolTip": "NCKH_HRM\\Models\\NckhDbContext.cs",
-              "ViewState": "AQIAADcAAAAAAAAAAAAkwEAAAAACAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-27T02:12:14.903Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "DateLearnsController.cs",
-              "DocumentMoniker": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Areas\\Admin\\Controllers\\DateLearnsController.cs",
-              "RelativeDocumentMoniker": "NCKH_HRM\\Areas\\Admin\\Controllers\\DateLearnsController.cs",
-              "ToolTip": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Areas\\Admin\\Controllers\\DateLearnsController.cs",
-              "RelativeToolTip": "NCKH_HRM\\Areas\\Admin\\Controllers\\DateLearnsController.cs",
-              "ViewState": "AQIAADgAAAAAAAAAAAAgwEwAAABZAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-27T02:02:07.413Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\appsettings.json",
-              "RelativeDocumentMoniker": "NCKH_HRM\\appsettings.json",
-              "ToolTip": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\appsettings.json",
-              "RelativeToolTip": "NCKH_HRM\\appsettings.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAABlAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-06-27T02:01:28.922Z",
+              "Title": "PartialBodyAttendanceSheet.cshtml",
+              "DocumentMoniker": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Views\\Attendance\\PartialBodyAttendanceSheet.cshtml",
+              "RelativeDocumentMoniker": "NCKH_HRM\\Views\\Attendance\\PartialBodyAttendanceSheet.cshtml",
+              "ToolTip": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Views\\Attendance\\PartialBodyAttendanceSheet.cshtml",
+              "RelativeToolTip": "NCKH_HRM\\Views\\Attendance\\PartialBodyAttendanceSheet.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-28T06:44:44.177Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "NCKH_HRM\\Views\\Home\\Index.cshtml",
-              "ToolTip": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "NCKH_HRM\\Views\\Home\\Index.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAtAAAA",
+              "DocumentIndex": 1,
+              "Title": "AttendanceSheet.cshtml",
+              "DocumentMoniker": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Views\\Attendance\\AttendanceSheet.cshtml",
+              "RelativeDocumentMoniker": "NCKH_HRM\\Views\\Attendance\\AttendanceSheet.cshtml",
+              "ToolTip": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Views\\Attendance\\AttendanceSheet.cshtml",
+              "RelativeToolTip": "NCKH_HRM\\Views\\Attendance\\AttendanceSheet.cshtml",
+              "ViewState": "AQIAAA0AAAAAAAAAAAAcwBsAAAA9AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-06-24T13:21:22.426Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Views\\Login\\Index.cshtml",
-              "RelativeDocumentMoniker": "NCKH_HRM\\Views\\Login\\Index.cshtml",
-              "ToolTip": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Views\\Login\\Index.cshtml",
-              "RelativeToolTip": "NCKH_HRM\\Views\\Login\\Index.cshtml",
-              "ViewState": "AQIAAEgAAAAAAAAAAAAAAGwAAABKAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-06-24T11:31:50.308Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "LoginController.cs",
-              "DocumentMoniker": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Controllers\\LoginController.cs",
-              "RelativeDocumentMoniker": "NCKH_HRM\\Controllers\\LoginController.cs",
-              "ToolTip": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Controllers\\LoginController.cs",
-              "RelativeToolTip": "NCKH_HRM\\Controllers\\LoginController.cs",
-              "ViewState": "AQIAABcAAAAAAAAAAAA3wCoAAAAiAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-24T11:31:40.915Z"
+              "WhenOpened": "2024-06-28T06:44:31.347Z",
+              "EditorCaption": ""
             }
           ]
         }
