@@ -23,8 +23,8 @@
 <form method="post" asp-action="AttendanceSheet">
     <div class="d-flex justify-content-between mb-3">
         <a asp-action="StudentInTerm" asp-route-id="@ViewBag.detailTerm" class="btn btn-success" value="">Điểm danh hôm nay</a>
+        <a asp-controller="Score" asp-action="EnterScore" asp-route-id="@ViewBag.detailTerm" class="btn btn-primary">Nhập điểm</a>
         <select asp-items="@ViewBag.dataclassterm" name="class" id="choosetermclass">
-            
         </select>
         <input hidden name="detailTerm" value="@ViewBag.detailTerm" />
     </div>

@@ -17,12 +17,8 @@ namespace NCKH_HRM.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index()
+        /*public async Task<IActionResult> Index()
         {
-            /*return _context.Terms != null ?
-                        View(await _context.Terms.ToListAsync()) :
-                        Problem("Entity set 'NckhDbContext.Terms'  is null.");*/
-
             var user_staff = JsonConvert.DeserializeObject<UserStaff>(HttpContext.Session.GetString("StaffLogin"));
 
             var data = await (from userstaff in _context.UserStaffs
@@ -43,7 +39,7 @@ namespace NCKH_HRM.Controllers
                               }).ToListAsync();
 
             return View(data);
-        }
+        }*/
 
         public async Task<IActionResult> EnterScore(long? id)
         {
@@ -204,7 +200,7 @@ namespace NCKH_HRM.Controllers
             }
 
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", "Attendance");
         }
 
         [HttpGet]
