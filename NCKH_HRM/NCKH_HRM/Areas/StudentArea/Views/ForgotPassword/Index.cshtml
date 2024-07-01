@@ -1,6 +1,5 @@
-﻿@model NCKH_HRM.ViewModels.Email
-
-@{
+﻿@{
+    ViewData["Title"] = "Index";
     Layout = null;
 }
 
@@ -30,7 +29,7 @@
                 <p class="login-box-msg">You forgot your password? Here you can easily retrieve a new password.</p>
                 <form asp-action="Index" method="post">
                     <div class="input-group mb-3">
-                        <input asp-for="EmailAddress" class="form-control" placeholder="Email">
+                        <input name="msv" class="form-control" placeholder="Mã sinh viên">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
@@ -38,7 +37,7 @@
                         </div>
 
                     </div>
-                    <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                    <span class="text-danger">@ViewBag.Error</span>
                     <div class="row">
                         <div class="col-12">
                             <button type="submit" class="btn btn-primary btn-block">Request new password</button>

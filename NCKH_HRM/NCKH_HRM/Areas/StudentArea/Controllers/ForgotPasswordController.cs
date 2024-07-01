@@ -9,6 +9,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace NCKH_HRM.Areas.Controllers
 {
+    [Area("StudentArea")]
     public class ForgotPassword : Controller
     {
         private readonly NckhDbContext _context;
@@ -33,11 +34,18 @@ namespace NCKH_HRM.Areas.Controllers
         }*/
 
         [HttpPost]
-        public async Task<IActionResult> Index(Email forgot)
+        public async Task<IActionResult> Index(IFormCollection forgot)
         {
             if (ModelState.IsValid)
             {
-                var user = await _context.UserStaffs.FirstOrDefaultAsync(c => c.Username == forgot.EmailAddress);
+                string msv = forgot["msv"];
+                var user = await (from userstudent in _context.UserStudents
+                                  join student in _context.Students on userstudent.Student equals student.Id
+                                  where student.Code == msv
+                                  select new Email
+                                  {
+                                      EmailAddress = student.Email,
+                                  }).FirstOrDefaultAsync();
                 if (user != null)
                 {
                     // Tạo token reset password
@@ -45,10 +53,10 @@ namespace NCKH_HRM.Areas.Controllers
 
                     // Lưu token vào TempData với khóa duy nhất để sử dụng trong action ResetPassword
                     HttpContext.Session.SetString("Token", newToken);
-                    HttpContext.Session.SetString("Email", forgot.EmailAddress);
+                    HttpContext.Session.SetString("Email", user.EmailAddress);
                     // Gửi email với link reset password
                     var callbackUrl = Url.Action("ResetPassword", "ForgotPassword", new { token = newToken }, protocol: HttpContext.Request.Scheme);
-                    var message = new Message(new string[] { forgot.EmailAddress }, "Khôi phục mật khẩu", $"Vui lòng khôi phục mật khẩu bằng cách <a href='{callbackUrl}'>ấn vào đây</a>.");
+                    var message = new Message(new string[] { user.EmailAddress }, "Khôi phục mật khẩu", $"Vui lòng khôi phục mật khẩu bằng cách <a href='{callbackUrl}'>ấn vào đây</a>.");
                     _emailService.SendEmail(message);
 
                     // Chuyển hướng người dùng đến trang thông báo thành công
@@ -56,7 +64,8 @@ namespace NCKH_HRM.Areas.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("Email", "Email not found.");
+                    ViewBag.Error = "Mã sinh viên không tồn tại";
+                    return View(forgot);
                 }
             }
             return View(forgot);
@@ -92,14 +101,25 @@ namespace NCKH_HRM.Areas.Controllers
                 }
 
                 // Thiết lập mật khẩu mới cho người dùng
-                var user = await _context.UserStaffs.FirstOrDefaultAsync(u => u.Username == model.Email);
+                var user = await (from userstudent in _context.UserStudents
+                                  join student in _context.Students on userstudent.Student equals student.Id
+                                  /*join year in _context.Years on timeline.Year equals year.Id*/
+                                  where student.Email == model.Email
+                                  select new UserStudent
+                                  {
+                                      Id = userstudent.Id,
+                                      Username = userstudent.Username,
+                                      Password = model.Password,
+                                      Student = userstudent.Student,
+                                      UpdateBy = model.Email,
+                                      UpdateDate = DateTime.Now,
+                                      CreateBy = userstudent.CreateBy,
+                                      CreateDate = userstudent.CreateDate,
+                                      IsActive = userstudent.IsActive,
+                                      IsDelete = userstudent.IsDelete
+                }).FirstOrDefaultAsync();
                 if (user != null)
                 {
-                    user.Password = model.Password;
-                    user.UpdateBy = model.Email;
-                    user.UpdateDate = DateTime.Now;
-
-
                     _context.Update(user);
                     await _context.SaveChangesAsync();
 
