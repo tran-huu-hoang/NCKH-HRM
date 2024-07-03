@@ -18,7 +18,7 @@ namespace NCKH_HRM.ViewModels
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Compare("Password", ErrorMessage = "Mật khẩu mới không khớp")]
         public string ConfirmPassword { get; set; }
     }
 }

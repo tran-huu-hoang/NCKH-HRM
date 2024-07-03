@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NCKH_HRM.Models;
+using NCKH_HRM.ViewModels;
 using Newtonsoft.Json;
 
 namespace NCKH_HRM.Controllers
@@ -16,16 +18,23 @@ namespace NCKH_HRM.Controllers
         }
         public async Task<IActionResult> Index(long? id)
         {
-            var userStaff = await _context.UserStaffs
+            /*var userStaff = await _context.UserStaffs
                 .Include(u => u.StaffNavigation)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            return View(userStaff);
+            return View(userStaff);*/
+
+            return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Index(IFormCollection form)
+        public async Task<IActionResult> Index(IFormCollection form, long? id, ChangePassword changePassword)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(changePassword);
+            }
+
             var userStaffSession = HttpContext.Session.GetString("StaffLogin");
             if (string.IsNullOrEmpty(userStaffSession))
             {
@@ -35,24 +44,23 @@ namespace NCKH_HRM.Controllers
 
             var user_staff = JsonConvert.DeserializeObject<UserStaff>(userStaffSession);
 
-            if (form["OldPassword"].ToString() == user_staff.Password)
+            if (form["CurrentPassword"].ToString() != user_staff.Password)
             {
-                UserStaff userStaff = new UserStaff();
-                userStaff.Id = long.Parse(form["Id"]);
-                userStaff.Staff = long.Parse(form["Staff"]);
-                userStaff.Username = form["Username"].ToString();
-                userStaff.Password = form["NewPassword"].ToString();
-                userStaff.CreateBy = form["CreateBy"].ToString();
-                userStaff.UpdateBy = user_staff.Username;
-                userStaff.CreateDate = DateTime.Parse(form["CreateDate"]);
-                userStaff.UpdateDate = DateTime.Now;
-                userStaff.IsActive = bool.Parse(form["IsActive"]);
-                userStaff.IsDelete = bool.Parse(form["IsDelete"]);
-
-                _context.Update(userStaff);
-                await _context.SaveChangesAsync();
+                TempData["ErrorMessage"] = "Mật khẩu cũ không đúng";
+                return View();
             }
-            return View();
+
+            var userStaff = await _context.UserStaffs.FirstOrDefaultAsync(u => u.Id == id);
+            userStaff.Password = form["NewPassword"].ToString();
+
+            _context.Update(userStaff);
+            await _context.SaveChangesAsync();
+
+            // Cập nhật phiên làm việc sau khi thay đổi mật khẩu
+            HttpContext.Session.SetString("StaffLogin", JsonConvert.SerializeObject(userStaff));
+
+            TempData["SuccessMessage"] = "Đổi mật khẩu thành công";
+            return RedirectToAction("Index", "Attendance");
         }
     }
 }

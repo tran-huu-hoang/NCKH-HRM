@@ -104,6 +104,7 @@ namespace NCKH_HRM.Controllers
                     await _context.SaveChangesAsync();
 
                     // Chuyển hướng người dùng đến trang thông báo mật khẩu đã được reset thành công
+                    TempData["SuccessMessage"] = "Đặt lại mật khẩu thành công";
                     return RedirectToAction("Index", "Login");
                 }
                 else

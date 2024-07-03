@@ -1,4 +1,4 @@
-﻿@model NCKH_HRM.Models.UserStaff
+﻿@model NCKH_HRM.ViewModels.ChangePassword
 
 @{
     Layout = null;
@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.min.css">
     <!-- icheck bootstrap -->
     <link rel="stylesheet" href="~/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <!-- Theme style -->
     <link rel="stylesheet" href="~/dist/css/adminlte.min.css">
 </head>
@@ -29,8 +30,9 @@
             <div class="card-body">
                 <p class="login-box-msg">Change Password</p>
                 <form asp-action="Index" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" name="OldPassword" placeholder="Mật khẩu cũ">
+                        <input type="password" class="form-control" name="CurrentPassword" placeholder="Mật khẩu cũ">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
@@ -38,41 +40,63 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" placeholder="Mật khẩu mới">
+                        <input asp-for="NewPassword" type="password" class="form-control" name="NewPassword" placeholder="Mật khẩu mới">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
                             </div>
                         </div>
                     </div>
+                    <span asp-validation-for="NewPassword" class="text-danger"></span>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" name="NewPassword" placeholder="Gõ lại mật khẩu mới">
+                        <input asp-for="ConfirmPassword" type="password" class="form-control" name="ConfirmPassword" placeholder="Gõ lại mật khẩu mới">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
                             </div>
                         </div>
                     </div>
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                     <div class="row">
                         <div class="col-12">
                             <input type="submit" class="btn btn-primary btn-block" value="Đổi mật khẩu">
                         </div>
                         <!-- /.col -->
                     </div>
-                    <input asp-for="Id" name="Id" hidden />
-                    <input asp-for="Staff" name="Staff" hidden />
-                    <input asp-for="Username" name="Username" hidden />
-                    <input asp-for="CreateBy" name="CreateBy" hidden />
-                    <input asp-for="UpdateBy" name="UpdateBy" hidden />
-                    <input asp-for="CreateDate" name="CreateDate" hidden />
-                    <input asp-for="UpdateDate" name="UpdateDate" hidden />
-                    <input asp-for="IsDelete" name="IsDelete" hidden />
-                    <input asp-for="IsActive" name="IsActive" hidden />
                 </form>
             </div>
             <!-- /.login-card-body -->
         </div>
     </div>
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="position-fixed top-0 end-0 p-3" style="z-index: 5">
+            <div class="toast bg-danger text-light" id="loginErrorToast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <strong class="me-auto">Thông báo</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    @TempData["ErrorMessage"]
+                </div>
+            </div>
+        </div>
+    }
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var toastElement = document.getElementById('loginErrorToast');
+            var toast = new bootstrap.Toast(toastElement);
+            toast.show();
+
+            // Đóng notification sau 5 giây
+            setTimeout(function () {
+                toast.hide();
+            }, 5000); // 5000 milliseconds = 5 seconds
+        });
+    </script>
+
     <!-- /.login-box -->
     <!-- jQuery -->
     <script src="~/plugins/jquery/jquery.min.js"></script>
@@ -80,5 +104,11 @@
     <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="~/dist/js/adminlte.min.js"></script>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
