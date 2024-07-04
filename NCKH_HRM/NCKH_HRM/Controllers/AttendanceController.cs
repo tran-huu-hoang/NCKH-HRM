@@ -267,14 +267,75 @@ namespace NCKH_HRM.Controllers
                 {
                     var worksheet = package.Workbook.Worksheets[0];
                     var rowCount = worksheet.Dimension.Rows;
+
                     for (int row = 0; row < rowCount; row++)
                     {
+                        if (row >= form["Id"].Count || row >= form["AttendanceId"].Count || row >= form["DetailTermId"].Count || row >= form["DateLearnId"].Count)
+                        {
+                            Console.WriteLine($"Index out of range: row = {row}");
+                            continue;
+                        }
+
                         DetailAttendance detailAttendance = new DetailAttendance();
                         detailAttendance.Id = long.Parse(form["Id"][row]);
                         detailAttendance.IdAttendance = long.Parse(form["AttendanceId"][row]);
                         detailAttendance.DetailTerm = long.Parse(form["DetailTermId"][row]);
                         detailAttendance.DateLearn = long.Parse(form["DateLearnId"][row]);
-                        /*detailAttendance.Status = int.Parse(worksheet.Cells[row + 1, 3].Value.ToString().Trim());*/
+
+                        // Kiểm tra và xử lý giá trị của ô [row + 1, 3]
+                        object cellBeginClassValue = worksheet.Cells[row + 2, 3].Value;
+                        if (cellBeginClassValue != null)
+                        {
+                            string beginClassValue = cellBeginClassValue.ToString().Trim();
+                            if (beginClassValue == "P")
+                            {
+                                detailAttendance.BeginClass = 1;
+                            }
+                            else if (beginClassValue == "A")
+                            {
+                                detailAttendance.BeginClass = 2;
+                            }
+                            else if (beginClassValue == "PA")
+                            {
+                                detailAttendance.BeginClass = 3;
+                            }
+                            else if (beginClassValue == "P-")
+                            {
+                                detailAttendance.BeginClass = 4;
+                            }
+                        }
+                        else
+                        {
+                            detailAttendance.BeginClass = null; // Hoặc đặt giá trị mặc định
+                        }
+
+                        // Kiểm tra và xử lý giá trị của ô [row + 1, 4]
+                        object cellEndClassValue = worksheet.Cells[row + 2, 4].Value;
+                        if (cellEndClassValue != null)
+                        {
+                            string endClassValue = cellEndClassValue.ToString().Trim();
+                            if (endClassValue == "P")
+                            {
+                                detailAttendance.EndClass = 1;
+                            }
+                            else if (endClassValue == "A")
+                            {
+                                detailAttendance.EndClass = 2;
+                            }
+                            else if (endClassValue == "PA")
+                            {
+                                detailAttendance.EndClass = 3;
+                            }
+                            else if (endClassValue == "P-")
+                            {
+                                detailAttendance.EndClass = 4;
+                            }
+                        }
+                        else
+                        {
+                            detailAttendance.EndClass = null; // Hoặc đặt giá trị mặc định
+                        }
+
                         _context.Update(detailAttendance);
                     }
                 }
@@ -283,5 +344,6 @@ namespace NCKH_HRM.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction("Index", "Attendance");
         }
+
     }
 }
