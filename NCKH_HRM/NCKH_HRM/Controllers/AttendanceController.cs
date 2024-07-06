@@ -32,7 +32,6 @@ namespace NCKH_HRM.Controllers
                               join detailterm in _context.DetailTerms on teachingassignment.DetailTerm equals detailterm.Id
                               join term in _context.Terms on detailterm.Term equals term.Id
                               join datelearn in _context.DateLearns on detailterm.Id equals datelearn.DetailTerm
-                         
                               join timeline in _context.Timelines on datelearn.Timeline equals timeline.Id
                               join year in _context.Years on timeline.Year equals year.Id
                               join staffsubject in _context.StaffSubjects on staff.Id equals staffsubject.Staff
