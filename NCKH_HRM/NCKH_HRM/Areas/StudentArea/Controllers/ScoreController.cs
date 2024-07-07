@@ -40,9 +40,13 @@ namespace NCKH_HRM.Areas.StudentArea.Controllers
                                   Semester = g.Key.Name,
                                   TermCode = g.Key.Code,
                                   TermName = g.Key.termName,
-                                  CollegeCredit = g.Key.CollegeCredit,
+                                  CollegeCredit = g.Key.CollegeCredit == null ? null : g.Key.CollegeCredit,
                                   PointRange10 = g.Key.OverallScore,
-                                  PointRange4 = 
+                                  PointRange4 = g.Key.OverallScore >= 8.5 ? 4.0 :
+                                                g.Key.OverallScore >= 7.0 ? 3.0 :
+                                                g.Key.OverallScore >= 5.5 ? 2.0 :
+                                                g.Key.OverallScore >= 4.0 ? 1.0 :
+                                                g.Key.OverallScore == null ? null : 0.0
                               }).ToListAsync();
             return View(data);
         }
