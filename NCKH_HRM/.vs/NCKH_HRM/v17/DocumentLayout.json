@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "D:\\NCKH\\NCKH_HRM\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|d:\\nckh\\nckh_hrm\\nckh_hrm\\areas\\studentarea\\views\\score\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|solutionrelative:nckh_hrm\\areas\\studentarea\\views\\score\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|d:\\nckh\\nckh_hrm\\nckh_hrm\\areas\\studentarea\\controllers\\scorecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|solutionrelative:nckh_hrm\\areas\\studentarea\\controllers\\scorecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|D:\\NCKH\\NCKH_HRM\\nckh_hrm\\areas\\studentarea\\viewmodels\\studentscore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|solutionrelative:nckh_hrm\\areas\\studentarea\\viewmodels\\studentscore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|d:\\nckh\\nckh_hrm\\nckh_hrm\\areas\\studentarea\\viewmodels\\studentscoredetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|solutionrelative:nckh_hrm\\areas\\studentarea\\viewmodels\\studentscoredetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|d:\\nckh\\nckh_hrm\\nckh_hrm\\areas\\studentarea\\views\\score\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|solutionrelative:nckh_hrm\\areas\\studentarea\\views\\score\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -30,41 +30,41 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Areas\\StudentArea\\Views\\Score\\Index.cshtml",
               "RelativeDocumentMoniker": "NCKH_HRM\\Areas\\StudentArea\\Views\\Score\\Index.cshtml",
               "ToolTip": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Areas\\StudentArea\\Views\\Score\\Index.cshtml",
               "RelativeToolTip": "NCKH_HRM\\Areas\\StudentArea\\Views\\Score\\Index.cshtml",
-              "ViewState": "AQIAADYAAAAAAAAAAAAAAEgAAADwAAAA",
+              "ViewState": "AQIAAEsAAAAAAAAAAAAAAGUAAABAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-07-07T12:09:05.375Z",
+              "WhenOpened": "2024-07-08T13:48:25.555Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "StudentScore.cs",
-              "DocumentMoniker": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Areas\\StudentArea\\ViewModels\\StudentScore.cs",
-              "RelativeDocumentMoniker": "NCKH_HRM\\Areas\\StudentArea\\ViewModels\\StudentScore.cs",
-              "ToolTip": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Areas\\StudentArea\\ViewModels\\StudentScore.cs",
-              "RelativeToolTip": "NCKH_HRM\\Areas\\StudentArea\\ViewModels\\StudentScore.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAwAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-06T01:23:59.377Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "ScoreController.cs",
               "DocumentMoniker": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Areas\\StudentArea\\Controllers\\ScoreController.cs",
               "RelativeDocumentMoniker": "NCKH_HRM\\Areas\\StudentArea\\Controllers\\ScoreController.cs",
               "ToolTip": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Areas\\StudentArea\\Controllers\\ScoreController.cs",
               "RelativeToolTip": "NCKH_HRM\\Areas\\StudentArea\\Controllers\\ScoreController.cs",
-              "ViewState": "AQIAAB4AAAAAAAAAAAAcwCoAAABrAAAA",
+              "ViewState": "AQIAADMAAAAAAAAAAAAwwEkAAAAiAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-06T01:22:30.536Z",
+              "WhenOpened": "2024-07-08T13:47:15.678Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "StudentScoreDetail.cs",
+              "DocumentMoniker": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Areas\\StudentArea\\ViewModels\\StudentScoreDetail.cs",
+              "RelativeDocumentMoniker": "NCKH_HRM\\Areas\\StudentArea\\ViewModels\\StudentScoreDetail.cs",
+              "ToolTip": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Areas\\StudentArea\\ViewModels\\StudentScoreDetail.cs",
+              "RelativeToolTip": "NCKH_HRM\\Areas\\StudentArea\\ViewModels\\StudentScoreDetail.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAxAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-08T13:43:12.951Z",
               "EditorCaption": ""
             }
           ]

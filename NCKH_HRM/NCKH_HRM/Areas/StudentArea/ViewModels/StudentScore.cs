@@ -4,6 +4,7 @@ namespace NCKH_HRM.Areas.StudentArea.ViewModels
 {
     public class StudentScore
     {
+        public long DetailTermId { get; set; }
         public string? Semester { get; set; }
         public string? TermCode { get; set; }
         public string? TermName { get; set; }

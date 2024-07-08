@@ -29,6 +29,7 @@ namespace NCKH_HRM.Areas.StudentArea.Controllers
                               where userstudent.Id == user_student.Id
                               group new { term, detailterm, semesters, pointprocesses } by new
                               {
+                                  detailterm.Id,
                                   termName = term.Name,
                                   term.Code,
                                   term.CollegeCredit,
@@ -37,6 +38,7 @@ namespace NCKH_HRM.Areas.StudentArea.Controllers
                               } into g
                               select new StudentScore
                               {
+                                  DetailTermId = g.Key.Id,
                                   Semester = g.Key.Name,
                                   TermCode = g.Key.Code,
                                   TermName = g.Key.termName,
@@ -49,6 +51,30 @@ namespace NCKH_HRM.Areas.StudentArea.Controllers
                                                 g.Key.OverallScore == null ? null : 0.0
                               }).ToListAsync();
             return View(data);
+        }
+
+        public async Task<IActionResult> ScoreDetail(long? id)
+        {
+            var data = await (from pointprocesses in _context.PointProcesses
+                              join detailterm in _context.DetailTerms on pointprocesses.DetailTerm equals detailterm.Id
+                              join term in _context.Terms on detailterm.Term equals term.Id
+                              join semesters in _context.Semesters on detailterm.Semester equals semesters.Id
+                              where detailterm.Id == id
+                              group new { term, detailterm, semesters, pointprocesses } by new
+                              {
+                                  detailterm.Id,
+                                  termName = term.Name,
+                                  term.Code,
+                                  term.CollegeCredit,
+                                  semesters.Name,
+                                  pointprocesses.OverallScore,
+                              } into g
+                              select new StudentScoreDetail
+                              {
+                                  
+                              }).ToListAsync();
+
+            return View();
         }
     }
 }
