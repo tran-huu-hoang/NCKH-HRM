@@ -6,6 +6,7 @@
         public string StudentCode { get; set; }
 
         public string StudentName { get; set; }
+        public DateTime? BirthDay { get; set; }
 
         public List<int> ListBeginClass { get; set; }
 

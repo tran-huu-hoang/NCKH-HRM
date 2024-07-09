@@ -111,13 +111,15 @@ namespace NCKH_HRM.Controllers
                               {
                                   student.Code,
                                   student.Name,
-                                  detailterm.Id
+                                  detailterm.Id,
+                                  student.BirthDate
                               } into g
                               select new AttendanceSheet
                               {
                                   DetailTermId = g.Key.Id,
                                   StudentCode = g.Key.Code,
                                   StudentName = g.Key.Name,
+                                  BirthDay = g.Key.BirthDate,
                                   ListBeginClass = g.Select(x => x.detailattendance.BeginClass ?? -1).ToList(),
                                   ListEndClass = g.Select(x => x.detailattendance.EndClass ?? -1).ToList(),
                                   NumberOfBeginClassesAttended = g.Count(x => x.detailattendance.BeginClass == 1 ||

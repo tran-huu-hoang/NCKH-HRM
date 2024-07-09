@@ -1,5 +1,6 @@
 ﻿@{
     var stt = 0;
+    var dem = 0;
 }
 <style>
     .scroll-container {
@@ -12,20 +13,76 @@
         width: calc(8rem*@ViewBag.countDateLearn);
     }
 
-    .height-48px{
-        height: 48px;
+    .height-3rem {
+        height: 3rem;
     }
 
     .col1of12 {
         width: 8rem;
     }
+
+    .select {
+    position: relative;
+    display: inline-block;
+    width: 250px;
+    font-size: 12px;
+      }
+
+      .select select {
+        width: 100%;
+        height: 100%;
+        padding: 10px 40px 10px 20px;
+        font-size: 12px;
+        border: 2px solid #ccc;
+        border-radius: 25px;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background: white;
+        outline: none;
+        transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      }
+
+      .select select:hover {
+        border-color: #999;
+      }
+
+      .select select:focus {
+        border-color: #0066cc;
+        box-shadow: 0 0 8px rgba(0, 102, 204, 0.5);
+      }
+
+      .select:after {
+        content: "▼";
+        font-size: 16px;
+        color: #666;
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%);
+        pointer-events: none;
+      }
+
+      .select option {
+        padding: 10px;
+      }
+
+        .p10 {
+            padding: 10px;
+        }
 </style>
 <form method="post" asp-action="AttendanceSheet">
-    <div class="d-flex justify-content-between mb-3">
-        <a asp-action="StudentInTerm" asp-route-id="@ViewBag.detailTerm" class="btn btn-success" value="">Điểm danh hôm nay</a>
-        <a asp-controller="Score" asp-action="EnterScore" asp-route-id="@ViewBag.detailTerm" class="btn btn-primary">Nhập điểm</a>
-        <select asp-items="@ViewBag.dataclassterm" name="class" id="choosetermclass">
-        </select>
+    
+
+    <div class="d-flex flex-lg-row flex-column justify-content-between mb-3">
+        <div class="d-flex">
+            <a asp-action="StudentInTerm" asp-route-id="@ViewBag.detailTerm" class="btn btn-success p10 mr-5" value="">Điểm danh hôm nay</a>
+            <a asp-controller="Score" asp-action="EnterScore" asp-route-id="@ViewBag.detailTerm" class="btn p10 btn-primary">Nhập điểm</a>
+        </div>
+        <div class="select mt-2 mt-lg-0">
+            <select asp-items="@ViewBag.dataclassterm" name="class" id="choosetermclass">   
+            </select>
+        </div>
         <input hidden name="detailTerm" value="@ViewBag.detailTerm" />
     </div>
     <div>
@@ -33,24 +90,27 @@
             <div class="card-body">
                 <div class="d-flex">
                     <div class="col-6 border border-top-0 border-bottom-0 border-left-0">
-                        <div class="row mb-3 height-48px">
-                            <div class="col-1"><strong>STT</strong></div>
-                            <div class="col-3"><strong>MSV</strong></div>
-                            <div class="col-5"><strong>Tên SV</strong></div>
-                            <div class="col-3"><strong>CC</strong></div>
+                        <div class="row mb-3 height-3rem">
+                            <div class="col-1 d-lg-block d-none"><strong>STT</strong></div>
+                            <div class="col-3 d-lg-block d-none"><strong>MSV</strong></div>
+                            <div class="col-4 d-lg-block d-none"><strong>Tên SV</strong></div>
+                            <div class="col-3 d-lg-block d-none"><strong>Ngày sinh</strong></div>
+                            <div class="col-1 d-lg-block d-none"><strong>CC</strong></div>
                         </div>
                         @foreach (var item in Model)
                         {
                             var total = (item.NumberOfBeginClassesAttended + item.NumberOfEndClassesAttended + (item.NumberOfBeginLate + item.NumberOfEndLate) / 2);
                             stt++;
-                            <div class="row mb-3">
-                                <div class="col-1">@stt</div>
-                                <div class="col-3">@item.StudentCode</div>
-                                <div class="col-5">@item.StudentName</div>
-                                <div class="col-3 @(Math.Round((double)total / item.CountDateLearn) <= 0.8 ? "text-danger" : "")">
-                                    @(Math.Round(total * 100 / item.CountDateLearn))
+                            <div class="row mb-3 item-js" id="item-@stt">
+                                <div class="col-1 d-none d-lg-block">@stt</div>
+                                <div class="col-12 col-lg-3">@item.StudentCode</div>
+                                <div class="col-12 col-lg-4">@item.StudentName</div>
+                                <div class="col-12 col-lg-3">@item.BirthDay.ToShortDateString()</div>
+                                <div class="col-12 col-lg-1 @(((double)total / item.CountDateLearn) < 0.8 ? "text-danger" : "")">
+                                    <span class="d-lg-none">Chuyên cần: </span>@(Math.Round(total * 100 / item.CountDateLearn))
                                 </div>
                             </div>
+                            
                         }
                     </div>
                     <div class="col-6 scroll-container">
@@ -67,7 +127,8 @@
                             </div>
                             @foreach (var item in Model)
                             {
-                                <div class="row mb-3 justify-content-around">
+                                dem++;
+                                <div class="row mb-3 justify-content-around align-items-center" id="date-@dem">
                                     @for (int i = 0; i < item.ListBeginClass.Count; i++)
                                     {
                                         string statusText1 = "";
