@@ -1,15 +1,15 @@
 ﻿html {
-    font-size: 14px;
+    font-size: 12px;
 }
 
 
 @media (min-width: 991.98px) {
-    html {
-        font-size: 16px;
-    }
     .boder-right-pc {
         border-right: 1px solid #dee2e6;
     }
+}
+
+@media (max-width: 991.98px) {
 }
 
 @media only screen and (max-width: 600px) {

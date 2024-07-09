@@ -9,5 +9,6 @@
         public double? TestScore { get; set; }
         public int? NumberTest { get; set; }
         public double? OverallScore { get; set; }
+        public int? Relearn { get; set; }
     }
 }

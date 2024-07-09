@@ -17,9 +17,11 @@
                         <div class="col-1"><strong>STT</strong></div>
                         <div class="col-2"><strong>Mã sinh viên</strong></div>
                         <div class="col-3"><strong>Tên sinh viên</strong></div>
-                        <div class="col-2"><strong>Điểm thành phần</strong></div>
-                        <div class="col-2"><strong>Điểm giữa kỳ</strong></div>
-                        <div class="col-2"><strong>Điểm cuối môn</strong></div>
+                        <div class="col-1"><strong>CC</strong></div>
+                        <div class="col-1"><strong>TP</strong></div>
+                        <div class="col-1"><strong>GK</strong></div>
+                        <div class="col-1"><strong>CK</strong></div>
+                        <div class="col-1"><strong>TBC</strong></div>
                     </div>
                     @foreach (var item in Model)
                     {
@@ -28,15 +30,17 @@
                             <div class="col-1">@stt</div>
                             <div class="col-2">@item.StudentCode</div>
                             <div class="col-3">@item.StudentName</div>
-                            <div class="col-2">
+                            <div class="col-1">@(Math.Round((item.AttendancePoint ?? 0.0) * 10, 1))</div>
+                            <div class="col-1">
                                 <input asp-for="@item.ComponentPoint" class="form-control" name="ComponentPoint">
                             </div>
-                            <div class="col-2">
+                            <div class="col-1">
                                 <input asp-for="@item.MidtermPoint" class="form-control" name="MidtermPoint">
                             </div>
-                            <div class="col-2">
+                            <div class="col-1">
                                 <input asp-for="@item.TestScore" class="form-control" name="TestScore">
                             </div>
+                            <div class="col-1">@item.OverallScore</div>
                         </div>
                         <input asp-for="@item.PointId" name="PointId" hidden />
                         <input asp-for="@item.Student" name="Student" hidden />

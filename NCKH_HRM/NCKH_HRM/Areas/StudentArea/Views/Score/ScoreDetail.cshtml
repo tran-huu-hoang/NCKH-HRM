@@ -1,0 +1,32 @@
+﻿@model NCKH_HRM.Areas.StudentArea.ViewModels.StudentScoreDetail
+
+@{
+    ViewData["Title"] = "ScoreDetail";
+    Layout = "~/Areas/StudentArea/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="row text-center font-weight-bold bg-light py-2">
+        <div class="col-2">Học kỳ</div>
+        <div class="col-2">Chuyên cần</div>
+        <div class="col-1">Kiểm tra 1</div>
+        <div class="col-1">Điểm TP</div>
+        <div class="col-1">Lần học</div>
+        <div class="col-1">Lần thi</div>
+        <div class="col-1">Điểm thi</div>
+        <div class="col-1">TBCHP</div>
+        <div class="col-2">Điểm chữ</div>
+    </div>
+    <div class="row text-center py-2">
+        <div class="col-2">@Model.Semester</div>
+        <div class="col-2">@(Math.Round((Model.AttendancePoint ?? 0.0) * 10, 1))</div>
+        <div class="col-1">@Model.MidtermPoint</div>
+        <div class="col-1">@Model.ComponentPoint</div>
+        <div class="col-1">@Model.Relearn</div>
+        <div class="col-1">@Model.NumberTest</div>
+        <div class="col-1">@Model.TestScore</div>
+        <div class="col-1">@Model.OverallScore</div>
+        <div class="col-2">@(Model.OverallScore >= 9.0 ? "A" : (Model.OverallScore >= 8.0 ? "B" : (Model.OverallScore >= 7.0 ? "C" : (Model.OverallScore >= 5.0 ? "D" : "F"))))</div>
+    </div>
+</div>
+

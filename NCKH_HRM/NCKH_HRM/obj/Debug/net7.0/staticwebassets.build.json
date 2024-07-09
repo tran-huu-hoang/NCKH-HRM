@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "lMboakoloFKC0OK2U6sCdPjg3gmWQnxuCT/KiVREK08=",
+  "Hash": "OeWVixKi4jIsnYTLXeSniH0m11khksKHnmv8WYFBgM8=",
   "Source": "NCKH_HRM",
   "BasePath": "_content/NCKH_HRM",
   "Mode": "Default",
@@ -55,6 +55,25 @@
       "OriginalItemSpec": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\NCKH_HRM.bundle.scp.css"
     },
     {
+      "Identity": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\wwwroot\\css\\adminlogin.css",
+      "SourceId": "NCKH_HRM",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\wwwroot\\",
+      "BasePath": "_content/NCKH_HRM",
+      "RelativePath": "css/adminlogin.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\adminlogin.css"
+    },
+    {
       "Identity": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\wwwroot\\css\\site.css",
       "SourceId": "NCKH_HRM",
       "SourceType": "Discovered",
@@ -72,6 +91,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\wwwroot\\css\\studentlogin.css",
+      "SourceId": "NCKH_HRM",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\wwwroot\\",
+      "BasePath": "_content/NCKH_HRM",
+      "RelativePath": "css/studentlogin.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\studentlogin.css"
     },
     {
       "Identity": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\wwwroot\\dist\\css\\adminlte.css",

@@ -33,8 +33,16 @@
       "PackagePath": "staticwebassets\\Uploads\\student\\noAvatar.jpg"
     },
     {
+      "Id": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\wwwroot\\css\\adminlogin.css",
+      "PackagePath": "staticwebassets\\css\\adminlogin.css"
+    },
+    {
       "Id": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\wwwroot\\css\\studentlogin.css",
+      "PackagePath": "staticwebassets\\css\\studentlogin.css"
     },
     {
       "Id": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\wwwroot\\dist\\css\\adminlte.css",

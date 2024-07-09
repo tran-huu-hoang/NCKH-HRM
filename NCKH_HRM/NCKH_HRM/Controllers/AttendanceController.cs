@@ -76,18 +76,18 @@ namespace NCKH_HRM.Controllers
         public async Task<IActionResult> AttendanceSheet(long? id, long? idselect)
         {
             var dataclassterm = await (from term in _context.Terms
-                              join detailterm in _context.DetailTerms on term.Id equals detailterm.Term
-                              where detailterm.Term == id
-                              group new { detailterm } by new
-                              {
-                                  detailterm.Id,
-                                  detailterm.TermClass
-                              } into g
-                              select new DetailTerm
-                              {
-                                  Id = g.Key.Id,
-                                  TermClass = g.Key.TermClass
-                              }).ToListAsync();
+                                       join detailterm in _context.DetailTerms on term.Id equals detailterm.Term
+                                       where detailterm.Term == id
+                                       group new { detailterm } by new
+                                       {
+                                           detailterm.Id,
+                                           detailterm.TermClass
+                                       } into g
+                                       select new DetailTerm
+                                       {
+                                           Id = g.Key.Id,
+                                           TermClass = g.Key.TermClass
+                                       }).ToListAsync();
 
             long? iddetailterm = null;
             if (idselect == null)
@@ -111,13 +111,15 @@ namespace NCKH_HRM.Controllers
                               {
                                   student.Code,
                                   student.Name,
-                                  detailterm.Id
+                                  detailterm.Id,
+                                  student.BirthDate
                               } into g
                               select new AttendanceSheet
                               {
                                   DetailTermId = g.Key.Id,
                                   StudentCode = g.Key.Code,
                                   StudentName = g.Key.Name,
+                                  BirthDay = g.Key.BirthDate,
                                   ListBeginClass = g.Select(x => x.detailattendance.BeginClass ?? -1).ToList(),
                                   ListEndClass = g.Select(x => x.detailattendance.EndClass ?? -1).ToList(),
                                   NumberOfBeginClassesAttended = g.Count(x => x.detailattendance.BeginClass == 1 ||
@@ -126,7 +128,7 @@ namespace NCKH_HRM.Controllers
                                   !x.detailattendance.EndClass.HasValue),
                                   NumberOfBeginLate = g.Count(x => x.detailattendance.BeginClass == 4),
                                   NumberOfEndLate = g.Count(x => x.detailattendance.EndClass == 4),
-                                  CountDateLearn = g.Count(x => x.detailattendance.BeginClass.HasValue || !x.detailattendance.BeginClass.HasValue) *2
+                                  CountDateLearn = g.Count(x => x.detailattendance.BeginClass.HasValue || !x.detailattendance.BeginClass.HasValue) * 2
                               }).ToListAsync();
 
             var dateLearn = await (
