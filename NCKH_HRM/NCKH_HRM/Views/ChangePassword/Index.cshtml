@@ -11,61 +11,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Change Password</title>
 
-    <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.min.css">
-    <!-- icheck bootstrap -->
-    <link rel="stylesheet" href="~/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <!-- Theme style -->
-    <link rel="stylesheet" href="~/dist/css/adminlte.min.css">
+    <link href="~/css/changepassword.css" rel="stylesheet" />
 </head>
 <body class="hold-transition login-page">
-    <div class="login-box">
-        <div class="card card-outline card-primary">
-            <div class="card-header text-center">
-                <a href="~/index2.html" class="h1"><b>Admin</b>LTE</a>
-            </div>
-            <div class="card-body">
-                <p class="login-box-msg">Change Password</p>
-                <form asp-action="Index" method="post">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <div class="input-group mb-3">
-                        <input type="password" class="form-control" name="CurrentPassword" placeholder="Mật khẩu cũ">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="input-group mb-3">
-                        <input asp-for="NewPassword" type="password" class="form-control" name="NewPassword" placeholder="Mật khẩu mới">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <span asp-validation-for="NewPassword" class="text-danger"></span>
-                    <div class="input-group mb-3">
-                        <input asp-for="ConfirmPassword" type="password" class="form-control" name="ConfirmPassword" placeholder="Gõ lại mật khẩu mới">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-                    <div class="row">
-                        <div class="col-12">
-                            <input type="submit" class="btn btn-primary btn-block" value="Đổi mật khẩu">
-                        </div>
-                        <!-- /.col -->
-                    </div>
-                </form>
-            </div>
-            <!-- /.login-card-body -->
+    <div class="change-password-container">
+        <div class="card change-password-card">
+            <div class="logo">Change Password</div>
+            <form asp-action="Index" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <input type="password" class="form-control py-2" name="CurrentPassword" placeholder="Mật khẩu cũ" required>
+                </div>
+                <div class="form-group">
+                    <input asp-for="NewPassword" type="password" class="form-control py-2" name="NewPassword" placeholder="Mật khẩu mới" required>
+                </div>
+                <span asp-validation-for="NewPassword" class="text-danger"></span>
+                <div class="form-group">
+                    <input asp-for="ConfirmPassword" type="password" class="form-control py-2" name="ConfirmPassword" placeholder="Gõ lại mật khẩu mới" required>
+                </div>
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                <input type="submit" class="btn btn-primary" value="Đổi mật khẩu">
+            </form>
         </div>
     </div>
 
@@ -97,14 +64,9 @@
         });
     </script>
 
-    <!-- /.login-box -->
     <!-- jQuery -->
     <script src="~/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
-    <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="~/dist/js/adminlte.min.js"></script>
-
     <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -11,17 +11,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>AdminLTE 3 | Forgot Password</title>
 
-    <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.min.css">
-    <!-- icheck bootstrap -->
-    <link rel="stylesheet" href="~/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="~/dist/css/adminlte.min.css">
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/forgotpassword.css" rel="stylesheet" />
 </head>
 <body class="hold-transition login-page">
-    <div class="login-box">
+    <div class="forgot-password-container">
+        <div class="card forgot-password-card">
+            <div class="logo">Đặt lại mật khẩu</div>
+            <p class="mb-4">Nhập email của bạn để đặt lại mật khẩu</p>
+            <form asp-action="Index" method="post">
+                <div class="form-group">
+                    <input type="email" asp-for="EmailAddress" class="form-control py-2" placeholder="Email" required>
+                </div>
+                <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                <button type="submit" class="btn btn-primary">Gửi liên kết đặt lại mật khẩu</button>
+            </form>
+            <div class="text-center mt-3">
+                <a asp-controller="Login">Trở lại đăng nhập</a>
+            </div>
+        </div>
+    </div>
+
+    @* <div class="login-box">
         <div class="card card-outline card-primary">
             <div class="card-header text-center">
                 <a href="#" class="h1"><b>Admin</b>LTE</a>
@@ -52,14 +63,11 @@
             </div>
             <!-- /.login-card-body -->
         </div>
-    </div>
-    </div>
+    </div> *@
     <!-- /.login-box -->
     <!-- jQuery -->
-    <script src="../../plugins/jquery/jquery.min.js"></script>
+    <script src="~/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
-    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="../../dist/js/adminlte.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

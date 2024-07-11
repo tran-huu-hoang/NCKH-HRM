@@ -37,12 +37,20 @@
       "PackagePath": "staticwebassets\\css\\adminlogin.css"
     },
     {
-      "Id": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\wwwroot\\css\\site.css",
-      "PackagePath": "staticwebassets\\css\\site.css"
+      "Id": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\wwwroot\\css\\changepassword.css",
+      "PackagePath": "staticwebassets\\css\\changepassword.css"
     },
     {
-      "Id": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\wwwroot\\css\\studentlogin.css",
-      "PackagePath": "staticwebassets\\css\\studentlogin.css"
+      "Id": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\wwwroot\\css\\forgotpassword.css",
+      "PackagePath": "staticwebassets\\css\\forgotpassword.css"
+    },
+    {
+      "Id": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\wwwroot\\css\\login.css",
+      "PackagePath": "staticwebassets\\css\\login.css"
+    },
+    {
+      "Id": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
       "Id": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\wwwroot\\dist\\css\\adminlte.css",

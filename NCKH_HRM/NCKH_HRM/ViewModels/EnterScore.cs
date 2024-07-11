@@ -41,5 +41,6 @@
         public bool? IsDelete { get; set; }
 
         public bool? IsActive { get; set; }
+        public DateTime? BirthDate { get; set; }
     }
 }

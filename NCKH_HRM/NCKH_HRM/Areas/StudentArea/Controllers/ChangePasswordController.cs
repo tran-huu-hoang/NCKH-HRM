@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using NCKH_HRM.Areas.StudentArea.ViewModels;
 using NCKH_HRM.Models;
 using Newtonsoft.Json;
 
@@ -17,16 +18,21 @@ namespace NCKH_HRM.Areas.StudentArea.Controllers
         }
         public async Task<IActionResult> Index(long? id)
         {
-            var userSttudent = await _context.UserStudents
+            /*var userSttudent = await _context.UserStudents
                 .Include(u => u.StudentNavigation)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            return View(userSttudent);
+                .FirstOrDefaultAsync(m => m.Id == id);*/
+            return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Index(IFormCollection form)
+        public async Task<IActionResult> Index(IFormCollection form, long? id, ChangePassword changePassword)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(changePassword);
+            }
+
             var userStudentSession = HttpContext.Session.GetString("StudentLogin");
             if (string.IsNullOrEmpty(userStudentSession))
             {
@@ -36,24 +42,23 @@ namespace NCKH_HRM.Areas.StudentArea.Controllers
 
             var user_student = JsonConvert.DeserializeObject<UserStudent>(userStudentSession);
 
-            if (form["OldPassword"].ToString() == user_student.Password)
+            if (form["CurrentPassword"].ToString() != user_student.Password)
             {
-                UserStudent userStudent = new UserStudent();
-                userStudent.Id = long.Parse(form["Id"]);
-                userStudent.Student = long.Parse(form["Student"]);
-                userStudent.Username = form["Username"].ToString();
-                userStudent.Password = form["NewPassword"].ToString();
-                userStudent.CreateBy = form["CreateBy"].ToString();
-                userStudent.UpdateBy = user_student.Username;
-                userStudent.CreateDate = DateTime.Parse(form["CreateDate"]);
-                userStudent.UpdateDate = DateTime.Now;
-                userStudent.IsActive = bool.Parse(form["IsActive"]);
-                userStudent.IsDelete = bool.Parse(form["IsDelete"]);
-
-                _context.Update(userStudent);
-                await _context.SaveChangesAsync();
+                TempData["ErrorMessage"] = "Mật khẩu cũ không đúng";
+                return View();
             }
-            return View();
+
+            var userStudent = await _context.UserStudents.FirstOrDefaultAsync(u => u.Id == id);
+            userStudent.Password = form["NewPassword"].ToString();
+
+            _context.Update(userStudent);
+            await _context.SaveChangesAsync();
+
+            // Cập nhật phiên làm việc sau khi thay đổi mật khẩu
+            HttpContext.Session.SetString("StudentLogin", JsonConvert.SerializeObject(userStudent));
+
+            TempData["SuccessMessage"] = "Đổi mật khẩu thành công";
+            return RedirectToAction("Index", "Dashboard");
         }
     }
 }

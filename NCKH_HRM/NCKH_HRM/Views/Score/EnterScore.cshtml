@@ -4,7 +4,7 @@
     var stt = 0;
 }
 
-<h1 class="py-3">Nhập điểm lớp ... học phần @ViewBag.TermName</h1>
+<h1 class="py-3">Nhập điểm: @ViewBag.TermName - @ViewBag.TermClassName</h1>
 <div class="container mt-5">
     <a asp-action="Export" asp-route-id="@Model.FirstOrDefault().DetailTermId" class="btn btn-primary">Xuất file excel</a>
     <form method="post" asp-action="EnterScore">
@@ -13,49 +13,55 @@
         </div>
         <div class="card">
             <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-1 t"><strong>STT</strong></div>
+                    <div class="col-2"><strong>Mã sinh viên</strong></div>
+                    <div class="col-2"><strong>Tên sinh viên</strong></div>
+                    <div class="col-2"><strong>Ngày sinh</strong></div>
+                    <div class="col-1 text-center"><strong>CC</strong></div>
+                    <div class="col-1 text-center"><strong>TP</strong></div>
+                    <div class="col-1 text-center"><strong>GK</strong></div>
+                    <div class="col-1 text-center"><strong>CK</strong></div>
+                    <div class="col-1 text-center"><strong>TBC</strong></div>
+                </div>
+                @foreach (var item in Model)
+                {
+                    stt++;
                     <div class="row mb-3">
-                        <div class="col-1"><strong>STT</strong></div>
-                        <div class="col-2"><strong>Mã sinh viên</strong></div>
-                        <div class="col-3"><strong>Tên sinh viên</strong></div>
-                        <div class="col-1"><strong>CC</strong></div>
-                        <div class="col-1"><strong>TP</strong></div>
-                        <div class="col-1"><strong>GK</strong></div>
-                        <div class="col-1"><strong>CK</strong></div>
-                        <div class="col-1"><strong>TBC</strong></div>
-                    </div>
-                    @foreach (var item in Model)
-                    {
-                        stt++;
-                        <div class="row mb-3">
-                            <div class="col-1">@stt</div>
-                            <div class="col-2">@item.StudentCode</div>
-                            <div class="col-3">@item.StudentName</div>
-                            <div class="col-1">@(Math.Round((item.AttendancePoint ?? 0.0) * 10, 1))</div>
-                            <div class="col-1">
-                                <input asp-for="@item.ComponentPoint" class="form-control" name="ComponentPoint">
-                            </div>
-                            <div class="col-1">
-                                <input asp-for="@item.MidtermPoint" class="form-control" name="MidtermPoint">
-                            </div>
-                            <div class="col-1">
-                                <input asp-for="@item.TestScore" class="form-control" name="TestScore">
-                            </div>
-                            <div class="col-1">@item.OverallScore</div>
+                        <div class="col-1">@stt</div>
+                        <div class="col-2">@item.StudentCode</div>
+                        <div class="col-2">@item.StudentName</div>
+                        <div class="col-2">@item.BirthDate?.ToShortDateString()</div>
+                        <div class="col-1">
+                            <input value="@(Math.Round((item.AttendancePoint ?? 0.0) * 10, 1))" class="form-control text-center" readonly>
                         </div>
-                        <input asp-for="@item.PointId" name="PointId" hidden />
-                        <input asp-for="@item.Student" name="Student" hidden />
-                        <input asp-for="@item.DetailTerm" name="DetailTerm" hidden />
-                        <input asp-for="@item.RegistStudent" name="RegistStudent" hidden />
-                        <input asp-for="@item.Attendance" name="Attendance" hidden />
-                        <input asp-for="@item.NumberTest" name="NumberTest" hidden />
-                        <input asp-for="@item.CreateBy" name="CreateBy" hidden />
-                        <input asp-for="@item.UpdateBy" name="UpdateBy" hidden />
-                        <input asp-for="@item.CreateDate" name="CreateDate" hidden />
-                        <input asp-for="@item.IsActive" name="IsActive" hidden />
-                        <input asp-for="@item.IsDelete" name="IsDelete" hidden />
-                        <input asp-for="@item.AttendancePoint" name="AttendancePoint" hidden/>
+                        <div class="col-1">
+                            <input asp-for="@item.ComponentPoint" class="form-control text-center" name="ComponentPoint">
+                        </div>
+                        <div class="col-1">
+                            <input asp-for="@item.MidtermPoint" class="form-control text-center" name="MidtermPoint">
+                        </div>
+                        <div class="col-1">
+                            <input asp-for="@item.TestScore" class="form-control text-center" name="TestScore">
+                        </div>
+                        <div class="col-1">
+                            <input value="@item.OverallScore" class="form-control text-center" readonly>
+                        </div>
+                    </div>
+                    <input asp-for="@item.PointId" name="PointId" hidden />
+                    <input asp-for="@item.Student" name="Student" hidden />
+                    <input asp-for="@item.DetailTerm" name="DetailTerm" hidden />
+                    <input asp-for="@item.RegistStudent" name="RegistStudent" hidden />
+                    <input asp-for="@item.Attendance" name="Attendance" hidden />
+                    <input asp-for="@item.NumberTest" name="NumberTest" hidden />
+                    <input asp-for="@item.CreateBy" name="CreateBy" hidden />
+                    <input asp-for="@item.UpdateBy" name="UpdateBy" hidden />
+                    <input asp-for="@item.CreateDate" name="CreateDate" hidden />
+                    <input asp-for="@item.IsActive" name="IsActive" hidden />
+                    <input asp-for="@item.IsDelete" name="IsDelete" hidden />
+                    <input asp-for="@item.AttendancePoint" name="AttendancePoint" hidden/>
                     
-                    }
+                }
             </div>
         </div>
     </form>

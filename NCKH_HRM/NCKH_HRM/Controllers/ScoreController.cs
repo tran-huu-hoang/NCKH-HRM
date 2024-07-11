@@ -75,7 +75,8 @@ namespace NCKH_HRM.Controllers
                                   pointprocess.CreateDate,
                                   pointprocess.UpdateDate,
                                   pointprocess.IsDelete,
-                                  pointprocess.IsActive
+                                  pointprocess.IsActive,
+                                  student.BirthDate,
                               } into g
                               select new EnterScore
                               {
@@ -99,21 +100,24 @@ namespace NCKH_HRM.Controllers
                                   UpdateDate = g.Key.UpdateDate,
                                   IsDelete = g.Key.IsDelete,
                                   IsActive = g.Key.IsActive,
+                                  BirthDate = g.Key.BirthDate,
                                   //tính điểm chuyên cần
                                   AttendancePoint = (double)(g.Count(x => x.detailattendance.BeginClass == 1) //đếm số buổi đầu giờ đi học
                                   + g.Count(x => x.detailattendance.EndClass == 1) //đếm số buổi cuối giờ đi học
                                   + (double)(g.Count(x => x.detailattendance.BeginClass == 4) + g.Count(x => x.detailattendance.EndClass == 4)) /2) //đếm số buổi muộn
                                    /(g.Count(x => x.detailattendance.BeginClass.HasValue) * 2)//đếm số buổi học (đầu giờ + cuối giờ)
                               }).ToListAsync();
-            var termName = (from detailterm in _context.DetailTerms
-                            join term in _context.Terms on detailterm.Term equals term.Id
+            var termName = (from term in _context.Terms
+                            join detailterm in _context.DetailTerms on term.Id equals detailterm.Term
                             where detailterm.Id == id
                             select new NameTermWithIdDT
                             {
                                 Id = detailterm.Id,
-                                Name = term.Name
+                                Name = term.Name,
+                                TermClassName = detailterm.TermClass
                             }).FirstOrDefault();
             ViewBag.TermName = termName.Name;
+            ViewBag.TermClassName = termName.TermClassName;
             return View(data);
         }
 

@@ -37,9 +37,11 @@ namespace NCKH_HRM.Areas.StudentArea.Controllers
             {
                 //lưu session khi đăng nhập thành công
                 HttpContext.Session.SetString("StudentLogin", data);
+                TempData["SuccessMessage"] = "Đăng nhập thành công";
 
                 return RedirectToAction("Index", "Dashboard");
             }
+            TempData["ErrorMessage"] = "Sai tên đăng nhập hoặc mật khẩu";
             return View(model);
         }
 
