@@ -102,10 +102,11 @@ namespace NCKH_HRM.Controllers
                                   IsActive = g.Key.IsActive,
                                   BirthDate = g.Key.BirthDate,
                                   //tính điểm chuyên cần
-                                  AttendancePoint = (double)(g.Count(x => x.detailattendance.BeginClass == 1) //đếm số buổi đầu giờ đi học
+                                  AttendancePoint = g.Count(x => x.detailattendance.BeginClass.HasValue) == 0 ? 0 :
+(double)(g.Count(x => x.detailattendance.BeginClass == 1) //đếm số buổi đầu giờ đi học
                                   + g.Count(x => x.detailattendance.EndClass == 1) //đếm số buổi cuối giờ đi học
-                                  + (double)(g.Count(x => x.detailattendance.BeginClass == 4) + g.Count(x => x.detailattendance.EndClass == 4)) /2) //đếm số buổi muộn
-                                   /(g.Count(x => x.detailattendance.BeginClass.HasValue) * 2)//đếm số buổi học (đầu giờ + cuối giờ)
+                                  + (double)(g.Count(x => x.detailattendance.BeginClass == 4) + g.Count(x => x.detailattendance.EndClass == 4)) / 2) //đếm số buổi muộn
+                                   / (g.Count(x => x.detailattendance.BeginClass.HasValue) * 2)//đếm số buổi học (đầu giờ + cuối giờ)
                               }).ToListAsync();
             var termName = (from term in _context.Terms
                             join detailterm in _context.DetailTerms on term.Id equals detailterm.Term
@@ -126,7 +127,7 @@ namespace NCKH_HRM.Controllers
         {
             var user_staff = JsonConvert.DeserializeObject<UserStaff>(HttpContext.Session.GetString("StaffLogin"));
             int itemCount = form["Attendance"].Count;
-            
+
             for (int i = 0; i < itemCount; i++)
             {
                 bool checkAttendace = false;
@@ -169,7 +170,8 @@ namespace NCKH_HRM.Controllers
                     AttendancePoint = Double.Parse(form["AttendancePoint"][i]);
                 }
 
-                if(AttendancePoint >= 0.8) {
+                if (AttendancePoint >= 0.8)
+                {
                     checkAttendace = true;
                 }
 
@@ -191,7 +193,7 @@ namespace NCKH_HRM.Controllers
                     pointProcess.OverallScore = null;
                     pointProcess.Status = null;
                 }
-                
+
                 pointProcess.NumberTest = 1;
                 pointProcess.IdStaff = user_staff.Staff;
                 pointProcess.CreateBy = form["CreateBy"][i].ToString();

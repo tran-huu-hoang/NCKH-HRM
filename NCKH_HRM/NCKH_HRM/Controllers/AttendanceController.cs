@@ -11,6 +11,8 @@ using OfficeOpenXml.Style;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace NCKH_HRM.Controllers
 {
@@ -109,6 +111,7 @@ namespace NCKH_HRM.Controllers
                               where detailterm.Id == iddetailterm
                               group new { student, detailattendance, detailterm, classes } by new
                               {
+                                  termId = term.Id,
                                   student.Code,
                                   student.Name,
                                   detailterm.Id,
@@ -116,6 +119,7 @@ namespace NCKH_HRM.Controllers
                               } into g
                               select new AttendanceSheet
                               {
+                                  TermId = g.Key.termId,
                                   DetailTermId = g.Key.Id,
                                   StudentCode = g.Key.Code,
                                   StudentName = g.Key.Name,
@@ -353,44 +357,29 @@ namespace NCKH_HRM.Controllers
             return RedirectToAction("Index", "Attendance");
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Export(long? id, long? idselect)
+        [HttpGet]
+        public async Task<IActionResult> Export(long? id)
         {
-            var dataclassterm = await (from term in _context.Terms
-                                       join detailterm in _context.DetailTerms on term.Id equals detailterm.Term
-                                       join teachingassignments in _context.TeachingAssignments on detailterm.Id equals teachingassignments.DetailTerm
-                                       where detailterm.Term == id
-                                       group new { detailterm } by new
-                                       {
-                                           detailterm.Id,
-                                           detailterm.TermClass
-                                       } into g
-                                       select new DetailTerm
-                                       {
-                                           Id = g.Key.Id,
-                                           TermClass = g.Key.TermClass
-                                       }).ToListAsync();
-
-            long? iddetailterm = null;
-            if (idselect == null)
-            {
-                iddetailterm = dataclassterm.FirstOrDefault()?.Id;
-            }
-            else
-            {
-                iddetailterm = idselect;
-            }
 
             var data = await (from term in _context.Terms
                               join detailterm in _context.DetailTerms on term.Id equals detailterm.Term
+                              join semesters in _context.Semesters on detailterm.Semester equals semesters.Id
                               join registstudent in _context.RegistStudents on detailterm.Id equals registstudent.DetailTerm
                               join attendance in _context.Attendances on registstudent.Id equals attendance.RegistStudent
                               join detailattendance in _context.DetailAttendances on attendance.Id equals detailattendance.IdAttendance
                               join student in _context.Students on registstudent.Student equals student.Id
                               join classes in _context.Classes on student.Classes equals classes.Id
-                              where detailterm.Id == iddetailterm
+                              join teachingassignments in _context.TeachingAssignments on detailterm.Id equals teachingassignments.DetailTerm
+                              join staff in _context.Staff on teachingassignments.Staff equals staff.Id
+                              join majors in _context.Majors on staff.Major equals majors.Id
+                              where detailterm.Id == id
                               group new { student, detailattendance, detailterm, classes, term } by new
                               {
+                                  majorName = majors.Name,
+                                  semesterName = semesters.Name,
+                                  teacherName = staff.Name,
+                                  termClass = detailterm.TermClass,
+                                  termName = term.Name,
                                   student.Code,
                                   student.Name,
                                   detailterm.Id,
@@ -402,6 +391,11 @@ namespace NCKH_HRM.Controllers
                                   DetailTermId = g.Key.Id,
                                   StudentCode = g.Key.Code,
                                   StudentName = g.Key.Name,
+                                  TermName = g.Key.termName,
+                                  TeacherName = g.Key.teacherName,
+                                  Semester = g.Key.semesterName,
+                                  MajorName = g.Key.majorName,
+                                  TermClass = g.Key.termClass,
                                   BirthDay = g.Key.BirthDate,
                                   TermCode = g.Key.termCode,
                                   ListBeginClass = g.Select(x => x.detailattendance.BeginClass ?? -1).ToList(),
@@ -412,7 +406,12 @@ namespace NCKH_HRM.Controllers
                                   !x.detailattendance.EndClass.HasValue),
                                   NumberOfBeginLate = g.Count(x => x.detailattendance.BeginClass == 4),
                                   NumberOfEndLate = g.Count(x => x.detailattendance.EndClass == 4),
-                                  CountDateLearn = g.Count(x => x.detailattendance.BeginClass.HasValue || !x.detailattendance.BeginClass.HasValue) * 2
+                                  CountDateLearn = g.Count(x => x.detailattendance.BeginClass.HasValue || !x.detailattendance.BeginClass.HasValue) * 2,
+                                  //tính điểm chuyên cần
+                                  AttendancePoint = (double)(g.Count(x => x.detailattendance.BeginClass == 1) //đếm số buổi đầu giờ đi học
+                                  + g.Count(x => x.detailattendance.EndClass == 1) //đếm số buổi cuối giờ đi học
+                                  + (double)(g.Count(x => x.detailattendance.BeginClass == 4) + g.Count(x => x.detailattendance.EndClass == 4)) / 2) //đếm số buổi muộn
+                                   / (g.Count(x => x.detailattendance.BeginClass.HasValue) * 2)//đếm số buổi học (đầu giờ + cuối giờ)
                               }).ToListAsync();
 
             var dateLearn = await (
@@ -422,7 +421,7 @@ namespace NCKH_HRM.Controllers
                               join detailattendance in _context.DetailAttendances on attendance.Id equals detailattendance.IdAttendance
                               join datelearn in _context.DateLearns on detailattendance.DateLearn equals datelearn.Id
                               join timeline in _context.Timelines on datelearn.Timeline equals timeline.Id
-                              where detailterm.Id == iddetailterm
+                              where detailterm.Id == id
                               group new { timeline, registstudent, datelearn, detailterm, attendance, detailattendance } by new
                               {
                                   timeline.DateLearn,
@@ -447,17 +446,19 @@ namespace NCKH_HRM.Controllers
             {
                 var worksheet = package.Workbook.Worksheets.Add("Attendances");
 
+                worksheet.Cells.Style.Font.Name = "Times New Roman";
+                worksheet.Cells.Style.Font.Size = 12;
+
                 worksheet.Column(1).Width = 8.67;
                 worksheet.Column(2).Width = 15.22;
-                worksheet.Column(3).Width = 20.56;
-                worksheet.Column(4).Width = 8.22;
-                worksheet.Column(5).Width = 14.33;
+                worksheet.Column(3).Width = 28.78;
+                worksheet.Column(4).Width = 14.33;
                 var dateLearnCount = dateLearn.Count();
                 for (int i = 0; i < dateLearnCount * 2; i++)
                 {
-                    worksheet.Column(i + 6).Width = 5.67;
+                    worksheet.Column(i + 5).Width = 5.67;
                 }
-                worksheet.Column(6 + dateLearnCount * 2).Width = 11.11;
+                worksheet.Column(5 + dateLearnCount * 2).Width = 11.11;
 
                 worksheet.Cells["A1:D1"].Merge = true;
                 worksheet.Cells["A1:D1"].Value = "TRƯỜNG ĐẠI HỌC NGUYỄN TRÃI";
@@ -473,11 +474,197 @@ namespace NCKH_HRM.Controllers
                 worksheet.Cells["A4:AA4"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                 worksheet.Cells["A4:AA4"].Style.Font.Bold = true;
 
+                worksheet.Cells["A5"].Value = "Học phần: " + data.FirstOrDefault().TermName;
+                worksheet.Cells["A5"].Style.Font.Bold = true;
+
+                worksheet.Cells["A6"].Value = "Lớp: " + data.FirstOrDefault().TermClass;
+                worksheet.Cells["A6"].Style.Font.Bold = true;
+
+                worksheet.Cells["J5"].Value = "Giảng viên: " + data.FirstOrDefault().TeacherName;
+                worksheet.Cells["J5"].Style.Font.Bold = true;
+
+                worksheet.Cells["J6"].Value = data.FirstOrDefault().Semester;
+                worksheet.Cells["J6"].Style.Font.Bold = true;
+
+                worksheet.Cells["U5"].Value = "Khoa: " + data.FirstOrDefault().MajorName;
+                worksheet.Cells["U5"].Style.Font.Bold = true;
+
+                worksheet.Cells["A8:A10"].Merge = true;
+                worksheet.Cells["A8:A10"].Value = "STT";
+                worksheet.Cells["A8:A10"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                worksheet.Cells["A8:A10"].Style.Font.Bold = true;
+                worksheet.Cells["A8:A10"].Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+
+                worksheet.Cells["B8:B10"].Merge = true;
+                worksheet.Cells["B8:B10"].Value = "Mã sinh viên";
+                worksheet.Cells["B8:B10"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                worksheet.Cells["B8:B10"].Style.Font.Bold = true;
+                worksheet.Cells["B8:B10"].Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+
+                worksheet.Cells["C8:C10"].Merge = true;
+                worksheet.Cells["C8:C10"].Value = "Họ và tên";
+                worksheet.Cells["C8:C10"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                worksheet.Cells["C8:C10"].Style.Font.Bold = true;
+                worksheet.Cells["C8:C10"].Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+
+                worksheet.Cells["D8:D10"].Merge = true;
+                worksheet.Cells["D8:D10"].Value = "Ngày sinh";
+                worksheet.Cells["D8:D10"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                worksheet.Cells["D8:D10"].Style.Font.Bold = true;
+                worksheet.Cells["D8:D10"].Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+
+                worksheet.Cells[8, 4 + dateLearnCount * 2 +1, 10, 4 + dateLearnCount * 2 + 1].Merge = true;
+                worksheet.Cells[8, 4 + dateLearnCount * 2 + 1, 10, 4 + dateLearnCount * 2 + 1].Value = "Ghi chú";
+                worksheet.Cells[8, 4 + dateLearnCount * 2 + 1, 10, 4 + dateLearnCount * 2 + 1].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                worksheet.Cells[8, 4 + dateLearnCount * 2 + 1, 10, 4 + dateLearnCount * 2 + 1].Style.Font.Bold = true;
+                worksheet.Cells[8, 4 + dateLearnCount * 2 + 1, 10, 4 + dateLearnCount * 2 + 1].Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+
+                for (int i = 0; i < dateLearnCount * 2; i+=2)
+                {
+                    worksheet.Cells[8, i + 5, 8, i + 6].Merge = true;
+                    worksheet.Cells[8, i + 5, 8, i + 6].Value = "Buổi " + (i/2 + 1);
+                    worksheet.Cells[8, i + 5, 8, i + 6].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                    worksheet.Cells[8, i + 5, 8, i + 6].Style.Font.Bold = true;
+
+                    worksheet.Cells[9, i + 5, 9, i + 6].Merge = true;
+                    worksheet.Cells[9, i + 5, 9, i + 6].Value = dateLearn[i/2].DateLearn?.ToString("dd/MM");
+                    worksheet.Cells[9, i + 5, 9, i + 6].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+
+                    worksheet.Cells[10, i + 5].Value = "ĐG";
+                    worksheet.Cells[10, i + 5].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                    worksheet.Cells[10, i + 5].Style.Font.Bold = true;
+
+                    worksheet.Cells[10, i + 6].Value = "CG";
+                    worksheet.Cells[10, i + 6].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                    worksheet.Cells[10, i + 6].Style.Font.Bold = true;
+                }
+
+                var dataCount = data.Count;
+                for(int i = 0; i < dataCount; i++)
+                {
+                    worksheet.Cells[i + 11, 1].Value = i + 1;
+                    worksheet.Cells[i + 11, 1].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+
+                    worksheet.Cells[i + 11, 2].Value = data[i].StudentCode;
+                    worksheet.Cells[i + 11, 2].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+
+                    worksheet.Cells[i + 11, 3].Value = data[i].StudentName;
+
+                    worksheet.Cells[i + 11, 4].Value = data[i].BirthDay?.ToShortDateString();
+                    worksheet.Cells[i + 11, 4].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+
+                    for(int j = 0; j < (data[i].ListBeginClass.Count() * 2); j+=2)
+                    {
+                        if (data[i].ListBeginClass[j / 2] == 1)
+                        {
+                            worksheet.Cells[i + 11, j + 5].Value = "P";
+                            worksheet.Cells[i + 11, j + 5].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        }
+                        if (data[i].ListBeginClass[j / 2] == 2)
+                        {
+                            worksheet.Cells[i + 11, j + 5].Value = "A";
+                            worksheet.Cells[i + 11, j + 5].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                            // Đổi màu nền
+                            worksheet.Cells[i + 11, j + 5].Style.Fill.PatternType = ExcelFillStyle.Solid;
+                            worksheet.Cells[i + 11, j + 5].Style.Fill.BackgroundColor.SetColor(Color.FromArgb(230, 145, 56));
+                        }
+                        if (data[i].ListBeginClass[j / 2] == 3)
+                        {
+                            worksheet.Cells[i + 11, j + 5].Value = "PA";
+                            worksheet.Cells[i + 11, j + 5].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        }
+                        if (data[i].ListBeginClass[j / 2] == 4)
+                        {
+                            worksheet.Cells[i + 11, j + 5].Value = "P-";
+                            worksheet.Cells[i + 11, j + 5].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                            // Đổi màu nền
+                            worksheet.Cells[i + 11, j + 5].Style.Fill.PatternType = ExcelFillStyle.Solid;
+                            worksheet.Cells[i + 11, j + 5].Style.Fill.BackgroundColor.SetColor(Color.FromArgb(255, 192, 0));
+                        }
+
+                        if (data[i].ListEndClass[j / 2] == 1)
+                        {
+                            worksheet.Cells[i + 11, j + 6].Value = "P";
+                            worksheet.Cells[i + 11, j + 6].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        }
+                        if (data[i].ListEndClass[j / 2] == 2)
+                        {
+                            worksheet.Cells[i + 11, j + 6].Value = "A";
+                            worksheet.Cells[i + 11, j + 6].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                            // Đổi màu nền
+                            worksheet.Cells[i + 11, j + 6].Style.Fill.PatternType = ExcelFillStyle.Solid;
+                            worksheet.Cells[i + 11, j + 6].Style.Fill.BackgroundColor.SetColor(Color.FromArgb(230, 145, 56));
+                        }
+                        if (data[i].ListEndClass[j / 2] == 3)
+                        {
+                            worksheet.Cells[i + 11, j + 6].Value = "PA";
+                            worksheet.Cells[i + 11, j + 6].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        }
+                        if (data[i].ListEndClass[j / 2] == 4)
+                        {
+                            worksheet.Cells[i + 11, j + 6].Value = "P-";
+                            worksheet.Cells[i + 11, j + 6].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                            // Đổi màu nền
+                            worksheet.Cells[i + 11, j + 6].Style.Fill.PatternType = ExcelFillStyle.Solid;
+                            worksheet.Cells[i + 11, j + 6].Style.Fill.BackgroundColor.SetColor(Color.FromArgb(255, 192, 0));
+                        }
+                    }
+                }
+
+                worksheet.Cells[10 + dataCount + 1, 1, 10 + dataCount + 1, 4].Merge = true;
+                worksheet.Row(10 + dataCount + 1).Height = 30;
+                worksheet.Cells[10 + dataCount + 1, 1, 10 + dataCount + 1, 4].Value = "Giảng viên ký xác nhận sau mỗi buổi học:";
+                worksheet.Cells[10 + dataCount + 1, 1, 10 + dataCount + 1, 4].Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+
+                for (int i = 0; i < dateLearnCount * 2; i += 2)
+                {
+                    worksheet.Cells[10 + dataCount + 1, i + 5, 10 + dataCount + 1, i + 6].Merge = true;
+                }
+
+                var enough = 0;
+                var notenough = 0;
+                for(int i = 0; i < dataCount; i++)
+                {
+                    if (data[i].AttendancePoint >= 0.8)
+                    {
+                        enough++;
+                    }
+                    else
+                    {
+                        notenough++;
+                    }
+                }
+
+                worksheet.Cells[10 + dataCount + 4, 1].Value = "Số sinh viên đủ điều kiện thi kết thúc học phần:";
+                worksheet.Cells[10 + dataCount + 5, 1].Value = "Số sinh viên không đủ điều kiện thi kết thúc học phần:";
+                worksheet.Cells[10 + dataCount + 4, 4].Value = enough;
+                worksheet.Cells[10 + dataCount + 5, 4].Value = notenough;
+
+                worksheet.Cells[10 + dataCount + 3, 10].Value = "Chú thích:";
+                worksheet.Cells[10 + dataCount + 3, 10].Style.Font.Bold = true;
+
+                worksheet.Cells[10 + dataCount + 4, 10].Value = "P";
+                worksheet.Cells[10 + dataCount + 5, 10].Value = "A";
+                worksheet.Cells[10 + dataCount + 6, 10].Value = "PA";
+                worksheet.Cells[10 + dataCount + 7, 10].Value = "P-";
+
+
+                worksheet.Cells[10 + dataCount + 4, 11].Value = "Có mặt";
+                worksheet.Cells[10 + dataCount + 5, 11].Value = "Vắng";
+                worksheet.Cells[10 + dataCount + 6, 11].Value = "Phép";
+                worksheet.Cells[10 + dataCount + 7, 11].Value = "Muộn";
+
+                var cellBorder = worksheet.Cells[8, 1, 10 + dataCount + 1, 4 + dateLearnCount * 2 + 1].Style.Border;
+                cellBorder.Top.Style = ExcelBorderStyle.Thin;
+                cellBorder.Bottom.Style = ExcelBorderStyle.Thin;
+                cellBorder.Left.Style = ExcelBorderStyle.Thin;
+                cellBorder.Right.Style = ExcelBorderStyle.Thin;
+
                 var stream = new MemoryStream();
                 package.SaveAs(stream);
 
                 var content = stream.ToArray();
-                return File(content, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "DiemDanh" + (data.FirstOrDefault().TermCode) + ".xlsx");
+                return File(content, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "DiemDanh_" + (data.FirstOrDefault().TermCode) + ".xlsx");
             }
         }
     }

@@ -1,24 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\NCKH\\NCKH_HRM\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|D:\\NCKH\\NCKH_HRM\\nckh_hrm\\controllers\\attendancecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|solutionrelative:nckh_hrm\\controllers\\attendancecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|d:\\nckh\\nckh_hrm\\nckh_hrm\\controllers\\scorecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|solutionrelative:nckh_hrm\\controllers\\scorecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|D:\\NCKH\\NCKH_HRM\\nckh_hrm\\views\\attendance\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|solutionrelative:nckh_hrm\\views\\attendance\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|D:\\NCKH\\NCKH_HRM\\nckh_hrm\\viewmodels\\staffindex.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|solutionrelative:nckh_hrm\\viewmodels\\staffindex.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -26,61 +9,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ScoreController.cs",
-              "DocumentMoniker": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Controllers\\ScoreController.cs",
-              "RelativeDocumentMoniker": "NCKH_HRM\\Controllers\\ScoreController.cs",
-              "ToolTip": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Controllers\\ScoreController.cs",
-              "RelativeToolTip": "NCKH_HRM\\Controllers\\ScoreController.cs",
-              "ViewState": "AQIAAA0BAAAAAAAAAADwvxkBAABHAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-11T04:11:10.081Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Views\\Attendance\\Index.cshtml",
-              "RelativeDocumentMoniker": "NCKH_HRM\\Views\\Attendance\\Index.cshtml",
-              "ToolTip": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Views\\Attendance\\Index.cshtml",
-              "RelativeToolTip": "NCKH_HRM\\Views\\Attendance\\Index.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAC0AAAAdAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-07-11T03:47:22.975Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "StaffIndex.cs",
-              "DocumentMoniker": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\ViewModels\\StaffIndex.cs",
-              "RelativeDocumentMoniker": "NCKH_HRM\\ViewModels\\StaffIndex.cs",
-              "ToolTip": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\ViewModels\\StaffIndex.cs",
-              "RelativeToolTip": "NCKH_HRM\\ViewModels\\StaffIndex.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAhAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-11T03:00:24.176Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AttendanceController.cs",
-              "DocumentMoniker": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Controllers\\AttendanceController.cs",
-              "RelativeDocumentMoniker": "NCKH_HRM\\Controllers\\AttendanceController.cs",
-              "ToolTip": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Controllers\\AttendanceController.cs",
-              "RelativeToolTip": "NCKH_HRM\\Controllers\\AttendanceController.cs",
-              "ViewState": "AQIAAL0BAAAAAAAAAADwv5EBAAA6AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-11T03:00:05.451Z",
-              "EditorCaption": ""
             }
           ]
         }

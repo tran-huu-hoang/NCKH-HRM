@@ -3,8 +3,14 @@
     public class AttendanceSheet
     {
         public long DetailTermId { get; set; }
+        public long TermId { get; set; }
         public string? TermCode { get; set; }
+        public string? TermName { get; set; }
+        public string? TeacherName { get; set; }
+        public string? Semester { get; set; }
+        public string? MajorName { get; set; }
         public string StudentCode { get; set; }
+        public double? AttendancePoint { get; set; }
 
         public string StudentName { get; set; }
         public DateTime? BirthDay { get; set; }

@@ -4,21 +4,23 @@
 
 
 @media (min-width: 991.98px) {
-    .boder-right-pc {
-        border-right: 1px solid #dee2e6;
-    }
 }
 
 @media (max-width: 991.98px) {
     html {
         font-size: 12px;
     }
-}
 
-@media only screen and (max-width: 600px) {
+    .text-bold-mobile {
+        font-weight: bold;
+    }
+
     .border-bot-mobile {
         border-bottom: 1px solid #000000;
     }
+}
+
+@media only screen and (max-width: 600px) {
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
@@ -42,4 +44,5 @@ body {
     background-color: white;
     z-index: 10;
     border-bottom: 1px solid #dee2e6;
+    height: 2rem;
 }

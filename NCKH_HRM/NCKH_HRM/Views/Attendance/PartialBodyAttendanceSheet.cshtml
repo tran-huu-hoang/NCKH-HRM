@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<NCKH_HRM.ViewModels.AttendanceSheet>
+
+@{
     var stt = 0;
     var dem = 0;
 }
@@ -77,8 +79,8 @@
     <div class="d-flex flex-lg-row flex-column justify-content-between mb-3">
         <div class="d-flex">
             <a asp-action="StudentInTerm" asp-route-id="@ViewBag.detailTerm" class="btn btn-success p10 mr-5" value="">Điểm danh hôm nay</a>
-            <a asp-controller="Score" asp-action="EnterScore" asp-route-id="@ViewBag.detailTerm" class="btn p10 btn-primary">Nhập điểm</a>
-            @* <a asp-action="Export" asp-route-id="@Model.FirstOrDefault().DetailTermId" class="btn btn-primary">Xuất file excel</a> *@
+            <a asp-controller="Score" asp-action="EnterScore" asp-route-id="@ViewBag.detailTerm" class="btn p10 mr-5 btn-primary">Nhập điểm</a>
+            <a asp-action="Export" asp-route-id="@ViewBag.detailTerm" class="btn btn-primary p10">Xuất file excel</a>
         </div>
         <div class="select mt-2 mt-lg-0">
             <select asp-items="@ViewBag.dataclassterm" name="class" id="choosetermclass">
@@ -106,7 +108,7 @@
                                 <div class="col-1 d-none d-lg-block">@stt</div>
                                 <div class="col-12 col-lg-3">@item.StudentCode</div>
                                 <div class="col-12 col-lg-4">@item.StudentName</div>
-                                <div class="col-12 col-lg-3">@item.BirthDay.ToShortDateString()</div>
+                                <div class="col-12 col-lg-3">@item.BirthDay?.ToShortDateString()</div>
                                 <div class="col-12 col-lg-1">
                                     <div class="text-center p-1 @(((double)total / item.CountDateLearn) < 0.8 ? "bg-danger" : "")">
                                         <span class="d-lg-none">Chuyên cần: </span>@(Math.Round(total * 100 / item.CountDateLearn))
