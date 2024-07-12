@@ -216,13 +216,14 @@ namespace NCKH_HRM.Controllers
                               join detailterm in _context.DetailTerms on term.Id equals detailterm.Term
                               join registstudent in _context.RegistStudents on detailterm.Id equals registstudent.DetailTerm
                               join student in _context.Students on registstudent.Student equals student.Id
-                              join datelearn in _context.DateLearns on detailterm.Id equals datelearn.DetailTerm
+                              join attendance in _context.Attendances on registstudent.Id equals attendance.RegistStudent
+                              join detailattendance in _context.DetailAttendances on attendance.Id equals detailattendance.IdAttendance
+                              join datelearn in _context.DateLearns on detailattendance.DateLearn equals datelearn.Id
                               join timeline in _context.Timelines on datelearn.Timeline equals timeline.Id
-                              join attendance in _context.Attendances on detailterm.Id equals attendance.Id
                               join year in _context.Years on timeline.Year equals year.Id
                               join pointprocess in _context.PointProcesses on registstudent.Id equals pointprocess.RegistStudent
                               where detailterm.Id == id && year.Name == DateTime.Now.Year
-                              group new { student, timeline, attendance, pointprocess, detailterm } by new
+                              group new { student, timeline, attendance, pointprocess, detailterm, detailattendance } by new
                               {
                                   detailterm.Id,
                                   student.Code,
@@ -231,6 +232,7 @@ namespace NCKH_HRM.Controllers
                                   pointprocess.ComponentPoint,
                                   pointprocess.MidtermPoint,
                                   pointprocess.TestScore,
+                                  pointprocess.OverallScore,
                                   pointprocess.Student,
                                   pointprocess.DetailTerm,
                                   pointprocess.RegistStudent,
@@ -242,7 +244,8 @@ namespace NCKH_HRM.Controllers
                                   pointprocess.CreateDate,
                                   pointprocess.UpdateDate,
                                   pointprocess.IsDelete,
-                                  pointprocess.IsActive
+                                  pointprocess.IsActive,
+                                  student.BirthDate,
                               } into g
                               select new EnterScore
                               {
@@ -253,6 +256,7 @@ namespace NCKH_HRM.Controllers
                                   ComponentPoint = g.Key.ComponentPoint,
                                   MidtermPoint = g.Key.MidtermPoint,
                                   TestScore = g.Key.TestScore,
+                                  OverallScore = g.Key.OverallScore,
                                   Student = g.Key.Student,
                                   DetailTerm = g.Key.DetailTerm,
                                   RegistStudent = g.Key.RegistStudent,
@@ -265,6 +269,12 @@ namespace NCKH_HRM.Controllers
                                   UpdateDate = g.Key.UpdateDate,
                                   IsDelete = g.Key.IsDelete,
                                   IsActive = g.Key.IsActive,
+                                  BirthDate = g.Key.BirthDate,
+                                  //tính điểm chuyên cần
+                                  AttendancePoint = (double)(g.Count(x => x.detailattendance.BeginClass == 1) //đếm số buổi đầu giờ đi học
+                                  + g.Count(x => x.detailattendance.EndClass == 1) //đếm số buổi cuối giờ đi học
+                                  + (double)(g.Count(x => x.detailattendance.BeginClass == 4) + g.Count(x => x.detailattendance.EndClass == 4)) / 2) //đếm số buổi muộn
+                                   / (g.Count(x => x.detailattendance.BeginClass.HasValue) * 2)//đếm số buổi học (đầu giờ + cuối giờ)
                               }).ToListAsync();
 
             using (var package = new ExcelPackage())
@@ -272,18 +282,22 @@ namespace NCKH_HRM.Controllers
                 var worksheet = package.Workbook.Worksheets.Add("Scores");
                 worksheet.Cells[1, 1].Value = "MSV";
                 worksheet.Cells[1, 2].Value = "Tên SV";
-                worksheet.Cells[1, 3].Value = "Điểm thành phần";
-                worksheet.Cells[1, 4].Value = "Điểm giữa kỳ";
-                worksheet.Cells[1, 5].Value = "Điểm cuối môn";
+                worksheet.Cells[1, 3].Value = "Chuyên cần";
+                worksheet.Cells[1, 4].Value = "Thành phần";
+                worksheet.Cells[1, 5].Value = "Giữa kỳ";
+                worksheet.Cells[1, 6].Value = "Cuối môn";
+                worksheet.Cells[1, 7].Value = "TBM";
 
                 var dataCount = data.Count();
                 for (int i = 0; i < dataCount; i++)
                 {
                     worksheet.Cells[i + 2, 1].Value = data[i].StudentCode;
                     worksheet.Cells[i + 2, 2].Value = data[i].StudentName;
-                    worksheet.Cells[i + 2, 3].Value = data[i].ComponentPoint;
-                    worksheet.Cells[i + 2, 4].Value = data[i].MidtermPoint;
-                    worksheet.Cells[i + 2, 5].Value = data[i].TestScore;
+                    worksheet.Cells[i + 2, 3].Value = data[i].AttendancePoint;
+                    worksheet.Cells[i + 2, 4].Value = data[i].ComponentPoint;
+                    worksheet.Cells[i + 2, 5].Value = data[i].MidtermPoint;
+                    worksheet.Cells[i + 2, 6].Value = data[i].TestScore;
+                    worksheet.Cells[i + 2, 7].Value = data[i].OverallScore;
                 }
 
                 var stream = new MemoryStream();

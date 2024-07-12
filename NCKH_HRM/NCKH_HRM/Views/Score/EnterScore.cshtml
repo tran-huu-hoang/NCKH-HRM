@@ -6,9 +6,9 @@
 
 <h1 class="py-3">Nhập điểm: @ViewBag.TermName - @ViewBag.TermClassName</h1>
 <div class="container mt-5">
-    <a asp-action="Export" asp-route-id="@Model.FirstOrDefault().DetailTermId" class="btn btn-primary">Xuất file excel</a>
     <form method="post" asp-action="EnterScore">
-        <div class="text-end mb-3">
+        <div class="text-end mb-3 d-flex justify-content-between">
+            <a asp-action="Export" asp-route-id="@Model.FirstOrDefault().DetailTermId" class="btn btn-primary">Xuất file excel</a>
             <input type="submit" onclick="return confirm('Bạn đã nhập điểm xong?');" class="btn btn-success" value="Lưu thay đổi" />
         </div>
         <div class="card">
@@ -60,7 +60,6 @@
                     <input asp-for="@item.IsActive" name="IsActive" hidden />
                     <input asp-for="@item.IsDelete" name="IsDelete" hidden />
                     <input asp-for="@item.AttendancePoint" name="AttendancePoint" hidden/>
-                    
                 }
             </div>
         </div>

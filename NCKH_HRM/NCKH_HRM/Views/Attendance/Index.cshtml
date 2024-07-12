@@ -26,7 +26,8 @@
         <div class="col-1">STT</div>
         <div class="col-2">Mã HP</div>
         <div class="col-3">Tên HP</div>
-        <div class="col-4">Thời gian</div>
+        <div class="col-2">Số sinh viên ĐK</div>
+        <div class="col-2">Số lớp</div>
         <div class="col-1">Số TC</div>
         <div class="col-1"></div>
     </div>
@@ -39,16 +40,11 @@
             <div class="col-1">@stt</div>
             <div class="col-2">@item.TermCode</div>
             <div class="col-3">@item.TermName</div>
-            <div class="col-4">
-                @if (item.StartDate.HasValue)
-                {
-                    @item.StartDate.Value.ToShortDateString()
-                }
-                đến
-                @if (item.EndDate.HasValue)
-                {
-                    @item.EndDate.Value.ToShortDateString()
-                }
+            <div class="col-2">
+                @item.StudentNumber
+            </div>
+            <div class="col-2">
+                @item.TermClassNumber
             </div>
             <div class="col-1">@item.CollegeCredit</div>
             <div class="col-1 text-center">

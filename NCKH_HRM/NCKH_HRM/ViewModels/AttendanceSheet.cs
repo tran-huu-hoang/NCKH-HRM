@@ -3,6 +3,7 @@
     public class AttendanceSheet
     {
         public long DetailTermId { get; set; }
+        public string? TermCode { get; set; }
         public string StudentCode { get; set; }
 
         public string StudentName { get; set; }

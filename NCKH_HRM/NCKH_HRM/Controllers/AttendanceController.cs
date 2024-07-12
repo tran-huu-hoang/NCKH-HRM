@@ -7,6 +7,7 @@ using NCKH_HRM.Models;
 using NCKH_HRM.ViewModels;
 using Newtonsoft.Json;
 using OfficeOpenXml;
+using OfficeOpenXml.Style;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -30,6 +31,7 @@ namespace NCKH_HRM.Controllers
                               join staff in _context.Staff on userstaff.Staff equals staff.Id
                               join teachingassignment in _context.TeachingAssignments on staff.Id equals teachingassignment.Staff
                               join detailterm in _context.DetailTerms on teachingassignment.DetailTerm equals detailterm.Id
+                              join registstudents in _context.RegistStudents on detailterm.Id equals registstudents.DetailTerm
                               join term in _context.Terms on detailterm.Term equals term.Id
                               join datelearn in _context.DateLearns on detailterm.Id equals datelearn.DetailTerm
                               join timeline in _context.Timelines on datelearn.Timeline equals timeline.Id
@@ -37,23 +39,20 @@ namespace NCKH_HRM.Controllers
                               join staffsubject in _context.StaffSubjects on staff.Id equals staffsubject.Staff
                               join subject in _context.Subjects on staffsubject.Subject equals subject.Id
                               where userstaff.Id == user_staff.Id && year.Name == DateTime.Now.Year
-                              group new { term, staff, subject, detailterm } by new
+                              group new { term, staff, subject, detailterm, registstudents } by new
                               {
                                   term.Id,
                                   term.Name,
                                   term.Code,
-                                  term.CollegeCredit,
-                                  
-                                  detailterm.StartDate,
-                                  detailterm.EndDate,
+                                  term.CollegeCredit
                               } into g
                               select new StaffIndex
                               {
                                   TermId = g.Key.Id,
                                   TermName = g.Key.Name,
                                   TermCode = g.Key.Code,
-                                  StartDate = g.Key.StartDate,
-                                  EndDate = g.Key.EndDate,
+                                  StudentNumber = g.Select(x => x.registstudents.Student).Distinct().Count(),
+                                  TermClassNumber = g.Select(x => x.detailterm.TermClass).Distinct().Count(),
                                   CollegeCredit = g.Key.CollegeCredit,
                               }).ToListAsync();
 
@@ -77,6 +76,7 @@ namespace NCKH_HRM.Controllers
         {
             var dataclassterm = await (from term in _context.Terms
                                        join detailterm in _context.DetailTerms on term.Id equals detailterm.Term
+                                       join teachingassignments in _context.TeachingAssignments on detailterm.Id equals teachingassignments.DetailTerm
                                        where detailterm.Term == id
                                        group new { detailterm } by new
                                        {
@@ -258,7 +258,14 @@ namespace NCKH_HRM.Controllers
         {
             if (file == null || file.Length == 0)
             {
-                return BadRequest("File is empty.");
+                /*TempData["ErrorMessage"] = "Bạn chưa chọn file";*/
+                return BadRequest("Bạn chưa chọn file");
+            }
+
+            if (!Path.GetExtension(file.FileName).Equals(".xlsx", StringComparison.OrdinalIgnoreCase))
+            {
+                /*TempData["ErrorMessage"] = "File phải có định dạng Excel (.xlsx)";*/
+                return BadRequest("File phải có định dạng Excel (.xlsx)");
             }
 
             using (var stream = new MemoryStream())
@@ -346,5 +353,132 @@ namespace NCKH_HRM.Controllers
             return RedirectToAction("Index", "Attendance");
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Export(long? id, long? idselect)
+        {
+            var dataclassterm = await (from term in _context.Terms
+                                       join detailterm in _context.DetailTerms on term.Id equals detailterm.Term
+                                       join teachingassignments in _context.TeachingAssignments on detailterm.Id equals teachingassignments.DetailTerm
+                                       where detailterm.Term == id
+                                       group new { detailterm } by new
+                                       {
+                                           detailterm.Id,
+                                           detailterm.TermClass
+                                       } into g
+                                       select new DetailTerm
+                                       {
+                                           Id = g.Key.Id,
+                                           TermClass = g.Key.TermClass
+                                       }).ToListAsync();
+
+            long? iddetailterm = null;
+            if (idselect == null)
+            {
+                iddetailterm = dataclassterm.FirstOrDefault()?.Id;
+            }
+            else
+            {
+                iddetailterm = idselect;
+            }
+
+            var data = await (from term in _context.Terms
+                              join detailterm in _context.DetailTerms on term.Id equals detailterm.Term
+                              join registstudent in _context.RegistStudents on detailterm.Id equals registstudent.DetailTerm
+                              join attendance in _context.Attendances on registstudent.Id equals attendance.RegistStudent
+                              join detailattendance in _context.DetailAttendances on attendance.Id equals detailattendance.IdAttendance
+                              join student in _context.Students on registstudent.Student equals student.Id
+                              join classes in _context.Classes on student.Classes equals classes.Id
+                              where detailterm.Id == iddetailterm
+                              group new { student, detailattendance, detailterm, classes, term } by new
+                              {
+                                  student.Code,
+                                  student.Name,
+                                  detailterm.Id,
+                                  student.BirthDate,
+                                  termCode = term.Code,
+                              } into g
+                              select new AttendanceSheet
+                              {
+                                  DetailTermId = g.Key.Id,
+                                  StudentCode = g.Key.Code,
+                                  StudentName = g.Key.Name,
+                                  BirthDay = g.Key.BirthDate,
+                                  TermCode = g.Key.termCode,
+                                  ListBeginClass = g.Select(x => x.detailattendance.BeginClass ?? -1).ToList(),
+                                  ListEndClass = g.Select(x => x.detailattendance.EndClass ?? -1).ToList(),
+                                  NumberOfBeginClassesAttended = g.Count(x => x.detailattendance.BeginClass == 1 ||
+                                  !x.detailattendance.BeginClass.HasValue),
+                                  NumberOfEndClassesAttended = g.Count(x => x.detailattendance.EndClass == 1 ||
+                                  !x.detailattendance.EndClass.HasValue),
+                                  NumberOfBeginLate = g.Count(x => x.detailattendance.BeginClass == 4),
+                                  NumberOfEndLate = g.Count(x => x.detailattendance.EndClass == 4),
+                                  CountDateLearn = g.Count(x => x.detailattendance.BeginClass.HasValue || !x.detailattendance.BeginClass.HasValue) * 2
+                              }).ToListAsync();
+
+            var dateLearn = await (
+                              from detailterm in _context.DetailTerms
+                              join registstudent in _context.RegistStudents on detailterm.Id equals registstudent.DetailTerm
+                              join attendance in _context.Attendances on registstudent.Id equals attendance.RegistStudent
+                              join detailattendance in _context.DetailAttendances on attendance.Id equals detailattendance.IdAttendance
+                              join datelearn in _context.DateLearns on detailattendance.DateLearn equals datelearn.Id
+                              join timeline in _context.Timelines on datelearn.Timeline equals timeline.Id
+                              where detailterm.Id == iddetailterm
+                              group new { timeline, registstudent, datelearn, detailterm, attendance, detailattendance } by new
+                              {
+                                  timeline.DateLearn,
+                              } into g
+                              select new Timeline
+                              {
+                                  DateLearn = g.Key.DateLearn,
+
+                              }).ToListAsync();
+
+
+            var termName = (from term in _context.Terms
+                            join detailterm in _context.DetailTerms on term.Id equals detailterm.Term
+                            where detailterm.Term == id
+                            select new NameTermWithIdDT
+                            {
+                                Id = detailterm.Id,
+                                Name = term.Name
+                            }).FirstOrDefault();
+
+            using (var package = new ExcelPackage())
+            {
+                var worksheet = package.Workbook.Worksheets.Add("Attendances");
+
+                worksheet.Column(1).Width = 8.67;
+                worksheet.Column(2).Width = 15.22;
+                worksheet.Column(3).Width = 20.56;
+                worksheet.Column(4).Width = 8.22;
+                worksheet.Column(5).Width = 14.33;
+                var dateLearnCount = dateLearn.Count();
+                for (int i = 0; i < dateLearnCount * 2; i++)
+                {
+                    worksheet.Column(i + 6).Width = 5.67;
+                }
+                worksheet.Column(6 + dateLearnCount * 2).Width = 11.11;
+
+                worksheet.Cells["A1:D1"].Merge = true;
+                worksheet.Cells["A1:D1"].Value = "TRƯỜNG ĐẠI HỌC NGUYỄN TRÃI";
+                worksheet.Cells["A1:D1"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+
+                worksheet.Cells["A2:D2"].Merge = true;
+                worksheet.Cells["A2:D2"].Value = "KHOA CÔNG NGHỆ THÔNG TIN";
+                worksheet.Cells["A2:D2"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                worksheet.Cells["A2:D2"].Style.Font.Bold = true;
+
+                worksheet.Cells["A4:AA4"].Merge = true;
+                worksheet.Cells["A4:AA4"].Value = "SỔ ĐIỂM DANH THEO DÕI CHUYÊN CẦN SINH VIÊN";
+                worksheet.Cells["A4:AA4"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                worksheet.Cells["A4:AA4"].Style.Font.Bold = true;
+
+                var stream = new MemoryStream();
+                package.SaveAs(stream);
+
+                var content = stream.ToArray();
+                return File(content, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "DiemDanh" + (data.FirstOrDefault().TermCode) + ".xlsx");
+            }
+        }
     }
 }

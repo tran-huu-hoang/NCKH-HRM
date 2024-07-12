@@ -8,8 +8,8 @@
         public string? SubjectName { get; set; }
         public string? TermName { get; set; }
         public string? TermCode { get; set; }
-        public DateTime? StartDate { get; set; }
-        public DateTime? EndDate { get; set; }
+        public int? StudentNumber { get; set; }
+        public int? TermClassNumber { get; set; }
         public string? Room { get; set; }
         public int? CollegeCredit { get; set; }
     }
