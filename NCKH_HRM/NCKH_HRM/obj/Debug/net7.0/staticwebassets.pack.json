@@ -45,6 +45,10 @@
       "PackagePath": "staticwebassets\\css\\forgotpassword.css"
     },
     {
+      "Id": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\wwwroot\\css\\layout.css",
+      "PackagePath": "staticwebassets\\css\\layout.css"
+    },
+    {
       "Id": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\wwwroot\\css\\login.css",
       "PackagePath": "staticwebassets\\css\\login.css"
     },

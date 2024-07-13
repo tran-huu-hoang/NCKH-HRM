@@ -10,5 +10,8 @@
         public int? NumberTest { get; set; }
         public double? OverallScore { get; set; }
         public int? Relearn { get; set; }
+        public List<int> ListBeginClass { get; set; }
+
+        public List<int> ListEndClass { get; set; }
     }
 }

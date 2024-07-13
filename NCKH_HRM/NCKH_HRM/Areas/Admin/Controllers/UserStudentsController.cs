@@ -132,9 +132,9 @@ namespace NCKH_HRM.Areas.Admin.Controllers
         }
 
         // GET: Admin/UserStudents/Delete/5
-        public async Task<IActionResult> Delete(long? id)
+        /*public async Task<IActionResult> Delete(long? id)
         {
-            /*if (id == null || _context.UserStudents == null)
+            *//*if (id == null || _context.UserStudents == null)
             {
                 return NotFound();
             }
@@ -147,7 +147,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            return View(userStudent);*/
+            return View(userStudent);*//*
             if (_context.UserStudents == null)
             {
                 return Problem("Entity set 'NckhDbContext.UserStudents'  is null.");
@@ -160,7 +160,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
-        }
+        }*/
 
         // POST: Admin/UserStudents/Delete/5
         /*[HttpPost, ActionName("Delete")]

@@ -465,7 +465,7 @@ namespace NCKH_HRM.Controllers
                 worksheet.Cells["A1:D1"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
 
                 worksheet.Cells["A2:D2"].Merge = true;
-                worksheet.Cells["A2:D2"].Value = "KHOA CÔNG NGHỆ THÔNG TIN";
+                worksheet.Cells["A2:D2"].Value = "KHOA " + data.FirstOrDefault().MajorName.ToUpper();
                 worksheet.Cells["A2:D2"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                 worksheet.Cells["A2:D2"].Style.Font.Bold = true;
 
@@ -664,7 +664,7 @@ namespace NCKH_HRM.Controllers
                 package.SaveAs(stream);
 
                 var content = stream.ToArray();
-                return File(content, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "DiemDanh_" + (data.FirstOrDefault().TermCode) + ".xlsx");
+                return File(content, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "DiemDanh_" + (data.FirstOrDefault().TermClass) + ".xlsx");
             }
         }
     }

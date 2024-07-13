@@ -50,6 +50,7 @@ namespace NCKH_HRM.Areas.StudentArea.Controllers
                                                 g.Key.OverallScore >= 4.0 ? 1.0 :
                                                 g.Key.OverallScore == null ? null : 0.0
                               }).ToListAsync();
+
             return View(data);
         }
 

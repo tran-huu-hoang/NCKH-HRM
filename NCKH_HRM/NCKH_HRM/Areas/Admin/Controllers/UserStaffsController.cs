@@ -144,9 +144,9 @@ namespace NCKH_HRM.Areas.Admin.Controllers
         }
 
         // GET: Admin/UserStaffs/Delete/5
-        public async Task<IActionResult> Delete(long? id)
+        /*public async Task<IActionResult> Delete(long? id)
         {
-            /*if (id == null || _context.UserStaffs == null)
+            *//*if (id == null || _context.UserStaffs == null)
             {
                 return NotFound();
             }
@@ -159,7 +159,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            return View(userStaff);*/
+            return View(userStaff);*//*
 
             if (_context.UserStaffs == null)
             {
@@ -173,7 +173,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
-        }
+        }*/
 
         // POST: Admin/UserStaffs/Delete/5
         /*[HttpPost, ActionName("Delete")]
