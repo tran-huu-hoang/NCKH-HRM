@@ -31,7 +31,14 @@ namespace NCKH_HRM.Areas.Admin.Controllers
 
             //xử lý logic đăng nhập tại đây
             var pass = model.Password;
-            var dataLogin = _context.UserStaffs.Where(x => x.Username.Equals(model.Email) && x.Password.Equals(pass)).FirstOrDefault();
+            var dataLogin = (from userstaff in _context.UserStaffs
+                             join staff in _context.Staff on userstaff.Staff equals staff.Id
+                             join position in _context.Positions on staff.Position equals position.Id
+                             where userstaff.Username.Equals(model.Email)
+                                && userstaff.Password.Equals(pass)
+                                && position.Name.Equals("Phó Khoa")
+                             select userstaff).FirstOrDefault();
+
             var data = dataLogin.ToJson();
             if (dataLogin != null)
             {
@@ -40,6 +47,7 @@ namespace NCKH_HRM.Areas.Admin.Controllers
 
                 return RedirectToAction("Index", "Dashboard");
             }
+            TempData["ErrorMessage"] = "Bạn không có quyền hạn truy cập mục này";
             return View(model);
         }
 

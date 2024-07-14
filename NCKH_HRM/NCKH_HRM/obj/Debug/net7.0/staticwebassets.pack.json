@@ -37,6 +37,10 @@
       "PackagePath": "staticwebassets\\css\\adminlogin.css"
     },
     {
+      "Id": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\wwwroot\\css\\attendancebg.css",
+      "PackagePath": "staticwebassets\\css\\attendancebg.css"
+    },
+    {
       "Id": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\wwwroot\\css\\changepassword.css",
       "PackagePath": "staticwebassets\\css\\changepassword.css"
     },

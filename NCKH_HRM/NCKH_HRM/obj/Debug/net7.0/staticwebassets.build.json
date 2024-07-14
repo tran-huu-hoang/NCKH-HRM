@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "GZok9wGyrYEP1oQURAyz0Pp3ticYEu88k/HH4HFVW6k=",
+  "Hash": "fR72/kpMOa6tEZX+hc1aa8Woyw56eDVf5UooCvnUicc=",
   "Source": "NCKH_HRM",
   "BasePath": "_content/NCKH_HRM",
   "Mode": "Default",
@@ -72,6 +72,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\adminlogin.css"
+    },
+    {
+      "Identity": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\wwwroot\\css\\attendancebg.css",
+      "SourceId": "NCKH_HRM",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\wwwroot\\",
+      "BasePath": "_content/NCKH_HRM",
+      "RelativePath": "css/attendancebg.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\attendancebg.css"
     },
     {
       "Identity": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\wwwroot\\css\\changepassword.css",

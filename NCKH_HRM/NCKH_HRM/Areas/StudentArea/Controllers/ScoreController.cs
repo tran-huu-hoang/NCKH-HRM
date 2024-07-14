@@ -68,11 +68,11 @@ namespace NCKH_HRM.Areas.StudentArea.Controllers
                         join registstudents in _context.RegistStudents on students.Id equals registstudents.Student
                         join detailterm in _context.DetailTerms on registstudents.DetailTerm equals detailterm.Id
                         join semesters in _context.Semesters on detailterm.Semester equals semesters.Id
-                        join attendances in _context.Attendances on detailterm.Id equals attendances.DetailTerm
+                        join attendances in _context.Attendances on registstudents.Id equals attendances.RegistStudent
                         join detailattendances in _context.DetailAttendances on attendances.Id equals detailattendances.IdAttendance
                         join pointprocesses in _context.PointProcesses on registstudents.Id equals pointprocesses.RegistStudent
                         where detailterm.Id == id && userstudents.Id == user_student.Id
-                        group new { detailterm, semesters, pointprocesses, detailattendances, registstudents } by new
+                        group new { semesters, pointprocesses, detailattendances, registstudents } by new
                         {
                             semesters.Name,
                             pointprocesses.MidtermPoint,
@@ -85,7 +85,8 @@ namespace NCKH_HRM.Areas.StudentArea.Controllers
                         select new StudentScoreDetail
                         {
                             Semester = g.Key.Name,
-                            AttendancePoint = (double)(g.Count(x => x.detailattendances.BeginClass == 1) //đếm số buổi đầu giờ đi học
+                            AttendancePoint = g.Count(x => x.detailattendances.BeginClass.HasValue) ==0 ? 0 : //so sánh trường hợp mẫu = 0
+                            (double)(g.Count(x => x.detailattendances.BeginClass == 1) //đếm số buổi đầu giờ đi học
                             + g.Count(x => x.detailattendances.EndClass == 1) //đếm số buổi cuối giờ đi học
                             + (double)(g.Count(x => x.detailattendances.BeginClass == 4) + g.Count(x => x.detailattendances.EndClass == 4)) / 2) //đếm số buổi muộn
                             / (g.Count(x => x.detailattendances.BeginClass.HasValue) * 2),//đếm số buổi học (đầu giờ + cuối giờ)
@@ -95,7 +96,29 @@ namespace NCKH_HRM.Areas.StudentArea.Controllers
                             NumberTest = g.Key.NumberTest,
                             OverallScore = g.Key.OverallScore,
                             Relearn = g.Key.Relearn,
+                            ListBeginClass = g.Select(x => x.detailattendances.BeginClass ?? -1).ToList(),
+                            ListEndClass = g.Select(x => x.detailattendances.EndClass ?? -1).ToList(),
                         }).FirstOrDefault();
+
+            var dateLearn = await (
+                              from detailterm in _context.DetailTerms
+                              join registstudent in _context.RegistStudents on detailterm.Id equals registstudent.DetailTerm
+                              join attendance in _context.Attendances on registstudent.Id equals attendance.RegistStudent
+                              join detailattendance in _context.DetailAttendances on attendance.Id equals detailattendance.IdAttendance
+                              join datelearn in _context.DateLearns on detailattendance.DateLearn equals datelearn.Id
+                              join timeline in _context.Timelines on datelearn.Timeline equals timeline.Id
+                              where detailterm.Id == id
+                              group new { timeline, registstudent, datelearn, detailterm, attendance, detailattendance } by new
+                              {
+                                  timeline.DateLearn,
+                              } into g
+                              select new Timeline
+                              {
+                                  DateLearn = g.Key.DateLearn,
+
+                              }).ToListAsync();
+
+            ViewBag.dateLearn = dateLearn;
 
             if (data == null)
             {
