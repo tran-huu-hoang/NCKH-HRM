@@ -453,12 +453,13 @@ namespace NCKH_HRM.Controllers
                 worksheet.Column(2).Width = 15.22;
                 worksheet.Column(3).Width = 28.78;
                 worksheet.Column(4).Width = 14.33;
+                worksheet.Column(5).Width = 6;
                 var dateLearnCount = dateLearn.Count();
                 for (int i = 0; i < dateLearnCount * 2; i++)
                 {
-                    worksheet.Column(i + 5).Width = 5.67;
+                    worksheet.Column(i + 6).Width = 5.67;
                 }
-                worksheet.Column(5 + dateLearnCount * 2).Width = 11.11;
+                worksheet.Column(6 + dateLearnCount * 2).Width = 11.11;
 
                 worksheet.Cells["A1:D1"].Merge = true;
                 worksheet.Cells["A1:D1"].Value = "TRƯỜNG ĐẠI HỌC NGUYỄN TRÃI";
@@ -513,30 +514,36 @@ namespace NCKH_HRM.Controllers
                 worksheet.Cells["D8:D10"].Style.Font.Bold = true;
                 worksheet.Cells["D8:D10"].Style.VerticalAlignment = ExcelVerticalAlignment.Center;
 
-                worksheet.Cells[8, 4 + dateLearnCount * 2 +1, 10, 4 + dateLearnCount * 2 + 1].Merge = true;
-                worksheet.Cells[8, 4 + dateLearnCount * 2 + 1, 10, 4 + dateLearnCount * 2 + 1].Value = "Ghi chú";
-                worksheet.Cells[8, 4 + dateLearnCount * 2 + 1, 10, 4 + dateLearnCount * 2 + 1].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                worksheet.Cells[8, 4 + dateLearnCount * 2 + 1, 10, 4 + dateLearnCount * 2 + 1].Style.Font.Bold = true;
-                worksheet.Cells[8, 4 + dateLearnCount * 2 + 1, 10, 4 + dateLearnCount * 2 + 1].Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                worksheet.Cells["E8:E10"].Merge = true;
+                worksheet.Cells["E8:E10"].Value = "CC";
+                worksheet.Cells["E8:E10"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                worksheet.Cells["E8:E10"].Style.Font.Bold = true;
+                worksheet.Cells["E8:E10"].Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+
+                worksheet.Cells[8, 5 + dateLearnCount * 2 +1, 10, 5 + dateLearnCount * 2 + 1].Merge = true;
+                worksheet.Cells[8, 5 + dateLearnCount * 2 + 1, 10, 5 + dateLearnCount * 2 + 1].Value = "Ghi chú";
+                worksheet.Cells[8, 5 + dateLearnCount * 2 + 1, 10, 5 + dateLearnCount * 2 + 1].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                worksheet.Cells[8, 5 + dateLearnCount * 2 + 1, 10, 5 + dateLearnCount * 2 + 1].Style.Font.Bold = true;
+                worksheet.Cells[8, 5 + dateLearnCount * 2 + 1, 10, 5 + dateLearnCount * 2 + 1].Style.VerticalAlignment = ExcelVerticalAlignment.Center;
 
                 for (int i = 0; i < dateLearnCount * 2; i+=2)
                 {
-                    worksheet.Cells[8, i + 5, 8, i + 6].Merge = true;
-                    worksheet.Cells[8, i + 5, 8, i + 6].Value = "Buổi " + (i/2 + 1);
-                    worksheet.Cells[8, i + 5, 8, i + 6].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                    worksheet.Cells[8, i + 5, 8, i + 6].Style.Font.Bold = true;
+                    worksheet.Cells[8, i + 6, 8, i + 7].Merge = true;
+                    worksheet.Cells[8, i + 6, 8, i + 7].Value = "Buổi " + (i/2 + 1);
+                    worksheet.Cells[8, i + 6, 8, i + 7].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                    worksheet.Cells[8, i + 6, 8, i + 7].Style.Font.Bold = true;
 
-                    worksheet.Cells[9, i + 5, 9, i + 6].Merge = true;
-                    worksheet.Cells[9, i + 5, 9, i + 6].Value = dateLearn[i/2].DateLearn?.ToString("dd/MM");
-                    worksheet.Cells[9, i + 5, 9, i + 6].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                    worksheet.Cells[9, i + 6, 9, i + 7].Merge = true;
+                    worksheet.Cells[9, i + 6, 9, i + 7].Value = dateLearn[i/2].DateLearn?.ToString("dd/MM");
+                    worksheet.Cells[9, i + 6, 9, i + 7].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
 
-                    worksheet.Cells[10, i + 5].Value = "ĐG";
-                    worksheet.Cells[10, i + 5].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                    worksheet.Cells[10, i + 5].Style.Font.Bold = true;
-
-                    worksheet.Cells[10, i + 6].Value = "CG";
+                    worksheet.Cells[10, i + 6].Value = "ĐG";
                     worksheet.Cells[10, i + 6].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                     worksheet.Cells[10, i + 6].Style.Font.Bold = true;
+
+                    worksheet.Cells[10, i + 7].Value = "CG";
+                    worksheet.Cells[10, i + 7].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                    worksheet.Cells[10, i + 7].Style.Font.Bold = true;
                 }
 
                 var dataCount = data.Count;
@@ -553,41 +560,22 @@ namespace NCKH_HRM.Controllers
                     worksheet.Cells[i + 11, 4].Value = data[i].BirthDay?.ToShortDateString();
                     worksheet.Cells[i + 11, 4].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
 
-                    for(int j = 0; j < (data[i].ListBeginClass.Count() * 2); j+=2)
+                    worksheet.Cells[i + 11, 5].Value = data[i].AttendancePoint * 100;
+                    if(data[i].AttendancePoint < 0.8)
+                    {// Đổi màu nền
+                        worksheet.Cells[i + 11, 5].Style.Fill.PatternType = ExcelFillStyle.Solid;
+                        worksheet.Cells[i + 11, 5].Style.Fill.BackgroundColor.SetColor(Color.FromArgb(230, 145, 56));
+                    }
+                    worksheet.Cells[i + 11, 5].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+
+                    for (int j = 0; j < (data[i].ListBeginClass.Count() * 2); j+=2)
                     {
                         if (data[i].ListBeginClass[j / 2] == 1)
-                        {
-                            worksheet.Cells[i + 11, j + 5].Value = "P";
-                            worksheet.Cells[i + 11, j + 5].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                        }
-                        if (data[i].ListBeginClass[j / 2] == 2)
-                        {
-                            worksheet.Cells[i + 11, j + 5].Value = "A";
-                            worksheet.Cells[i + 11, j + 5].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                            // Đổi màu nền
-                            worksheet.Cells[i + 11, j + 5].Style.Fill.PatternType = ExcelFillStyle.Solid;
-                            worksheet.Cells[i + 11, j + 5].Style.Fill.BackgroundColor.SetColor(Color.FromArgb(230, 145, 56));
-                        }
-                        if (data[i].ListBeginClass[j / 2] == 3)
-                        {
-                            worksheet.Cells[i + 11, j + 5].Value = "PA";
-                            worksheet.Cells[i + 11, j + 5].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                        }
-                        if (data[i].ListBeginClass[j / 2] == 4)
-                        {
-                            worksheet.Cells[i + 11, j + 5].Value = "P-";
-                            worksheet.Cells[i + 11, j + 5].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                            // Đổi màu nền
-                            worksheet.Cells[i + 11, j + 5].Style.Fill.PatternType = ExcelFillStyle.Solid;
-                            worksheet.Cells[i + 11, j + 5].Style.Fill.BackgroundColor.SetColor(Color.FromArgb(255, 192, 0));
-                        }
-
-                        if (data[i].ListEndClass[j / 2] == 1)
                         {
                             worksheet.Cells[i + 11, j + 6].Value = "P";
                             worksheet.Cells[i + 11, j + 6].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                         }
-                        if (data[i].ListEndClass[j / 2] == 2)
+                        if (data[i].ListBeginClass[j / 2] == 2)
                         {
                             worksheet.Cells[i + 11, j + 6].Value = "A";
                             worksheet.Cells[i + 11, j + 6].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
@@ -595,18 +583,45 @@ namespace NCKH_HRM.Controllers
                             worksheet.Cells[i + 11, j + 6].Style.Fill.PatternType = ExcelFillStyle.Solid;
                             worksheet.Cells[i + 11, j + 6].Style.Fill.BackgroundColor.SetColor(Color.FromArgb(230, 145, 56));
                         }
-                        if (data[i].ListEndClass[j / 2] == 3)
+                        if (data[i].ListBeginClass[j / 2] == 3)
                         {
                             worksheet.Cells[i + 11, j + 6].Value = "PA";
                             worksheet.Cells[i + 11, j + 6].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                         }
-                        if (data[i].ListEndClass[j / 2] == 4)
+                        if (data[i].ListBeginClass[j / 2] == 4)
                         {
                             worksheet.Cells[i + 11, j + 6].Value = "P-";
                             worksheet.Cells[i + 11, j + 6].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                             // Đổi màu nền
                             worksheet.Cells[i + 11, j + 6].Style.Fill.PatternType = ExcelFillStyle.Solid;
                             worksheet.Cells[i + 11, j + 6].Style.Fill.BackgroundColor.SetColor(Color.FromArgb(255, 192, 0));
+                        }
+
+                        if (data[i].ListEndClass[j / 2] == 1)
+                        {
+                            worksheet.Cells[i + 11, j + 7].Value = "P";
+                            worksheet.Cells[i + 11, j + 7].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        }
+                        if (data[i].ListEndClass[j / 2] == 2)
+                        {
+                            worksheet.Cells[i + 11, j + 7].Value = "A";
+                            worksheet.Cells[i + 11, j + 7].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                            // Đổi màu nền
+                            worksheet.Cells[i + 11, j + 7].Style.Fill.PatternType = ExcelFillStyle.Solid;
+                            worksheet.Cells[i + 11, j + 7].Style.Fill.BackgroundColor.SetColor(Color.FromArgb(230, 145, 56));
+                        }
+                        if (data[i].ListEndClass[j / 2] == 3)
+                        {
+                            worksheet.Cells[i + 11, j + 7].Value = "PA";
+                            worksheet.Cells[i + 11, j + 7].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        }
+                        if (data[i].ListEndClass[j / 2] == 4)
+                        {
+                            worksheet.Cells[i + 11, j + 7].Value = "P-";
+                            worksheet.Cells[i + 11, j + 7].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                            // Đổi màu nền
+                            worksheet.Cells[i + 11, j + 7].Style.Fill.PatternType = ExcelFillStyle.Solid;
+                            worksheet.Cells[i + 11, j + 7].Style.Fill.BackgroundColor.SetColor(Color.FromArgb(255, 192, 0));
                         }
                     }
                 }
@@ -654,7 +669,7 @@ namespace NCKH_HRM.Controllers
                 worksheet.Cells[10 + dataCount + 6, 11].Value = "Phép";
                 worksheet.Cells[10 + dataCount + 7, 11].Value = "Muộn";
 
-                var cellBorder = worksheet.Cells[8, 1, 10 + dataCount + 1, 4 + dateLearnCount * 2 + 1].Style.Border;
+                var cellBorder = worksheet.Cells[8, 1, 10 + dataCount + 1, 5 + dateLearnCount * 2 + 1].Style.Border;
                 cellBorder.Top.Style = ExcelBorderStyle.Thin;
                 cellBorder.Bottom.Style = ExcelBorderStyle.Thin;
                 cellBorder.Left.Style = ExcelBorderStyle.Thin;

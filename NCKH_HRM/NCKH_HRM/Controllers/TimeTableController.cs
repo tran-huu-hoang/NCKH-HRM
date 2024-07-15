@@ -35,6 +35,8 @@ namespace NCKH_HRM.Controllers
                                  timeline.DateLearn,
                                  roomName = room.Name,
                                  datelearn.Id,
+                                 term.Name,
+                                 detailterm.TermClass,
                              } into g
                              select new TimeTable
                              {
@@ -44,6 +46,8 @@ namespace NCKH_HRM.Controllers
                                                       .Count(da => da.DateLearn == g.Key.Id && (da.BeginClass == 1 || da.EndClass == 1)),
                                  TotalStudent = _context.DetailAttendances
                                                       .Count(da => da.DateLearn == g.Key.Id),
+                                 TermName = g.Key.Name,
+                                 TermClass = g.Key.TermClass,
                              }).ToListAsync();
 
             return View(data);

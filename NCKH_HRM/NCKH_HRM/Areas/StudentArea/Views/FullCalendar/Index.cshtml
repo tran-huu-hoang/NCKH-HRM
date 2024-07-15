@@ -46,23 +46,10 @@
                 events.forEach(function (event) {
                     var backgroundColor = "";
                     var textStatus = "";
-                    if (event.BeginClass === 1 && event.EndClass === 1) {
-                        backgroundColor = "blue";
-                        textStatus = " - Có mặt"
-                    } else if (event.BeginClass === 1 && event.EndClass === 2) {
-                        backgroundColor = "blue";
-                        textStatus = " - Về sớm"
-                    } else if (event.BeginClass === 2 && event.EndClass === 1) {
-                        backgroundColor = "blue";
-                        textStatus = " - Muộn";
-                    } else if (event.BeginClass === 3 && event.EndClass === 3) {
-                        backgroundColor = "blue";
-                        textStatus = " - Phép";
-                    } else if (event.BeginClass === 2 && event.EndClass === 2) {
-                        backgroundColor = "blue";
-                        textStatus = " - Vắng";
-                    } else {
+                    if (event.BeginClass == null) {
                         backgroundColor = "#A9A9A9";
+                    } else {
+                        backgroundColor = "#3E94DB";
                     }
 
                     calendar.addEvent({

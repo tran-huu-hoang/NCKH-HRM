@@ -38,31 +38,34 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark fs-15" asp-area="StudentArea" asp-controller="FullCalendar" asp-action="Index">Lịch học</a>
                         </li>
+                        <li class="nav-item ms-auto">
+                            <div class="info">
+                                @{
+                                    if (HttpContextAccessor.HttpContext.Session.GetString("StudentLogin") != null)
+                                    {
+                                        var user = JsonConvert.DeserializeObject<UserStaff>(HttpContextAccessor.HttpContext.Session.GetString("StudentLogin"));
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                @user.Username
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" asp-controller="ChangePassword" asp-action="Index" asp-route-id="@user.Id">Đổi mật khẩu</a></li>
+                                                <li><hr class="dropdown-divider"></li>
+                                                <li><a class="dropdown-item" asp-action="Logout" asp-controller="Login">Đăng xuất</a></li>
+                                            </ul>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <a href="#" class="d-block">Hoangvippro</a>
+                                    }
+                                }
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
-            <div class="info">
-                @{
-                    if (HttpContextAccessor.HttpContext.Session.GetString("StudentLogin") != null)
-                    {
-                        var user = JsonConvert.DeserializeObject<UserStaff>(HttpContextAccessor.HttpContext.Session.GetString("StudentLogin"));
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                @user.Username
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" asp-controller="ChangePassword" asp-action="Index" asp-route-id="@user.Id">Đổi mật khẩu</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" asp-action="Logout" asp-controller="Login">Đăng xuất</a></li>
-                            </ul>
-                        </div>
-                    }
-                    else
-                    {
-                        <a href="#" class="d-block">Hoangvippro</a>
-                    }
-                }
-            </div>
+            
         </nav>
     </header>
     <div class="container">

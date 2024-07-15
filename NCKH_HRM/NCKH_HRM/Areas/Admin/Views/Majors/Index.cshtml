@@ -68,9 +68,9 @@
                 }
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-event"><i class="fa-regular fa-pen-to-square"></i></a>
-                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-success btn-event"><i class="fa-solid fa-circle-info"></i></a>
-                <a asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Bạn có chắc muốn xóa mục này không?');" class="btn btn-danger btn-event"><i class="fa-solid fa-trash-can"></i></a>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-event text-white"><i class="fas fa-pen-square"></i></a>
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-success btn-event"><i class="fas fa-info-circle"></i></a>
+                <a asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Bạn có chắc muốn xóa mục này không?');" class="btn btn-danger btn-event"><i class="fas fa-trash"></i></a>
             </td>
         </tr>
 }
