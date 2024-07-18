@@ -560,12 +560,7 @@ namespace NCKH_HRM.Controllers
                     worksheet.Cells[i + 11, 4].Value = data[i].BirthDay?.ToShortDateString();
                     worksheet.Cells[i + 11, 4].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
 
-                    worksheet.Cells[i + 11, 5].Value = data[i].AttendancePoint * 100;
-                    if(data[i].AttendancePoint < 0.8)
-                    {// Đổi màu nền
-                        worksheet.Cells[i + 11, 5].Style.Fill.PatternType = ExcelFillStyle.Solid;
-                        worksheet.Cells[i + 11, 5].Style.Fill.BackgroundColor.SetColor(Color.FromArgb(230, 145, 56));
-                    }
+                    worksheet.Cells[i + 11, 5].Value = Math.Round((data[i].AttendancePoint ?? 0) * 100);
                     worksheet.Cells[i + 11, 5].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
 
                     for (int j = 0; j < (data[i].ListBeginClass.Count() * 2); j+=2)
