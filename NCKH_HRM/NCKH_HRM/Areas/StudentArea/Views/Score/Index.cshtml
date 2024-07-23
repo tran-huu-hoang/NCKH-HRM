@@ -40,7 +40,10 @@
             relearnNumber++;
         }
 
-        collegeCreditNumber += item.CollegeCredit;
+        if(item.PointRange4 >= 1 && item.PointRange4 != null)
+        {
+            collegeCreditNumber += item.CollegeCredit;
+        }
 
         if(item.PointRange4 == null)
         {

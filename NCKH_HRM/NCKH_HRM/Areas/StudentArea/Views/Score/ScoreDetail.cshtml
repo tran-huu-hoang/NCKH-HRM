@@ -32,74 +32,110 @@
         </div>
     </div>
 
-    <div class="border shadow rounded p-3">
-        <div class="row">
-            @for (int i = 0; i < dateLearn.Count; i++)
-            {
-                string statusText1 = "";
-                string textColor1 = "";
-                string bgColor1 = "";
-                string statusText2 = "";
-                string textColor2 = "";
-                string bgColor2 = "";
+    <div class="d-flex row">
+        <div class="col-5">
+            <div class="border shadow rounded p-3 me-3 bg-secondary">
 
-                switch (Model.ListBeginClass[i])
-                {
-                    case 1:
-                        statusText1 = "P";
-                        break;
-                    case 2:
-                        statusText1 = "A";
-                        textColor1 = "a-color";
-                        bgColor1 = "text-white";
-                        break;
-                    case 3:
-                        statusText1 = "PA";
-                        break;
-                    case 4:
-                        statusText1 = "P-";
-                        textColor1 = "bg-warning";
-                        break;
-                    default:
-                        statusText1 = "";
-                        break;
-                }
+            </div>
+        </div>
 
-                switch (Model.ListEndClass[i])
-                {
-                    case 1:
-                        statusText2 = "P";
-                        break;
-                    case 2:
-                        statusText2 = "A";
-                        textColor2 = "a-color";
-                        bgColor2 = "text-white";
-                        break;
-                    case 3:
-                        statusText2 = "PA";
-                        break;
-                    case 4:
-                        statusText2 = "P-";
-                        textColor2 = "bg-warning";
-                        break;
-                    default:
-                        statusText2 = "";
-                        break;
-                }
-                <div class="col-1 my-3">
-                    <div class="row text-center">
-                        <strong>@dateLearn[i].DateLearn.ToString("dd/MM")</strong>
-                        <div class="col-6">
-                            <div><strong>DG</strong></div>
-                            <div class="@textColor1 @bgColor1 p-1">@statusText1</div>
-                        </div>
-                        <div class="col-6">
-                            <div><strong>CG</strong></div>
-                            <div class="@textColor2 @bgColor2 p-1">@statusText2</div>
-                        </div>
-                    </div>
+        <div class="col-5">
+            <div class="border shadow rounded p-3 mx-3 row">
+                <div class="col-4 mb-2 text-center">
+                    <strong>Ngày học</strong>
                 </div>
-            }
+                <div class="col-4 mb-2 text-center">
+                    <strong>ĐG</strong>
+                </div>
+                <div class="col-4 mb-2 text-center">
+                    <strong>CG</strong>
+                </div>
+                @for (int i = 0; i < dateLearn.Count; i++)
+                {
+                    string statusText1 = "";
+                    string textColor1 = "";
+                    string bgColor1 = "";
+                    string statusText2 = "";
+                    string textColor2 = "";
+                    string bgColor2 = "";
+
+                    switch (Model.ListBeginClass[i])
+                    {
+                        case 1:
+                            statusText1 = "P";
+                            break;
+                        case 2:
+                            statusText1 = "A";
+                            textColor1 = "a-color";
+                            bgColor1 = "text-white";
+                            break;
+                        case 3:
+                            statusText1 = "PA";
+                            break;
+                        case 4:
+                            statusText1 = "P-";
+                            textColor1 = "bg-warning";
+                            break;
+                        default:
+                            statusText1 = "";
+                            break;
+                    }
+
+                    switch (Model.ListEndClass[i])
+                    {
+                        case 1:
+                            statusText2 = "P";
+                            break;
+                        case 2:
+                            statusText2 = "A";
+                            textColor2 = "a-color";
+                            bgColor2 = "text-white";
+                            break;
+                        case 3:
+                            statusText2 = "PA";
+                            break;
+                        case 4:
+                            statusText2 = "P-";
+                            textColor2 = "bg-warning";
+                            break;
+                        default:
+                            statusText2 = "";
+                            break;
+                    }
+
+                    @* <div class="col-2 my-3">
+                        <div class="row text-center">
+                            <strong>@dateLearn[i].DateLearn.ToString("dd/MM")</strong>
+                            <div class="col-6">
+                                <div><strong>DG</strong></div>
+                                <div class="@textColor1 @bgColor1 p-1">@statusText1</div>
+                            </div>
+                            <div class="col-6">
+                                <div><strong>CG</strong></div>
+                                <div class="@textColor2 @bgColor2 p-1">@statusText2</div>
+                            </div>
+                        </div>
+                    </div> *@
+
+                    <div class="col-4 text-center">
+                        <strong>@dateLearn[i].DateLearn.ToString("dd/MM")</strong>
+                    </div>
+                    <div class="col-4 text-center">
+                        <div class="@textColor1 @bgColor1 p-1 m-1 mx-5">@statusText1</div>
+                    </div>
+                    <div class="col-4 text-center">
+                        <div class="@textColor2 @bgColor2 p-1 m-1 mx-5">@statusText2</div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="border shadow rounded p-3 ms-3">
+                <p><strong>P</strong>: Có mặt</p>
+                <p><strong>A</strong>: Vắng</p>
+                <p><strong>P-</strong>: Muộn</p>
+                <p><strong>PA</strong>: Phép</p>
+            </div>
         </div>
     </div>
 </div>

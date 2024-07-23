@@ -3,11 +3,15 @@
   "WorkspaceRootPath": "D:\\NCKH\\NCKH_HRM\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|d:\\nckh\\nckh_hrm\\nckh_hrm\\areas\\studentarea\\views\\score\\scoredetail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|solutionrelative:nckh_hrm\\areas\\studentarea\\views\\score\\scoredetail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|d:\\nckh\\nckh_hrm\\nckh_hrm\\controllers\\attendancecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|solutionrelative:nckh_hrm\\controllers\\attendancecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|d:\\nckh\\nckh_hrm\\nckh_hrm\\views\\attendance\\partialbodyattendancesheet.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|D:\\NCKH\\NCKH_HRM\\nckh_hrm\\views\\attendance\\partialbodyattendancesheet.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{388AA0C5-5616-4B4A-BC08-5C2252743F25}|NCKH_HRM\\NCKH_HRM.csproj|solutionrelative:nckh_hrm\\views\\attendance\\partialbodyattendancesheet.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
@@ -18,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -26,7 +30,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "ScoreDetail.cshtml",
+              "DocumentMoniker": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Areas\\StudentArea\\Views\\Score\\ScoreDetail.cshtml",
+              "RelativeDocumentMoniker": "NCKH_HRM\\Areas\\StudentArea\\Views\\Score\\ScoreDetail.cshtml",
+              "ToolTip": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Areas\\StudentArea\\Views\\Score\\ScoreDetail.cshtml",
+              "RelativeToolTip": "NCKH_HRM\\Areas\\StudentArea\\Views\\Score\\ScoreDetail.cshtml",
+              "ViewState": "AQIAABkAAAAAAAAAAAAcwCMAAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-07-23T02:09:23.565Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "PartialBodyAttendanceSheet.cshtml",
               "DocumentMoniker": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Views\\Attendance\\PartialBodyAttendanceSheet.cshtml",
               "RelativeDocumentMoniker": "NCKH_HRM\\Views\\Attendance\\PartialBodyAttendanceSheet.cshtml",
@@ -34,18 +51,17 @@
               "RelativeToolTip": "NCKH_HRM\\Views\\Attendance\\PartialBodyAttendanceSheet.cshtml",
               "ViewState": "AQIAAFoAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-07-18T06:43:01.962Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-18T06:43:01.962Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "AttendanceController.cs",
               "DocumentMoniker": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Controllers\\AttendanceController.cs",
               "RelativeDocumentMoniker": "NCKH_HRM\\Controllers\\AttendanceController.cs",
               "ToolTip": "D:\\NCKH\\NCKH_HRM\\NCKH_HRM\\Controllers\\AttendanceController.cs",
               "RelativeToolTip": "NCKH_HRM\\Controllers\\AttendanceController.cs",
-              "ViewState": "AQIAABwCAAAAAAAAAAAAADICAABoAAAA",
+              "ViewState": "AQIAAAwCAAAAAAAAAAAAADICAABoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-18T03:21:33.603Z",
               "EditorCaption": ""
