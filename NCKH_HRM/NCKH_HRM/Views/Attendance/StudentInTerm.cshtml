@@ -9,7 +9,7 @@
 <h1 class="py-3">Lớp: @ViewBag.TermName - @ViewBag.TermClassName</h1>
 
 <div class="container m-auto">
-    <form method="post" asp-action="Import" enctype="multipart/form-data">
+    @* <form method="post" asp-action="Import" enctype="multipart/form-data">
         <div>
             <label>Upload Excel File</label>
             <input type="file" name="file" />
@@ -24,7 +24,7 @@
             <input name="DetailTermId" value="@item.DetailTermId" hidden />
             <input name="DateLearnId" value="@item.DateLearnId" hidden />
         }
-    </form>
+    </form> *@
     <form method="post" asp-action="StudentInTerm">
         <div class="d-flex justify-content-between mb-3">
             <input type="submit" onclick="return confirm('Bạn đã điểm danh xong?');" class="btn btn-success" value="Điểm danh" />

@@ -447,17 +447,17 @@ namespace NCKH_HRM.Controllers
                 var worksheet = package.Workbook.Worksheets.Add("Attendances");
 
                 worksheet.Cells.Style.Font.Name = "Times New Roman";
-                worksheet.Cells.Style.Font.Size = 12;
+                worksheet.Cells.Style.Font.Size = 10;
 
-                worksheet.Column(1).Width = 8.67;
-                worksheet.Column(2).Width = 15.22;
-                worksheet.Column(3).Width = 28.78;
-                worksheet.Column(4).Width = 14.33;
-                worksheet.Column(5).Width = 6;
+                worksheet.Column(1).Width = 5;
+                worksheet.Column(2).Width = 14;
+                worksheet.Column(3).Width = 21;
+                worksheet.Column(4).Width = 13;
+                worksheet.Column(5).Width = 5;
                 var dateLearnCount = dateLearn.Count();
                 for (int i = 0; i < dateLearnCount * 2; i++)
                 {
-                    worksheet.Column(i + 6).Width = 5.67;
+                    worksheet.Column(i + 6).Width = 4;
                 }
                 worksheet.Column(6 + dateLearnCount * 2).Width = 11.11;
 
@@ -563,6 +563,12 @@ namespace NCKH_HRM.Controllers
                     worksheet.Cells[i + 11, 5].Value = Math.Round((data[i].AttendancePoint ?? 0) * 100);
                     worksheet.Cells[i + 11, 5].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
 
+                    if (data[i].AttendancePoint < 0.8)
+                    {
+                        worksheet.Cells[i + 11, 5 + dateLearnCount * 2 + 1].Value = "K";
+                        worksheet.Cells[i + 11, 5 + dateLearnCount * 2 + 1].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                    }
+
                     for (int j = 0; j < (data[i].ListBeginClass.Count() * 2); j+=2)
                     {
                         if (data[i].ListBeginClass[j / 2] == 1)
@@ -658,17 +664,34 @@ namespace NCKH_HRM.Controllers
                 worksheet.Cells[10 + dataCount + 6, 10].Value = "PA";
                 worksheet.Cells[10 + dataCount + 7, 10].Value = "P-";
 
-
                 worksheet.Cells[10 + dataCount + 4, 11].Value = "Có mặt";
                 worksheet.Cells[10 + dataCount + 5, 11].Value = "Vắng";
                 worksheet.Cells[10 + dataCount + 6, 11].Value = "Phép";
                 worksheet.Cells[10 + dataCount + 7, 11].Value = "Muộn";
+
+                worksheet.Cells[10 + dataCount + 3, 5 + dateLearnCount * 2 + 1 - 7, 10 + dataCount + 3, 5 + dateLearnCount * 2 + 1 - 1].Merge = true;
+                worksheet.Cells[10 + dataCount + 3, 5 + dateLearnCount * 2 + 1 - 7, 10 + dataCount + 3, 5 + dateLearnCount * 2 + 1 - 1].Value = "GIẢNG VIÊN";
+                worksheet.Cells[10 + dataCount + 3, 5 + dateLearnCount * 2 + 1 - 7, 10 + dataCount + 3, 5 + dateLearnCount * 2 + 1 - 1].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                worksheet.Cells[10 + dataCount + 3, 5 + dateLearnCount * 2 + 1 - 7, 10 + dataCount + 3, 5 + dateLearnCount * 2 + 1 - 1].Style.Font.Bold = true;
+
+                worksheet.Cells[10 + dataCount + 8, 5 + dateLearnCount * 2 + 1 - 7, 10 + dataCount + 8, 5 + dateLearnCount * 2 + 1 - 1].Merge = true;
+                worksheet.Cells[10 + dataCount + 8, 5 + dateLearnCount * 2 + 1 - 7, 10 + dataCount + 8, 5 + dateLearnCount * 2 + 1 - 1].Value = data.FirstOrDefault().TeacherName;
+                worksheet.Cells[10 + dataCount + 8, 5 + dateLearnCount * 2 + 1 - 7, 10 + dataCount + 8, 5 + dateLearnCount * 2 + 1 - 1].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                worksheet.Cells[10 + dataCount + 8, 5 + dateLearnCount * 2 + 1 - 7, 10 + dataCount + 8, 5 + dateLearnCount * 2 + 1 - 1].Style.Font.Bold = true;
 
                 var cellBorder = worksheet.Cells[8, 1, 10 + dataCount + 1, 5 + dateLearnCount * 2 + 1].Style.Border;
                 cellBorder.Top.Style = ExcelBorderStyle.Thin;
                 cellBorder.Bottom.Style = ExcelBorderStyle.Thin;
                 cellBorder.Left.Style = ExcelBorderStyle.Thin;
                 cellBorder.Right.Style = ExcelBorderStyle.Thin;
+
+                // Set page size to A4
+                worksheet.PrinterSettings.PaperSize = ePaperSize.A4;
+
+                // Fit to one page
+                worksheet.PrinterSettings.FitToPage = true;
+                worksheet.PrinterSettings.FitToWidth = 1;
+                worksheet.PrinterSettings.FitToHeight = 1;
 
                 var stream = new MemoryStream();
                 package.SaveAs(stream);
